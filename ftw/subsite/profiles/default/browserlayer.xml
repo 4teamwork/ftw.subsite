@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+ <layer name="ftw_subsite"
+        interface="ftw.subsite.interfaces.IFtwSubsiteLayer" />
+</layers>

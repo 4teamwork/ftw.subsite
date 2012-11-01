@@ -1,0 +1,18 @@
+<metal:block use-macro="here/global_defines/macros/defines" />
+<div tal:define="tabindex python:Iterator(pos=0);
+                       teasertitle view/getTeaserTitle;
+                       teaserdesc view/getTeaserDesc;
+                       internal_target nocall:view/internal_obj;
+                       image view/image_tag;
+                       ">
+    <h2>
+    	<a tal:attributes="href python:internal_target.absolute_url()">
+            <tal:img replace="structure image" />
+    	    <span tal:replace="structure teasertitle" />
+    	</a>
+    </h2>
+    <p class="homeFeature"
+       tal:content="structure teaserdesc">
+       Beschrieb
+    </p>
+</div>

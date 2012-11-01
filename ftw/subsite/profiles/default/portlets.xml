@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<portlets>
+    <!-- Portlet Manager for subsites front page -->
+    <portletmanager
+      name="ftw.subsite.front1"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+
+    <portletmanager
+      name="ftw.subsite.front2"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+
+    <portletmanager
+      name="ftw.subsite.front3"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+
+    <portletmanager
+      name="ftw.subsite.front4"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+
+    <portletmanager
+      name="ftw.subsite.front5"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+
+    <portletmanager
+      name="ftw.subsite.front6"
+      type="ftw.subsite.interfaces.ISubsiteColumn"
+      />
+    <!-- register portlet for subsite front page-->
+    <portlet
+      addview="ftw.subsite.teaserportlet"
+      title="Subsite TeaserPortlet"
+      description="A portlet which can render a teaser">
+        <for interface="ftw.subsite.interfaces.ISubsiteColumn" />
+    </portlet>
+
+</portlets>

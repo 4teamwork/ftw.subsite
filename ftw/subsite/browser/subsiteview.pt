@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="ftw.subsite">
+
+
+<body>
+
+<metal:left fill-slot="column_one_slot" />
+	<div metal:fill-slot="content"
+		 class="colGroup">
+		<div tal:condition="view/hasPermissions">
+        	<div tal:replace="structure provider:plone.belowcontenttitle" />
+
+            <a href=""
+               tal:attributes="href string:${here/absolute_url}/@@manage-subsite_front">
+	            edit dashboard
+	        </a> |
+	        <a href=""
+               tal:attributes="href string:${here/absolute_url}/edit" i18n:translate="">edit subsite</a> |
+	        <a href=""
+               tal:attributes="href string:${here/absolute_url}/folder_contents">
+	            Contents
+	        </a>
+		</div>
+            <h1 i18n:translate="" class="hiddenStructure">W&auml;hlen sie ihre Sektion</h1>
+            <dl tal:condition="view/empty"
+                class="portalMessage info visualClear" id="dashboard-info-message">
+                <dt i18n:translate="">Information</dt>
+                <dd>
+                    The dashboard is empty, click on "edit dashboard"
+                </dd>
+            </dl>
+
+            <div class="column w175"
+              tal:content="structure provider:ftw.subsite.front1" />
+            <div class="column w175"
+              tal:content="structure provider:ftw.subsite.front2" />
+            <div class="column w175"
+              tal:content="structure provider:ftw.subsite.front3" />
+            <div class="column w175 m0"
+              tal:content="structure provider:ftw.subsite.front4" />
+
+            <div class="visualClear"><!-- IE Fix --></div>
+
+            <div class="column column1 w364"
+              tal:content="structure provider:ftw.subsite.front5" />
+            <div class="column column2 w364 m0"
+              tal:content="structure provider:ftw.subsite.front6" />
+
+	</div>
+</body>
+</html>

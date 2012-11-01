@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="izug.subsites">
+
+  <include package="plone.app.contentmenu" />
+
+
+	<!-- dashboard for the front-pages -->
+
+	<adapter
+    factory=".manager.ColumnSubsiteManagerRenderer"
+    provides="plone.portlets.interfaces.IPortletManagerRenderer"
+    />
+
+  <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="subsite_view"
+      permission="zope2.View"
+      class=".subsiteview.SubsiteView"
+      template="subsiteview.pt"
+      allowed_attributes="is_subsite"
+      />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class="plone.app.portlets.browser.manage.ManageContextualPortlets"
+    name="manage-subsite_front"
+    template="manage-subsiteview.pt"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    for="*"
+    class=".languageswitcher.LanguageSwitcher"
+    name="switch_language"
+    permission="zope2.View"
+    />
+</configure>

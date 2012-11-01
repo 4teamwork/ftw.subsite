@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="izug.subsites">
+
+  <include package="plone.app.portlets" />
+
+  <plone:portlet
+      name="ftw.subsite.teaserportlet"
+      interface=".teaserportlet.ITeaserPortlet"
+      assignment=".teaserportlet.Assignment"
+      renderer=".teaserportlet.Renderer"
+      addview=".teaserportlet.AddForm"
+      editview=".teaserportlet.EditForm"
+      />
+
+</configure>

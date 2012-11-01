@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+
+<metal:left fill-slot="column_one_slot" />
+<metal:right fill-slot="column_two_slot" />
+
+<metal:main fill-slot="content"
+    tal:define="errors options/state/getErrors | nothing">
+    <tal:main-macro metal:define-macro="main">
+
+    <div id="content" class="documentEditable">
+
+        <ul class="contentViews">
+          <li>
+            <a href=""
+               tal:attributes="href string: ./view"
+               i18n:translate="label_dashboard">Subsite Front page</a>
+          </li>
+        </ul>
+
+        <div class="documentContent" id="region-content">
+
+            <a name="documentContent"></a>
+
+            <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+                Portal status message
+            </div>
+
+            <h1 class="documentFirstHeading">
+                Edit subsite frontpage
+            </h1>
+
+           <div id="dashboard">
+                <div class="visualClear"><!-- --></div>
+                <div id="dashboard-portlets1"
+                  tal:content="structure provider:ftw.subsite.front1" />
+                <div id="dashboard-portlets2"
+                  tal:content="structure provider:ftw.subsite.front2" />
+                <div id="dashboard-portlets3"
+                  tal:content="structure provider:ftw.subsite.front3" />
+                <div id="dashboard-portlets4"
+                  tal:content="structure provider:ftw.subsite.front4" />
+            </div>
+
+            <div id="dashboard2">
+                <hr>
+                <div class="visualClear"><!-- --></div>
+                <div id="dashboard-portlets5"
+                  tal:content="structure provider:ftw.subsite.front5" />
+                <div id="dashboard-portlets6"
+                  tal:content="structure provider:ftw.subsite.front6" />
+            </div>
+
+            <div class="visualClear"><!-- --></div>
+
+    </div>
+
+    </tal:main-macro>
+
+</metal:main>
+
+</body>
+</html>

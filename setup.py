@@ -3,15 +3,14 @@ import os
 
 version = '1.0'
 
+tests_require = [
+    'plone.app.testing',
+    ]
+
 long_description = (
     open('README.rst').read()
     + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.txt').read()
-    + '\n' +
-    open('CHANGES.txt').read()
+    open('docs/HISTORY.txt').read()
     + '\n')
 
 setup(name='ftw.subsite',
@@ -34,8 +33,13 @@ setup(name='ftw.subsite',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.formwidget.contenttree',
           # -*- Extra requirements: -*-
       ],
+
+      tests_require=tests_require,
+      extras_require={'tests': tests_require},
+
       entry_points="""
       # -*- Entry points: -*-
       """,
