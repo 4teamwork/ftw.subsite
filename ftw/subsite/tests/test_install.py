@@ -6,6 +6,8 @@ import transaction
 from plone.app.blob.tests.utils import makeFileUpload
 from StringIO import StringIO
 from base64 import decodestring
+
+
 class TestSubsite(unittest.TestCase):
 
     layer = FTW_SUBSITE_INTEGRATION_TESTING
@@ -39,8 +41,36 @@ class TestSubsite(unittest.TestCase):
         portal.invokeFactory('Subsite', 'mysubsite', title="Peter", logo=file_.read())
         setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
         transaction.commit()
+        browser.open(portal.absolute_url()+'/login_form')
+        browser.getControl(name='__ac_name').value = TEST_USER_NAME
+        browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
+        browser.getControl(name='submit').click()
         browser.open(portal.absolute_url()+'/mysubsite')
         self.assertTrue('http://nohost/plone/mysubsite/@@images' in browser.contents)
         self.assertTrue('alt="Peter"' in browser.contents)
         browser.open(portal.absolute_url())
         self.assertTrue("http://nohost/plone/logo.png" in browser.contents)
+
+    def test_portlets(self):
+        portal = self.layer['portal']
+        browser = Browser(self.layer['app'])
+        browser.handleErrors = False
+        file_ = open("../../ftw/subsite/tests/blue.png")
+        portal.invokeFactory('Subsite', 'another', title="Peter", logo=file_.read())
+        setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
+        transaction.commit()
+        browser.open(portal.absolute_url()+'/another')
+        self.assertTrue('edit dashboard' not in browser.contents)
+        browser.open(portal.absolute_url()+'/login_form')
+        browser.getControl(name='__ac_name').value = TEST_USER_NAME
+        browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
+        browser.getControl(name='submit').click()
+        browser.open(portal.absolute_url()+'/another')
+        self.assertTrue('edit dashboard' in browser.contents)
+        browser.open('http://nohost/plone/another/@@manage-subsiteview')
+        self.assertTrue('dashboard-portlets1' in browser.contents)
+        self.assertTrue('dashboard-portlets2' in browser.contents)
+        self.assertTrue('dashboard-portlets3' in browser.contents)
+        self.assertTrue('dashboard-portlets4' in browser.contents)
+        self.assertTrue('dashboard-portlets5' in browser.contents)
+        self.assertTrue('dashboard-portlets6' in browser.contents)
