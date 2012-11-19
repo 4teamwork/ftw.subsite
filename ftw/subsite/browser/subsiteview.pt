@@ -16,7 +16,7 @@
         	<div tal:replace="structure provider:plone.belowcontenttitle" />
 
             <a href=""
-               tal:attributes="href string:${here/absolute_url}/@@manage-subsite_front">
+               tal:attributes="href string:${here/absolute_url}/@@manage-subsiteview">
 	            edit dashboard
 	        </a> |
 	        <a href=""
