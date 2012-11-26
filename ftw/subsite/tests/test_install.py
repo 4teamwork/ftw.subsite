@@ -64,13 +64,13 @@ class TestSubsite(unittest.TestCase):
         setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
         transaction.commit()
         browser.open(portal.absolute_url() + '/another')
-        self.assertTrue('edit dashboard' not in browser.contents)
+        self.assertTrue('edit Portlets' not in browser.contents)
         browser.open(portal.absolute_url() + '/login_form')
         browser.getControl(name='__ac_name').value = TEST_USER_NAME
         browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
         browser.getControl(name='submit').click()
         browser.open(portal.absolute_url() + '/another')
-        self.assertTrue('edit dashboard' in browser.contents)
+        self.assertTrue('edit Portlets' in browser.contents)
         browser.open('http://nohost/plone/another/@@manage-subsiteview')
         self.assertTrue('dashboard-portlets1' in browser.contents)
         self.assertTrue('dashboard-portlets2' in browser.contents)
