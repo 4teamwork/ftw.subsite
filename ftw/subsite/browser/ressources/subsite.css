@@ -1,0 +1,26 @@
+.template-subsite_view .column {
+    width: 25%;
+    float: left;
+    padding-right: 1.4em;
+}
+.template-subsite_view .column img {
+    width:100%;
+}
+
+.template-subsite_view .column1.w364,
+.template-subsite_view .column2.w364
+{
+  width:50%;
+}
+}
+.template-manage-subsiteview #dashboard #dashboard-portlets1,
+.template-manage-subsiteview #dashboard #dashboard-portlets2,
+.template-manage-subsiteview #dashboard #dashboard-portlets3,
+.template-manage-subsiteview #dashboard #dashboard-portlets4,
+.template-manage-subsiteview #dashboard #dashboard-portlets5,
+.template-manage-subsiteview #dashboard #dashboard-portlets6 {
+  width: 21%;
+  float: left;
+  padding: 0.7em 1.3em 0 0;
+}
+}
