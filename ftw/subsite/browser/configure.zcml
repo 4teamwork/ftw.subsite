@@ -8,6 +8,10 @@
 
 	<!-- dashboard for the front-pages -->
 
+ <browser:resourceDirectory
+      name="ftw.subsite-ressources"
+      directory="ressources"
+      />
 	<adapter
     factory=".manager.ColumnSubsiteManagerRenderer"
     provides="plone.portlets.interfaces.IPortletManagerRenderer"
