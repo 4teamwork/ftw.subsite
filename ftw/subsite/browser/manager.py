@@ -8,7 +8,8 @@ from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
 class ColumnSubsiteManagerRenderer(ColumnPortletManagerRenderer):
-    """A renderer for the Zug dashboard on the front-page, based on normal portlets
+    """A renderer for the Subsite dashboard on the front-page,
+       based on normal portlets
     """
     adapts(Interface, IDefaultBrowserLayer, IBrowserView, ISubsiteColumn)
     template = ViewPageTemplateFile('column.pt')

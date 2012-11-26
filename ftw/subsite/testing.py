@@ -13,10 +13,12 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         # Load ZCML
         import ftw.subsite
-        xmlconfig.file('configure.zcml', ftw.subsite, context=configurationContext)
+        xmlconfig.file('configure.zcml', ftw.subsite,
+                       context=configurationContext)
 
         import plone.app.portlets
-        xmlconfig.file('configure.zcml', plone.app.portlets, context=configurationContext)
+        xmlconfig.file('configure.zcml', plone.app.portlets,
+                       context=configurationContext)
 
         # installProduct() is *only* necessary for packages outside
         # the Products.* namespace which are also declared as Zope 2 products,

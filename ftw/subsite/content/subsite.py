@@ -49,7 +49,9 @@ schema = atapi.Schema((
                     label=_(u'izug_label_zug_languages',
                             default=u'Languages'),
                     description=_(u'izug_zug_languages',
-                                  default=u'add one language per line, ex. "de", "en", etc. be sure the subsites have the same ids (de, en, etc.), all subsite with a specifig language must be siblings'),
+                                  default=u'add one language per line, \
+ ex. "de", "en", etc. be sure the subsites have the same ids (de, en, etc.), \
+ all subsite with a specifig language must be siblings'),
                     ),
                 ),
 ))
@@ -63,9 +65,10 @@ schemata.finalizeATCTSchema(
     moveDiscussion=False,
     )
 
+
 class Subsite(folder.ATFolder):
     """Subsite Unit"""
-    implements(ISubsite,INavigationRoot)
+    implements(ISubsite, INavigationRoot)
 
     schema = subsite_schema
     meta_type = "Subsite"
@@ -82,9 +85,10 @@ class Subsite(folder.ATFolder):
         results = []
         #append spacer
 
-        results.append(('spacer','spacer'))
-        for item in self.getFolderContents(contentFilter={'is_folderish':True}):
-            results.append((item.id,item.id))
+        results.append(('spacer', 'spacer'))
+        for item in self.getFolderContents(
+            contentFilter={'is_folderish': True}):
+            results.append((item.id, item.id))
         return (atapi.DisplayList(results))
 
 

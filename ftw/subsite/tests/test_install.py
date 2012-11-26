@@ -1,7 +1,8 @@
 import unittest2 as unittest
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from plone.testing.z2 import Browser
-from plone.app.testing import login, TEST_USER_ID, TEST_USER_NAME, TEST_USER_PASSWORD, setRoles
+from plone.app.testing import login, TEST_USER_ID, TEST_USER_NAME,
+from plone.app.testing import TEST_USER_PASSWORD, setRoles
 import transaction
 from plone.app.blob.tests.utils import makeFileUpload
 from StringIO import StringIO
@@ -18,11 +19,11 @@ class TestSubsite(unittest.TestCase):
         browser.handleErrors = False
         setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
         transaction.commit()
-        browser.open(portal.absolute_url()+'/login_form')
+        browser.open(portal.absolute_url() + '/login_form')
         browser.getControl(name='__ac_name').value = TEST_USER_NAME
         browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
         browser.getControl(name='submit').click()
-        browser.open(portal.absolute_url()+'/folder_factories')
+        browser.open(portal.absolute_url() + '/folder_factories')
         button = browser.getControl(name="url")
         button.value = [button.options[-1]]
         browser.getControl(name="form.button.Add").click()
@@ -38,15 +39,17 @@ class TestSubsite(unittest.TestCase):
         browser = Browser(self.layer['app'])
         browser.handleErrors = False
         file_ = open("../../ftw/subsite/tests/blue.png")
-        portal.invokeFactory('Subsite', 'mysubsite', title="Peter", logo=file_.read())
+        portal.invokeFactory(
+            'Subsite', 'mysubsite', title="Peter", logo=file_.read())
         setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
         transaction.commit()
-        browser.open(portal.absolute_url()+'/login_form')
+        browser.open(portal.absolute_url() + '/login_form')
         browser.getControl(name='__ac_name').value = TEST_USER_NAME
         browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
         browser.getControl(name='submit').click()
-        browser.open(portal.absolute_url()+'/mysubsite')
-        self.assertTrue('http://nohost/plone/mysubsite/@@images' in browser.contents)
+        browser.open(portal.absolute_url() + '/mysubsite')
+        self.assertTrue(
+            'http://nohost/plone/mysubsite/@@images' in browser.contents)
         self.assertTrue('alt="Peter"' in browser.contents)
         browser.open(portal.absolute_url())
         self.assertTrue("http://nohost/plone/logo.png" in browser.contents)
@@ -56,16 +59,17 @@ class TestSubsite(unittest.TestCase):
         browser = Browser(self.layer['app'])
         browser.handleErrors = False
         file_ = open("../../ftw/subsite/tests/blue.png")
-        portal.invokeFactory('Subsite', 'another', title="Peter", logo=file_.read())
+        portal.invokeFactory(
+            'Subsite', 'another', title="Peter", logo=file_.read())
         setRoles(portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
         transaction.commit()
-        browser.open(portal.absolute_url()+'/another')
+        browser.open(portal.absolute_url() + '/another')
         self.assertTrue('edit dashboard' not in browser.contents)
-        browser.open(portal.absolute_url()+'/login_form')
+        browser.open(portal.absolute_url() + '/login_form')
         browser.getControl(name='__ac_name').value = TEST_USER_NAME
         browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
         browser.getControl(name='submit').click()
-        browser.open(portal.absolute_url()+'/another')
+        browser.open(portal.absolute_url() + '/another')
         self.assertTrue('edit dashboard' in browser.contents)
         browser.open('http://nohost/plone/another/@@manage-subsiteview')
         self.assertTrue('dashboard-portlets1' in browser.contents)
