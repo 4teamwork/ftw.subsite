@@ -15,4 +15,12 @@
       editview=".teaserportlet.EditForm"
       />
 
+  <browser:page
+      for=".teaserportlet.Assignment"
+      name="image"
+      class=".widget.image.ImageView"
+      permission="zope.Public"
+   />
+
+
 </configure>
