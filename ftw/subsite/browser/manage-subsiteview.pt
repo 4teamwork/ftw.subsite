@@ -21,7 +21,7 @@
     tal:define="errors options/state/getErrors | nothing">
     <tal:main-macro metal:define-macro="main">
 
-    <div id="content" class="documentEditable">
+    <div id="content" class="colGroup">
 
         <ul class="contentViews">
           <li>
@@ -53,11 +53,7 @@
                   tal:content="structure provider:ftw.subsite.front3" />
                 <div id="dashboard-portlets4"
                   tal:content="structure provider:ftw.subsite.front4" />
-            </div>
-
-            <div id="dashboard2">
-                <hr>
-                <div class="visualClear"><!-- --></div>
+            <div class="visualClear"><!-- --></div>
                 <div id="dashboard-portlets5"
                   tal:content="structure provider:ftw.subsite.front5" />
                 <div id="dashboard-portlets6"
