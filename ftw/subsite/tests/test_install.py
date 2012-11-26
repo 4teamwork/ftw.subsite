@@ -1,7 +1,7 @@
 import unittest2 as unittest
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from plone.testing.z2 import Browser
-from plone.app.testing import login, TEST_USER_ID, TEST_USER_NAME,
+from plone.app.testing import login, TEST_USER_ID, TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD, setRoles
 import transaction
 from plone.app.blob.tests.utils import makeFileUpload
