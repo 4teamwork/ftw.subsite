@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="izug.subsites">
+    i18n_domain="ftw.subsite">
 
   <!-- The logo -->
   <browser:viewlet
@@ -12,4 +12,10 @@
       layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
       />
 
+  <browser:viewlet
+      name="ftw.subsite.css"
+      class=".cssviewlet.CSSViewlet"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      permission="zope2.View"
+      />
 </configure>

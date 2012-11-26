@@ -1,0 +1,3 @@
+<style type="text/css" media="all"
+       tal:content="string:${view/get_css}">
+</style>
