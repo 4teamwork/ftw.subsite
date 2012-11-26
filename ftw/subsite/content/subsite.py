@@ -42,13 +42,13 @@ schema = atapi.Schema((
 
 
             atapi.LinesField(
-                name='zug_languages',
+                name='subsite_languages',
                 storage=atapi.AnnotationStorage(),
                 schemata='subsite',
                 widget=atapi.LinesWidget(
-                    label=_(u'izug_label_zug_languages',
+                    label=_(u'label_subsite_languages',
                             default=u'Languages'),
-                    description=_(u'izug_zug_languages',
+                    description=_(u'_helpsubsite_languages',
                                   default=u'add one language per line, \
  ex. "de", "en", etc. be sure the subsites have the same ids (de, en, etc.), \
  all subsite with a specifig language must be siblings'),
@@ -76,7 +76,7 @@ class Subsite(folder.ATFolder):
     logo = atapi.ATFieldProperty('logo')
     additional_css = atapi.ATFieldProperty('additional_css')
     tabs = atapi.ATFieldProperty('tabs')
-    zug_languages = atapi.ATFieldProperty('zug_languages')
+    zug_languages = atapi.ATFieldProperty('subsite_languages')
 
     def get_possible_tabs(self):
         """
