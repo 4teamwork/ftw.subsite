@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-31 09:16+0000\n"
+"POT-Creation-Date: 2012-12-03 12:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,98 +12,94 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:119
+#: ./ftw/subsite/portlets/teaserportlet.py:103
 msgid "Add Teaser Portlet"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:139
+#: ./ftw/subsite/portlets/teaserportlet.py:162
 msgid "Edit Teaser Portlet"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:29
-msgid "Find an internal target for this image to link to"
-msgstr ""
-
-#: ./ftw/subsite/portlets/teaserportlet.py:24
-msgid "Geben Sie einen Beschrieb ein."
-msgstr ""
-
-#: ./ftw/subsite/portlets/teaserportlet.py:19
-msgid "Geben Sie einen Titel ein"
-msgstr ""
-
-#: ./ftw/subsite/browser/subsiteview.pt:32
-msgid "Information"
+#: ./ftw/subsite/portlets/teaserportlet.py:32
+msgid "Find an internal target  for this image to link to"
 msgstr ""
 
 #: ./ftw/subsite/portlets/teaserportlet.py:28
+msgid "Geben Sie einen Beschrieb ein."
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:24
+msgid "Geben Sie einen Titel ein"
+msgstr ""
+
+#: ./ftw/subsite/browser/subsiteview.pt:33
+msgid "Information"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:31
 msgid "Internal Target"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:120
+#: ./ftw/subsite/portlets/teaserportlet.py:104
 msgid "Shows the given infos on the front-page."
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:23
+#: ./ftw/subsite/profiles/default/types/Subsite.xml
+msgid "Subsite"
+msgstr ""
+
+#: ./ftw/subsite/profiles/default/types/Subsite.xml
+msgid "Subsite - behave like a ploneroot"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:27
 msgid "Teaser Beschreibung"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:18
+#: ./ftw/subsite/portlets/teaserportlet.py:23
 msgid "Teaser Titel"
 msgstr ""
 
-#: ./ftw/subsite/browser/subsiteview.pt:29
+#: ./ftw/subsite/browser/subsiteview.pt:30
 msgid "W&auml;hlen sie ihre Sektion"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:25
-msgid "description"
+#. Default: "add one language per line,  ex. \"de\", \"en\", etc. be sure the subsites have the same ids (de, en, etc.),  all subsite with a specifig language must be siblings"
+#: ./ftw/subsite/content/subsite.py:51
+msgid "_helpsubsite_languages"
 msgstr ""
 
-#: ./ftw/subsite/browser/subsiteview.pt:22
-msgid "edit subsite"
-msgstr ""
-
-#: ./ftw/subsite/content/subsite.py:40
+#: ./ftw/subsite/content/subsite.py:38
 msgid "help_additional_css"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:25
+#: ./ftw/subsite/content/subsite.py:24
 msgid "help_logo"
 msgstr ""
 
-#. Default: "Tabs"
-#: ./ftw/subsite/content/subsite.py:52
-msgid "izug_label_tabs"
-msgstr ""
-
-#. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:67
-msgid "izug_label_zug_languages"
-msgstr ""
-
-#. Default: "choose tabs"
-#: ./ftw/subsite/content/subsite.py:56
-msgid "izug_lable_tabs"
-msgstr ""
-
-#: ./ftw/subsite/content/subsite.py:54
-msgid "izug_tabs"
-msgstr ""
-
-#. Default: "add one language per line, ex. \"de\", \"en\", etc. be sure the subsites have the same ids (de, en, etc.), all subsite with a specifig language must be siblings"
-#: ./ftw/subsite/content/subsite.py:69
-msgid "izug_zug_languages"
-msgstr ""
-
 #. Default: "Additional CSS"
-#: ./ftw/subsite/content/subsite.py:38
+#: ./ftw/subsite/content/subsite.py:36
 msgid "label_additional_css"
 msgstr ""
 
+#. Default: "Cancel"
+#: ./ftw/subsite/portlets/teaserportlet.py:135
+msgid "label_cancel"
+msgstr ""
+
 #. Default: "Logo"
-#: ./ftw/subsite/content/subsite.py:23
+#: ./ftw/subsite/content/subsite.py:22
 msgid "label_logo"
+msgstr ""
+
+#. Default: "Save"
+#: ./ftw/subsite/portlets/teaserportlet.py:124
+msgid "label_save"
+msgstr ""
+
+#. Default: "Languages"
+#: ./ftw/subsite/content/subsite.py:49
+msgid "label_subsite_languages"
 msgstr ""
 
 
