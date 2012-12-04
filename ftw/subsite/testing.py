@@ -1,9 +1,10 @@
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import IntegrationTesting
+from plone.app.testing import IntegrationTesting, FunctionalTesting
 from plone.testing import z2
 from zope.configuration import xmlconfig
+from plone.app.testing import TEST_USER_ID, setRoles
 
 
 class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
@@ -30,7 +31,11 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         # Install into Plone site using portal_setup
         applyProfile(portal, 'ftw.subsite:default')
 
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+
 
 FTW_SUBSITE_FIXTURE = FtwSubsiteIntegrationLayer()
 FTW_SUBSITE_INTEGRATION_TESTING = IntegrationTesting(
     bases=(FTW_SUBSITE_FIXTURE,), name="FtwSubsite:Integration")
+FTW_SUBSITE_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FTW_SUBSITE_FIXTURE,), name="FtwSubsite:Functional")
