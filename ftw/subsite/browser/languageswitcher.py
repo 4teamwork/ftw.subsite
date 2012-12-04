@@ -35,5 +35,5 @@ class LanguageSwitcher(BrowserView):
             obj = root_obj.restrictedTraverse(
                 '/'.join(root_obj.aq_parent.getPhysicalPath()) + '/' + prefLang)
         except KeyError:
-           return RESPONSE.redirect(context.absolute_url())
+            return RESPONSE.redirect(context.absolute_url())
         return RESPONSE.redirect(obj.absolute_url())
