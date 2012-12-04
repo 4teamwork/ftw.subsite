@@ -7,12 +7,13 @@ from zope import schema
 from z3c.form import form, button, field
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import PloneMessageFactory as _
-from plone.formwidget.contenttree import PathSourceBinder
 from plone.formwidget.contenttree import ContentTreeFieldWidget
 from plone.app.z3cform.wysiwyg.widget import WysiwygFieldWidget
 from z3c.form.interfaces import INPUT_MODE
 from plone.namedfile.field import NamedImage
 from Acquisition import aq_inner, aq_parent
+from plone.formwidget.contenttree import UUIDSourceBinder
+from plone.app.uuid.utils import uuidToObject
 
 
 class ITeaserPortlet(IPortletDataProvider):
@@ -31,7 +32,7 @@ class ITeaserPortlet(IPortletDataProvider):
                                     description=_(u"Find an internal target \
  for this image to link to"),
                                    required=True,
-                                   source=PathSourceBinder({})
+                                   source=UUIDSourceBinder({})
                                     )
     image = NamedImage(title=u'Image field',
                         description=u"Add or replace image for the portlet",
@@ -51,10 +52,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        if self.teasertitle:
-            return self.teasertitle
-        else:
-            return 'Teaserportlet'
+        return self.teasertitle
 
 
 class Renderer(base.Renderer):
@@ -68,38 +66,23 @@ class Renderer(base.Renderer):
         return self.data.teaserdesc
 
     @property
-    @memoize
     def internal_obj(self):
-        state = getMultiAdapter((self.context, self.request),
-                              name="plone_portal_state")
-        portal = state.portal()
         object_path = self.data.internal_target
-
-        if isinstance(object_path, unicode):
-            object_path = object_path.encode('utf8')
-
-        if object_path is None or len(object_path) == 0:
-            return None
-        #XXX: we have to cut off the /
-        if object_path[0] == '/':
-            object_path = object_path[1:]
-        return portal.restrictedTraverse(object_path, default=None)
+        return uuidToObject(object_path)
 
     @property
     @memoize
     def image_tag(self):
-        if self.data.image:
-            state = getMultiAdapter((self.context, self.request),
-                                  name="plone_portal_state")
-            portal = state.portal()
-            assignment_url = \
-                    portal.unrestrictedTraverse(
-                self.data.assignment_context_path).absolute_url()
-            return "<img src='%s/%s/@@image' alt=''/>" % \
-                   (assignment_url,
-                    self.data.__name__
-                    )
-        return ''
+        state = getMultiAdapter((self.context, self.request),
+                                name="plone_portal_state")
+        portal = state.portal()
+        assignment_url = \
+            portal.unrestrictedTraverse(
+            self.data.assignment_context_path).absolute_url()
+        return "<img src='%s/%s/@@image' alt=''/>" % \
+            (assignment_url,
+             self.data.__name__
+             )
 
 
 class AddForm(form.AddForm):
@@ -124,7 +107,7 @@ class AddForm(form.AddForm):
         context = aq_parent(aq_inner(editview))
         url = str(getMultiAdapter((context, self.request),
                                   name=u"absolute_url"))
-        return url + '/@@manage-portlets'
+        return url
 
     @button.buttonAndHandler(_(u"label_save", default=u"Save"), name='add')
     def handleAdd(self, action):
@@ -141,9 +124,7 @@ class AddForm(form.AddForm):
                              name='cancel_add')
     def handleCancel(self, action):
         nextURL = self.nextURL()
-        if nextURL:
-            self.request.response.redirect(nextURL)
-        return ''
+        self.request.response.redirect(nextURL)
 
     def add(self, obj):
         ob = self.context.add(obj)
@@ -162,7 +143,7 @@ class AddForm(form.AddForm):
 
 
 class EditForm(form.EditForm):
-    form_fields = field.Fields(ITeaserPortlet)
+    fields = field.Fields(ITeaserPortlet)
 
     label = _(u"Edit Teaser Portlet")
     description = _(u"Shows the given infos on the front-page.")

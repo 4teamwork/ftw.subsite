@@ -2,12 +2,12 @@
 <div class="teaser_portlet" tal:define="teasertitle view/getTeaserTitle;
                  teaserdesc view/getTeaserDesc;
                  internal_target nocall:view/internal_obj;
-                 image view/image_tag;
+                 image view/image_tag
                  ">
     <h2>
     	<a tal:attributes="href python:internal_target.absolute_url()">
-             <tal:img replace="structure image" />
     	    <span class="teaser_title" tal:replace="structure teasertitle" />
+          <img tal:replace="structure image" />
     	</a>
     </h2>
     <p class="homeFeature"

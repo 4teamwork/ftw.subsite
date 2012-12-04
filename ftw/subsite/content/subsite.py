@@ -73,23 +73,4 @@ class Subsite(folder.ATFolder):
     schema = subsite_schema
     meta_type = "Subsite"
 
-    logo = atapi.ATFieldProperty('logo')
-    additional_css = atapi.ATFieldProperty('additional_css')
-    tabs = atapi.ATFieldProperty('tabs')
-    zug_languages = atapi.ATFieldProperty('subsite_languages')
-
-    def get_possible_tabs(self):
-        """
-        simply returns the folder contents
-        """
-        results = []
-        #append spacer
-
-        results.append(('spacer', 'spacer'))
-        for item in self.getFolderContents(
-            contentFilter={'is_folderish': True}):
-            results.append((item.id, item.id))
-        return (atapi.DisplayList(results))
-
-
 atapi.registerType(Subsite, PROJECTNAME)

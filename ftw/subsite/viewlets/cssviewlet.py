@@ -20,9 +20,5 @@ class CSSViewlet(ViewletBase):
         else:
             return ''
 
-
     def get_css(self):
-        """
-        ddd
-        """
-        return self.nav_root.additional_css
+        return self.nav_root.getAdditional_css()

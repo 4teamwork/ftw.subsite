@@ -20,8 +20,9 @@ class SubsiteLogoViewlet(ViewletBase):
         portal = self.portal_state.portal()
         self.navigation_root_url = self.portal_state.navigation_root_url()
         self.navigation_root_path = self.portal_state.navigation_root_path()
-        subsite_logo = getattr(self.context, 'logo', None)
-        if subsite_logo and not IFactoryTempFolder.providedBy(self.context):
+        subsite_logo = getattr(self.context, 'getLogo', None)
+        if subsite_logo and not IFactoryTempFolder.providedBy(
+            self.context.aq_inner.aq_parent):
             # we are in a subsite
             scale = portal.restrictedTraverse(
                 self.navigation_root_path + '/@@images')

@@ -3,7 +3,6 @@ from zope.publisher.browser import BrowserView
 from plone.portlets.interfaces import IPortletManager
 from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
-from ftw.subsite.interfaces import ISubsite
 
 
 class SubsiteView(BrowserView):
@@ -36,10 +35,4 @@ class SubsiteView(BrowserView):
         else:
             return False
 
-        if hasPermission:
-            return True
-        else:
-            return False
-
-    def is_subsite(self):
-        return ISubsite.proviedBy(self.context.aq_explicit)
+        return hasPermission
