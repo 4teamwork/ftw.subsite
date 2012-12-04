@@ -1,0 +1,19 @@
+<tal:language tal:condition="view/available">
+<ul id="portal-languageselector"
+    tal:define="languages view/languages;
+                here_url context/absolute_url">
+    <tal:language repeat="lang languages">
+    <li tal:define="code lang/code;
+                    codeclass string:language-${code};"
+        tal:attributes="class codeclass">
+        <a href=""
+           tal:define="name lang/native|lang/name"
+           tal:attributes="href string:${here_url}/switchLanguage?set_language=${code};
+                           title name"
+            ><tal:nonflag
+                          replace="name">language name</tal:nonflag
+        ></a>
+    </li>
+    </tal:language>
+</ul>
+</tal:language>

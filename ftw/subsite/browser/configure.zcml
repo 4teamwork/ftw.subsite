@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="izug.subsites">
+    i18n_domain="ftw.subsite">
 
   <include package="plone.app.contentmenu" />
 
@@ -23,7 +23,6 @@
       permission="zope2.View"
       class=".subsiteview.SubsiteView"
       template="subsiteview.pt"
-      allowed_attributes="is_subsite"
       />
 
   <browser:page
@@ -37,7 +36,18 @@
   <browser:page
     for="*"
     class=".languageswitcher.LanguageSwitcher"
-    name="switch_language"
+    name="switchLanguage"
     permission="zope2.View"
+    layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
     />
+
+  <browser:viewlet
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
+      name="plone.app.i18n.locales.languageselector"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".selector.LanguageSelector"
+      permission="zope2.View"
+      template="languageselector.pt"
+      />
+
 </configure>
