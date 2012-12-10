@@ -11,7 +11,7 @@ tests_require = [
 setup(name='ftw.subsite',
       version=version,
       description="",
-      long_description=open('README.rst').read() + '\n' + \
+      long_description=open('README.rst').read() + '\n' +
           open(os.path.join('docs', 'HISTORY.txt')).read(),
 
       # Get more strings from

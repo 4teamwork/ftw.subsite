@@ -15,7 +15,7 @@ schema = atapi.Schema((
 
         ImageField(
             name='logo',
-            required=True,
+            required=False,
             storage=atapi.AnnotationStorage(),
             schemata='subsite',
             widget=atapi.ImageWidget(
