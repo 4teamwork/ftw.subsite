@@ -5,7 +5,7 @@
                  image view/image_tag
                  ">
     <h2>
-    	<a tal:attributes="href python:internal_target.absolute_url()">
+    	<a tal:omit-tag="not: internal_target" tal:attributes="href python:internal_target and internal_target.absolute_url()">
     	    <span class="teaser_title" tal:replace="structure teasertitle" />
           <img tal:replace="structure image" />
     	</a>
