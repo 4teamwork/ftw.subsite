@@ -10,8 +10,8 @@
           <span class="teaser_title" tal:replace="structure teasertitle" />
     	</a>
     </h2>
-    <p class="teaserDescription"
+    <div class="teaserDescription"
        tal:content="structure teaserdesc">
        Beschrieb
-    </p>
+    </div>
 </div>
