@@ -24,13 +24,13 @@ class LanguageSwitcher(BrowserView):
         if lang:
             pl.setLanguageCookie(lang)
 
-        prefLang = pl.getPreferredLanguage()
         cookieLang = pl.getLanguageCookie()
         if lang is not '':
             prefLang = lang
-        else:
+        elif cookieLang:
             prefLang = cookieLang
-
+        else:
+            prefLang = pl.getPreferredLanguage()
         try:
             obj = root_obj.restrictedTraverse(
                 '/'.join(root_obj.aq_parent.getPhysicalPath()) + '/' + prefLang)
