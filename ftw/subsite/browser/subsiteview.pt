@@ -36,7 +36,7 @@
                 </dd>
             </dl>
 
-            <div class="colum"
+            <div class="column"
               tal:content="structure provider:ftw.subsite.front1" />
             <div class="column"
               tal:content="structure provider:ftw.subsite.front2" />
