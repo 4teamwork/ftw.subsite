@@ -36,20 +36,18 @@
                 </dd>
             </dl>
 
-            <div class="column"
+            <div id="subsite-column-1" class="column"
               tal:content="structure provider:ftw.subsite.front1" />
-            <div class="column"
+            <div id="subsite-column-2" class="column"
               tal:content="structure provider:ftw.subsite.front2" />
-            <div class="column"
+            <div id="subsite-column-3" class="column"
               tal:content="structure provider:ftw.subsite.front3" />
-            <div class="column"
+            <div id="subsite-column-4" class="column"
               tal:content="structure provider:ftw.subsite.front4" />
 
-            <div class="visualClear"><!-- IE Fix --></div>
-
-            <div class="column column1"
+            <div id="subsite-column-5" class="column"
               tal:content="structure provider:ftw.subsite.front5" />
-            <div class="column column2"
+            <div id="subsite-column-6" class="column"
               tal:content="structure provider:ftw.subsite.front6" />
 
 	</div>

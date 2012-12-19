@@ -6,8 +6,8 @@
                  ">
     <h2>
     	<a tal:omit-tag="not: internal_target" tal:attributes="href python:internal_target and internal_target.absolute_url()">
-    	    <span class="teaser_title" tal:replace="structure teasertitle" />
           <img tal:replace="structure image" />
+          <span class="teaser_title" tal:replace="structure teasertitle" />
     	</a>
     </h2>
     <p class="homeFeature"
