@@ -50,4 +50,4 @@ class TestSubsite(unittest.TestCase):
 
         self.assertIn('testsubsite', self.portal.objectIds())
         self.assertEquals(self.browser.url,
-                          "%s/testsubsite" % self.portal.absolute_url())
+                          "%s/testsubsite/" % self.portal.absolute_url())
