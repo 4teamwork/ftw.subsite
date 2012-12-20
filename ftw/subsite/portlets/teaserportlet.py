@@ -31,7 +31,7 @@ class ITeaserPortlet(IPortletDataProvider):
     internal_target = schema.Choice(title=_(u"Internal Target"),
                                     description=_(u"Find an internal target \
  for this image to link to"),
-                                   required=True,
+                                   required=False,
                                    source=UUIDSourceBinder({})
                                     )
     image = NamedImage(title=u'Image field',

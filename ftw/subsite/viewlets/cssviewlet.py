@@ -15,7 +15,7 @@ class CSSViewlet(ViewletBase):
     def render(self):
         self.nav_root = self.context.restrictedTraverse(
             getNavigationRoot(self.context))
-        if ISubsite.providedBy(self.context):
+        if ISubsite.providedBy(self.nav_root):
             return self.template()
         else:
             return ''
