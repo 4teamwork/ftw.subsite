@@ -43,26 +43,20 @@
                 Edit subsite frontpage
             </h1>
 
-           <div id="dashboard">
-                <div class="visualClear"><!-- --></div>
-                <div id="dashboard-portlets1"
-                  tal:content="structure provider:ftw.subsite.front1" />
-                <div id="dashboard-portlets2"
-                  tal:content="structure provider:ftw.subsite.front2" />
-                <div id="dashboard-portlets3"
-                  tal:content="structure provider:ftw.subsite.front3" />
-                <div id="dashboard-portlets4"
-                  tal:content="structure provider:ftw.subsite.front4" />
-            <div class="visualClear"><!-- --></div>
-                <div id="dashboard-portlets5"
-                  tal:content="structure provider:ftw.subsite.front5" />
-                <div id="dashboard-portlets6"
-                  tal:content="structure provider:ftw.subsite.front6" />
-            </div>
+            <div id="subsite-column-1" class="column"
+              tal:content="structure provider:ftw.subsite.front1" />
+            <div id="subsite-column-2" class="column"
+              tal:content="structure provider:ftw.subsite.front2" />
+            <div id="subsite-column-3" class="column"
+              tal:content="structure provider:ftw.subsite.front3" />
+            <div id="subsite-column-4" class="column"
+              tal:content="structure provider:ftw.subsite.front4" />
 
-            <div class="visualClear"><!-- --></div>
+            <div id="subsite-column-5" class="column"
+              tal:content="structure provider:ftw.subsite.front5" />
+            <div id="subsite-column-6" class="column"
+              tal:content="structure provider:ftw.subsite.front6" />
 
-    </div>
 
     </tal:main-macro>
 

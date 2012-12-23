@@ -3,7 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ftw.subsite">
 
-  <!-- The logo -->
   <browser:viewlet
       name="plone.logo"
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
@@ -17,5 +16,14 @@
       class=".cssviewlet.CSSViewlet"
       manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
       permission="zope2.View"
+      />
+
+  <browser:viewlet
+      name="ftw.subsite.banner"
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".banner_viewlet.Banner"
+      permission="zope2.View"
+      for="*"
       />
 </configure>

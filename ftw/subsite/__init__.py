@@ -1,6 +1,6 @@
+from ftw.subsite import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
-from ftw.subsite import config
 from zope.i18nmessageid import MessageFactory
 
 

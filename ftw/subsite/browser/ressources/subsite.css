@@ -24,3 +24,8 @@
   float: left;
   padding: 0.7em 1.3em 0 0;
 }
+
+#banner-image {
+  position: relative;
+  clear: both;
+}

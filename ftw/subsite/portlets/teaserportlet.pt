@@ -5,13 +5,13 @@
                  image view/image_tag
                  ">
     <h2>
-    	<a tal:attributes="href python:internal_target.absolute_url()">
-    	    <span class="teaser_title" tal:replace="structure teasertitle" />
+    	<a tal:omit-tag="not: internal_target" tal:attributes="href python:internal_target and internal_target.absolute_url()">
           <img tal:replace="structure image" />
+          <span class="teaser_title" tal:replace="structure teasertitle" />
     	</a>
     </h2>
-    <p class="homeFeature"
+    <div class="teaserDescription"
        tal:content="structure teaserdesc">
        Beschrieb
-    </p>
+    </div>
 </div>

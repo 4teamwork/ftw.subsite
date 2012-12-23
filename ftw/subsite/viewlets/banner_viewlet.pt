@@ -1,0 +1,4 @@
+<div id="banner-image"
+     tal:condition="view/available">
+     <img tal:replace="structure view/get_banner_tag" />
+</div>

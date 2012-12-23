@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <object>
-
- <order manager="plone.portaltop" skinname="*">
+ <order manager="plone.portalheader" skinname="*">
   <viewlet name="plone.app.i18n.locales.languageselector" />
-  <viewlet name="plone.logo" />
+  <viewlet name="plone.logo" inser-before="ftw.subsite.banner" />
+  <viewlet name="ftw.subsite.banner" insert-after="plone.logo" />
+  <viewlet name="plone.global_sections" insert-after="ftw.subsite.banner" />
  </order>
-
 </object>

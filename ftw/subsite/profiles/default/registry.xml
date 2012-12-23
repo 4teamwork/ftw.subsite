@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="ftw.subsite.banner_root_only">
+      <field type="plone.registry.field.Bool">
+          <title>Show banners only on root or everywhere</title>
+      </field>
+      <value>True</value>
+  </record>
+  <record name="ftw.subsite.bannerfoldername">
+      <field type="plone.registry.field.TextLine">
+          <title>Name of folder where banners are stored</title>
+      </field>
+      <value>banners</value>
+  </record>
+</registry>
