@@ -6,7 +6,7 @@ from plone.memoize.instance import memoize
 from zope import schema
 from z3c.form import form, button, field
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFPlone import PloneMessageFactory as _
+from ftw.subsite import _
 from plone.formwidget.contenttree import ContentTreeFieldWidget
 from plone.app.z3cform.wysiwyg.widget import WysiwygFieldWidget
 from z3c.form.interfaces import INPUT_MODE
@@ -20,12 +20,12 @@ class ITeaserPortlet(IPortletDataProvider):
     """A portlet which can some given Infos
     """
 
-    teasertitle = schema.TextLine(title=_(u'Teaser Titel'),
-                                  description=_(u'Geben Sie einen Titel ein'),
+    teasertitle = schema.TextLine(title=_(u'Teasertitle'),
+                                  description=_(u'Enter a Title'),
                                   required=True)
 
-    teaserdesc = schema.Text(title=_(u'Teaser Beschreibung'),
-                             description=_(u"Geben Sie einen Beschrieb ein."),
+    teaserdesc = schema.Text(title=_(u'Teaserdescription'),
+                             description=_(u"Enter a description"),
                              required=True)
 
     internal_target = schema.Choice(title=_(u"Internal Target"),
