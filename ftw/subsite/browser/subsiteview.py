@@ -2,7 +2,6 @@ from zope.component import getUtility
 from zope.publisher.browser import BrowserView
 from plone.portlets.interfaces import IPortletManager
 from plone.memoize.instance import memoize
-from Products.CMFCore.utils import getToolByName
 
 
 class SubsiteView(BrowserView):
@@ -21,18 +20,3 @@ class SubsiteView(BrowserView):
         for dashboard in dashboards:
             num_portlets += len(dashboard)
         return num_portlets == 0
-
-    def hasPermissions(self):
-        member_tool = getToolByName(self, 'portal_membership')
-        current_context = self.context
-        permissionToCheck = 'Review portal content'
-
-        isAnon = member_tool.isAnonymousUser()
-
-        if not isAnon:
-            hasPermission = member_tool.getAuthenticatedMember().has_permission(
-                permissionToCheck, current_context)
-        else:
-            return False
-
-        return hasPermission

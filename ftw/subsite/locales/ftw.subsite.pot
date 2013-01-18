@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-03 12:59+0000\n"
+"POT-Creation-Date: 2012-12-27 06:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,31 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.subsite\n"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:103
+#: ./ftw/subsite/portlets/teaserportlet.py:91
 msgid "Add Teaser Portlet"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:162
+#: ./ftw/subsite/browser/subsiteview.pt:22
+msgid "Choose your Section"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:148
 msgid "Edit Teaser Portlet"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:24
+msgid "Enter a Title"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:28
+msgid "Enter a description"
 msgstr ""
 
 #: ./ftw/subsite/portlets/teaserportlet.py:32
 msgid "Find an internal target  for this image to link to"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:28
-msgid "Geben Sie einen Beschrieb ein."
-msgstr ""
-
-#: ./ftw/subsite/portlets/teaserportlet.py:24
-msgid "Geben Sie einen Titel ein"
-msgstr ""
-
-#: ./ftw/subsite/browser/subsiteview.pt:33
+#: ./ftw/subsite/browser/subsiteview.pt:25
 msgid "Information"
 msgstr ""
 
@@ -45,7 +49,20 @@ msgstr ""
 msgid "Internal Target"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:104
+#: ./ftw/subsite/profiles/default/actions.xml
+msgid "Manage Subsite Portlets"
+msgstr ""
+
+#: ./ftw/subsite/browser/contact.py:41
+msgid "Send Mail"
+msgstr ""
+
+#. Default: "Name"
+#: ./ftw/subsite/browser/contact.py:21
+msgid "Sender_Name"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:92
 msgid "Shows the given infos on the front-page."
 msgstr ""
 
@@ -58,52 +75,121 @@ msgid "Subsite - behave like a ploneroot"
 msgstr ""
 
 #: ./ftw/subsite/portlets/teaserportlet.py:27
-msgid "Teaser Beschreibung"
+msgid "Teaserdescription"
 msgstr ""
 
 #: ./ftw/subsite/portlets/teaserportlet.py:23
-msgid "Teaser Titel"
-msgstr ""
-
-#: ./ftw/subsite/browser/subsiteview.pt:30
-msgid "W&auml;hlen sie ihre Sektion"
+msgid "Teasertitle"
 msgstr ""
 
 #. Default: "add one language per line,  ex. \"de\", \"en\", etc. be sure the subsites have the same ids (de, en, etc.),  all subsite with a specifig language must be siblings"
-#: ./ftw/subsite/content/subsite.py:51
+#: ./ftw/subsite/content/subsite.py:52
 msgid "_helpsubsite_languages"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:38
+#. Default: "Cancel"
+#: ./ftw/subsite/browser/contact.py:56
+msgid "button_cancel"
+msgstr ""
+
+#. Default: "Your e-mailaddress is not valid"
+#: ./ftw/subsite/browser/contact.py:141
+msgid "error_invalid_addresses"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:91
+msgid "feedback_mail_text"
+msgstr ""
+
+#. Default: "Please enter your Name"
+#: ./ftw/subsite/browser/contact.py:23
+msgid "help_Sender"
+msgstr ""
+
+#: ./ftw/subsite/content/subsite.py:39
 msgid "help_additional_css"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:24
+#: ./ftw/subsite/content/subsite.py:61
+msgid "help_fromname"
+msgstr ""
+
+#: ./ftw/subsite/content/subsite.py:25
 msgid "help_logo"
 msgstr ""
 
+#. Default: "Please enter your e-mail"
+#: ./ftw/subsite/browser/contact.py:26
+msgid "help_mail_address"
+msgstr ""
+
+#. Default: "Please enter a Message"
+#: ./ftw/subsite/browser/contact.py:32
+msgid "help_message"
+msgstr ""
+
+#. Default: "Please enter a Subject"
+#: ./ftw/subsite/browser/contact.py:29
+msgid "help_subject"
+msgstr ""
+
+#. Default: "The email was sent."
+#: ./ftw/subsite/browser/contact.py:52
+msgid "info_email_sent"
+msgstr ""
+
 #. Default: "Additional CSS"
-#: ./ftw/subsite/content/subsite.py:36
+#: ./ftw/subsite/content/subsite.py:37
 msgid "label_additional_css"
 msgstr ""
 
 #. Default: "Cancel"
-#: ./ftw/subsite/portlets/teaserportlet.py:135
+#: ./ftw/subsite/portlets/teaserportlet.py:123
 msgid "label_cancel"
 msgstr ""
 
+#. Default: "Email Senderaddress"
+#: ./ftw/subsite/content/subsite.py:65
+msgid "label_fromemail"
+msgstr ""
+
+#. Default: "Email Sendername"
+#: ./ftw/subsite/content/subsite.py:60
+msgid "label_fromname"
+msgstr ""
+
 #. Default: "Logo"
-#: ./ftw/subsite/content/subsite.py:22
+#: ./ftw/subsite/content/subsite.py:23
 msgid "label_logo"
 msgstr ""
 
+#. Default: "Message"
+#: ./ftw/subsite/browser/contact.py:30
+msgid "label_message"
+msgstr ""
+
 #. Default: "Save"
-#: ./ftw/subsite/portlets/teaserportlet.py:124
+#: ./ftw/subsite/portlets/teaserportlet.py:112
 msgid "label_save"
 msgstr ""
 
+#. Default: "Send Feedback"
+#: ./ftw/subsite/browser/contact.py:36
+msgid "label_send_feedback"
+msgstr ""
+
+#. Default: "Subject"
+#: ./ftw/subsite/browser/contact.py:27
+msgid "label_subject"
+msgstr ""
+
 #. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:49
+#: ./ftw/subsite/content/subsite.py:50
 msgid "label_subsite_languages"
+msgstr ""
+
+#. Default: "E-Mail"
+#: ./ftw/subsite/browser/contact.py:24
+msgid "mail_address"
 msgstr ""
 

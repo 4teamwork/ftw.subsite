@@ -19,15 +19,7 @@
 
     <div tal:replace="structure provider:plone.contentviews" />
     </div>
-		<div tal:condition="view/hasPermissions">
-        	<div tal:replace="structure provider:plone.belowcontenttitle" />
-
-            <a href=""
-               tal:attributes="href string:${here/absolute_url}/@@manage-subsiteview">
-	            edit Portlets
-            </a>
-		</div>
-            <h1 i18n:translate="" class="hiddenStructure">W&auml;hlen sie ihre Sektion</h1>
+            <h1 i18n:translate="" class="hiddenStructure">Choose your Section</h1>
             <dl tal:condition="view/empty"
                 class="portalMessage info visualClear" id="dashboard-info-message">
                 <dt i18n:translate="">Information</dt>

@@ -26,6 +26,13 @@
       />
 
   <browser:page
+      for="*"
+      name="contact-info"
+      permission="zope2.View"
+      class=".contact.ContactForm"
+      />
+
+  <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     class="plone.app.portlets.browser.manage.ManageContextualPortlets"
     name="manage-subsiteview"
