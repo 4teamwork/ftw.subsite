@@ -6,6 +6,7 @@ from plone.app.layout.navigation.root import getNavigationRoot
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from random import choice
+from zExceptions import Unauthorized
 
 
 class Banner(common.ViewletBase):
@@ -44,8 +45,15 @@ class Banner(common.ViewletBase):
             getNavigationRoot(self.context)).aq_explicit
 
         name = registry.get('ftw.subsite.bannerfoldername', 'banners')
-        bannerfolder = getattr(nav_context, name, None)
-        return bannerfolder
+        import ipdb; ipdb.set_trace()
+        try:
+            bannerfolder = nav_context.restrictedTraverse(name.encode('utf-8'))
+        except KeyError:
+            return None
+        except Unauthorized
+            return None
+
+    return bannerfolder
 
     def get_banner_tag(self):
         title = self.context.title_or_id()

@@ -41,7 +41,7 @@
               tal:content="structure provider:ftw.subsite.front5" />
             <div id="subsite-column-6" class="column"
               tal:content="structure provider:ftw.subsite.front6" />
-      <div class="visualClear" />
+      <div class="visualClear"><!-- --></div>
 
 	</div>
 </body>
