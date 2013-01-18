@@ -45,14 +45,15 @@ class Banner(common.ViewletBase):
             getNavigationRoot(self.context)).aq_explicit
 
         name = registry.get('ftw.subsite.bannerfoldername', 'banners')
+        bannerfolder = None
         try:
             bannerfolder = nav_context.restrictedTraverse(name.encode('utf-8'))
         except KeyError:
             return None
-        except Unauthorized
+        except Unauthorized:
             return None
 
-    return bannerfolder
+        return bannerfolder
 
     def get_banner_tag(self):
         title = self.context.title_or_id()
