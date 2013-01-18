@@ -45,7 +45,6 @@ class Banner(common.ViewletBase):
             getNavigationRoot(self.context)).aq_explicit
 
         name = registry.get('ftw.subsite.bannerfoldername', 'banners')
-        import ipdb; ipdb.set_trace()
         try:
             bannerfolder = nav_context.restrictedTraverse(name.encode('utf-8'))
         except KeyError:
