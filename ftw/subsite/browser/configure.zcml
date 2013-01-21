@@ -50,7 +50,7 @@
 
   <browser:viewlet
       layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
-      name="plone.app.i18n.locales.languageselector"
+      name="ftw.subsite.languageselector"
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       class=".selector.LanguageSelector"
       permission="zope2.View"
