@@ -1,5 +1,5 @@
 import re
-from egov.orgunit import _
+from ftw.subsite import _
 from email.header import Header
 from email.mime.text import MIMEText
 from plone.z3cform.layout import wrap_form
@@ -64,7 +64,7 @@ class ContactForm(form.Form):
         return self.request.RESPONSE.redirect(url)
 
     def send_feedback(self, recipient, subject, message, sender):
-        """Send a feedback email to the email address defined in orgunit.
+        """Send a feedback email to the email address defined in subsite.
         """
         mh = getToolByName(self.context, 'MailHost')
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
