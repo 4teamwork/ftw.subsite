@@ -12,7 +12,6 @@ from zExceptions import Unauthorized
 class Banner(common.ViewletBase):
     render = ViewPageTemplateFile('banner_viewlet.pt')
 
-    @property
     def available(self):
         return bool(self.get_banners())
 
@@ -48,11 +47,10 @@ class Banner(common.ViewletBase):
         bannerfolder = None
         try:
             bannerfolder = nav_context.restrictedTraverse(name.encode('utf-8'))
-        except KeyError:
+        except (KeyError, AttributeError):
             return None
         except Unauthorized:
             return None
-
         return bannerfolder
 
     def get_banner_tag(self):
