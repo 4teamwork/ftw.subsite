@@ -2,7 +2,7 @@ from zope.component import getUtility
 from zope.publisher.browser import BrowserView
 from plone.portlets.interfaces import IPortletManager
 from plone.memoize.instance import memoize
-
+from Products.CMFCore.utils import getToolByName
 
 class SubsiteView(BrowserView):
 
@@ -20,3 +20,8 @@ class SubsiteView(BrowserView):
         for dashboard in dashboards:
             num_portlets += len(dashboard)
         return num_portlets == 0
+
+    def is_anon(self):
+        member_tool = getToolByName(self, 'portal_membership')
+        isAnon = member_tool.isAnonymousUser()
+        return isAnon
