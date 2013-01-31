@@ -12,6 +12,7 @@ from zExceptions import Unauthorized
 class Banner(common.ViewletBase):
     render = ViewPageTemplateFile('banner_viewlet.pt')
 
+    @property
     def available(self):
         return bool(self.get_banners())
 
