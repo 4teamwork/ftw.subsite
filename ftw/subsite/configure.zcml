@@ -30,7 +30,7 @@
  <subscriber
       for=".interfaces.ISubsite
            Products.Archetypes.interfaces.IObjectInitializedEvent"
-      handler=".handlers.remove_parent_portlets" />
+      handler=".handlers.block_parent_portlets" />
 
   <!-- -*- extra stuff goes here -*- -->
 

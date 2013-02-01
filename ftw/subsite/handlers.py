@@ -4,7 +4,7 @@ from plone.portlets.interfaces import IPortletManager
 from zope.component import getUtility, getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 
-def remove_parent_portlets(object_, event):
+def block_parent_portlets(object_, event):
     """Adds a custom navigation Portlet for Buch
     """
     if 'portal_factory' in object_.getPhysicalPath():
