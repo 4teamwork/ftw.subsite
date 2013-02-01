@@ -1,15 +1,13 @@
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
-from zope.component import queryMultiAdapter
 import unittest2 as unittest
 import transaction
-from plone.app.testing import logout
-from plone.app.testing import setRoles
-from plone.app.testing import login
-
+from zope.component import getUtility, getMultiAdapter
+from plone.portlets.interfaces import IPortletManager
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from ftw.subsite.portlets import teaserportlet
 
 class TestSubsite(unittest.TestCase):
 
@@ -42,18 +40,6 @@ class TestSubsite(unittest.TestCase):
         self.portal.manage_delObjects(['mysubsite'])
         transaction.commit()
 
-    def test_view_has_permission(self):
-        view = queryMultiAdapter((self.subsite, self.portal.REQUEST), name="subsite_view")
-        logout()
-        self.assertFalse(view.hasPermissions())
-        setRoles(self.portal, TEST_USER_ID, ['Member'])
-        login(self.portal, TEST_USER_NAME)
-        self.assertFalse(view.hasPermissions())
-        logout()
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        login(self.portal, TEST_USER_NAME)
-        self.assertTrue(view.hasPermissions())
-
     def test_view_render(self):
         self.browser.open(self.subsite.absolute_url())
         for item in range(1, 6):
@@ -65,3 +51,27 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/manage-subsiteview')
         for item in range(1, 6):
             self.assertIn('<div id="subsite-column-%s" class="column">' % str(item), self.browser.contents)
+
+    def test_view_authorized(self):
+        self._auth()
+        self.browser.open(self.subsite.absolute_url())
+        self.assertIn(' <h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
+        self.assertIn('<div class="contentActions">', self.browser.contents)
+
+    def test_view_anonymous(self):
+        self.browser.open(self.subsite.absolute_url())
+        self.assertNotIn('<h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
+
+    def test_drop_parent_portlets(self):
+        manager = getUtility(IPortletManager, name='ftw.subsite.front1')
+        mapping = getMultiAdapter((self.subsite, manager),
+                                  IPortletAssignmentMapping).__of__(self.subsite)
+
+        mapping['myportlet'] = teaserportlet.Assignment(teasertitle='MyPortlet',
+                 teaserdesc='Lorem Ipsum')
+
+        housi = self.subsite.get(self.subsite.invokeFactory('Subsite', 'hans', title="Housi"))
+        housi.processForm()
+        transaction.commit()
+        self.browser.open(housi.absolute_url())
+        self.assertNotIn('MyPortlet', self.browser.contents)
