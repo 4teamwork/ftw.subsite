@@ -4,7 +4,10 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 import unittest2 as unittest
 import transaction
-
+from zope.component import getUtility, getMultiAdapter
+from plone.portlets.interfaces import IPortletManager
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from ftw.subsite.portlets import teaserportlet
 
 class TestSubsite(unittest.TestCase):
 
@@ -48,3 +51,27 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/manage-subsiteview')
         for item in range(1, 6):
             self.assertIn('<div id="subsite-column-%s" class="column">' % str(item), self.browser.contents)
+
+    def test_view_authorized(self):
+        self._auth()
+        self.browser.open(self.subsite.absolute_url())
+        self.assertIn(' <h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
+        self.assertIn('<div class="contentActions">', self.browser.contents)
+
+    def test_view_anonymous(self):
+        self.browser.open(self.subsite.absolute_url())
+        self.assertNotIn(' <h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
+
+    def test_drop_parent_portlets(self):
+        manager = getUtility(IPortletManager, name='ftw.subsite.front1')
+        mapping = getMultiAdapter((self.subsite, manager),
+                                  IPortletAssignmentMapping).__of__(self.subsite)
+
+        mapping['myportlet'] = teaserportlet.Assignment(teasertitle='MyPortlet',
+                 teaserdesc='Lorem Ipsum')
+
+        housi = self.subsite.get(self.subsite.invokeFactory('Subsite', 'hans', title="Housi"))
+        housi.processForm()
+        transaction.commit()
+        self.browser.open(housi.absolute_url())
+        self.assertNotIn('MyProtlet', self.browser.contents)
