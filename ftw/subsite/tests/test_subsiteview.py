@@ -60,7 +60,7 @@ class TestSubsite(unittest.TestCase):
 
     def test_view_anonymous(self):
         self.browser.open(self.subsite.absolute_url())
-        self.assertNotIn(' <h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
+        self.assertNotIn('<h1 id="parent-fieldname-title" class="documentFirstHeading', self.browser.contents)
 
     def test_drop_parent_portlets(self):
         manager = getUtility(IPortletManager, name='ftw.subsite.front1')
@@ -74,4 +74,4 @@ class TestSubsite(unittest.TestCase):
         housi.processForm()
         transaction.commit()
         self.browser.open(housi.absolute_url())
-        self.assertNotIn('MyProtlet', self.browser.contents)
+        self.assertNotIn('MyPortlet', self.browser.contents)
