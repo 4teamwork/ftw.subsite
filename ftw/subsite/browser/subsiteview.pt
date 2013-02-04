@@ -14,11 +14,15 @@
     <div id="edit-bar">
 
 
-
      <h5 class="hiddenStructure">Ansichten</h5>
 
     <div tal:replace="structure provider:plone.contentviews" />
     </div>
+    <tal:title tal:condition="python: not view.is_anon()">
+      <div tal:replace="structure provider:plone.abovecontenttitle" />
+      <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view" />
+      <div tal:replace="structure provider:plone.belowcontenttitle" />
+    </tal:title>
             <h1 i18n:translate="" class="hiddenStructure">Choose your Section</h1>
             <dl tal:condition="view/empty"
                 class="portalMessage info visualClear" id="dashboard-info-message">

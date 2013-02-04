@@ -27,6 +27,11 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+ <subscriber
+      for=".interfaces.ISubsite
+           Products.Archetypes.interfaces.IObjectInitializedEvent"
+      handler=".handlers.block_parent_portlets" />
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>
