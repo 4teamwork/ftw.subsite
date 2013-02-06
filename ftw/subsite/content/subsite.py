@@ -57,13 +57,15 @@ schema = atapi.Schema((
                 ),
         atapi.StringField(
             name="FromName",
-            label=_(u'label_fromname', default=u'Email Sendername'),
-            description=_(u'help_fromname', default=u'')),
+            widget=atapi.StringWidget(
+                label=_(u'label_fromname', default=u'Email Sendername'),
+                description=_(u'help_fromname', default=u''))),
 
         atapi.StringField(
             name="FromEmail",
-            label=_(u'label_fromemail', default=u'Email Senderaddress'),
-            description=_(u'help_fromname', default=u''))
+            widget=atapi.StringWidget(
+                label=_(u'label_fromemail', default=u'Email Senderaddress'),
+                description=_(u'help_fromname', default=u'')))
 
 
 ))
