@@ -10,7 +10,7 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 from plone.app.blob.field import ImageField
-from zope import schema
+
 
 schema = atapi.Schema((
 
