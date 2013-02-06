@@ -10,62 +10,55 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 from plone.app.blob.field import ImageField
-from zope import schema
+
 
 schema = atapi.Schema((
+    ImageField(
+        name='logo',
+        required=False,
+        storage=atapi.AnnotationStorage(),
+        schemata='subsite',
+        widget=atapi.ImageWidget(
+            label=_(u'label_logo',
+                    default=u'Logo'),
+            description=_(u'help_logo',
+                          default=u''))),
 
-        ImageField(
-            name='logo',
-            required=False,
+    atapi.TextField(
+            name='additional_css',
             storage=atapi.AnnotationStorage(),
             schemata='subsite',
-            widget=atapi.ImageWidget(
-                label=_(u'label_logo',
-                        default=u'Logo'),
-                description=_(u'help_logo',
-                              default=u''),
-                ),
-            ),
+            widget=atapi.TextAreaWidget(
+                rows=15,
+                label=_(u'label_additional_css',
+                        default=u'Additional CSS'),
+                description=_(u'help_additional_css',
+                              default=u''))),
 
+    atapi.LinesField(
+        name='subsite_languages',
+        storage=atapi.AnnotationStorage(),
+        schemata='subsite',
+        widget=atapi.LinesWidget(
+            label=_(u'label_subsite_languages',
+                    default=u'Languages'),
+            description=_(u'_helpsubsite_languages',
+                          default=u'add one language per line, ex. "de", "en",'
+                                   'etc. be sure the subsites have the same '
+                                   'ids (de, en, etc.), all subsite with a '
+                                   'specifig language must be siblings'))),
 
-        atapi.TextField(
-                name='additional_css',
-                storage=atapi.AnnotationStorage(),
-                schemata='subsite',
-                widget=atapi.TextAreaWidget(
-                    rows=15,
-                    label=_(u'label_additional_css',
-                            default=u'Additional CSS'),
-                    description=_(u'help_additional_css',
-                                  default=u''),
-                    ),
-                ),
-
-
-            atapi.LinesField(
-                name='subsite_languages',
-                storage=atapi.AnnotationStorage(),
-                schemata='subsite',
-                widget=atapi.LinesWidget(
-                    label=_(u'label_subsite_languages',
-                            default=u'Languages'),
-                    description=_(u'_helpsubsite_languages',
-                                  default=u'add one language per line, \
- ex. "de", "en", etc. be sure the subsites have the same ids (de, en, etc.), \
- all subsite with a specifig language must be siblings'),
-                    ),
-                ),
-        atapi.StringField(
-            name="FromName",
+    atapi.StringField(
+        name="FromName",
+        widget=atapi.StringWidget(
             label=_(u'label_fromname', default=u'Email Sendername'),
-            description=_(u'help_fromname', default=u'')),
+            description=_(u'help_fromname', default=u''))),
 
-        atapi.StringField(
-            name="FromEmail",
+    atapi.StringField(
+        name="FromEmail",
+        widget=atapi.StringWidget(
             label=_(u'label_fromemail', default=u'Email Senderaddress'),
-            description=_(u'help_fromname', default=u''))
-
-
+            description=_(u'help_fromname', default=u'')))
 ))
 
 

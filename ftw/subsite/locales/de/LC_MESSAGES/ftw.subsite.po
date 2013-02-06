@@ -146,12 +146,12 @@ msgstr "Abbrechen"
 #. Default: "Email Senderaddress"
 #: ./ftw/subsite/content/subsite.py:65
 msgid "label_fromemail"
-msgstr "Absendeemail"
+msgstr "Absender E-Mail"
 
 #. Default: "Email Sendername"
 #: ./ftw/subsite/content/subsite.py:60
 msgid "label_fromname"
-msgstr "Absendenamen"
+msgstr "Absender Name"
 
 #. Default: "Logo"
 #: ./ftw/subsite/content/subsite.py:23
