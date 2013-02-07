@@ -9,8 +9,8 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
-from Products.CMFCore.utils import getToolByName
 from zope.interface import implements
+from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 
 
 schema = atapi.Schema((
@@ -29,6 +29,7 @@ schema = atapi.Schema((
             name='additional_css',
             storage=atapi.AnnotationStorage(),
             schemata='subsite',
+            allowed_types=('Subsite', ),
             widget=atapi.TextAreaWidget(
                 rows=15,
                 label=_(u'label_additional_css',
@@ -36,18 +37,19 @@ schema = atapi.Schema((
                 description=_(u'help_additional_css',
                               default=u''))),
 
-    atapi.LinesField(
+    atapi.ReferenceField(
         name='subsite_languages',
         storage=atapi.AnnotationStorage(),
         schemata='subsite',
-        widget=atapi.LinesWidget(
+        relationship='subsite_subsite',
+        widget=ReferenceBrowserWidget(
             label=_(u'label_subsite_languages',
                     default=u'Languages'),
-            description=_(u'_helpsubsite_languages',
-                          default=u'add one language per line, ex. "de", "en",'
-                                   'etc. be sure the subsites have the same '
-                                   'ids (de, en, etc.), all subsite with a '
-                                   'specifig language must be siblings'))),
+            description=_(u'helpsubsite_languages',
+                          default=_(u'The language switch will only be '
+                                     'displayed, if the chosen Subsite(s)'
+                                     'has a value in the forcelangage '
+                                     'field')))),
 
     atapi.StringField(
         name="forcelanguage",

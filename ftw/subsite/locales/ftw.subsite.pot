@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-07 16:05+0000\n"
+"POT-Creation-Date: 2013-02-07 17:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,11 +82,6 @@ msgstr ""
 msgid "Teasertitle"
 msgstr ""
 
-#. Default: "add one language per line, ex. \"de\", \"en\",etc. be sure the subsites have the same ids (de, en, etc.), all subsite with a specifig language must be siblings"
-#: ./ftw/subsite/content/subsite.py:45
-msgid "_helpsubsite_languages"
-msgstr ""
-
 #. Default: "Cancel"
 #: ./ftw/subsite/browser/contact.py:56
 msgid "button_cancel"
@@ -106,20 +101,20 @@ msgstr ""
 msgid "help_Sender"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:35
+#: ./ftw/subsite/content/subsite.py:37
 msgid "help_additional_css"
 msgstr ""
 
 #. Default: "The Subsite and it's content will be delivered in the choosen language"
-#: ./ftw/subsite/content/subsite.py:55
+#: ./ftw/subsite/content/subsite.py:59
 msgid "help_forcelanguage"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:63
+#: ./ftw/subsite/content/subsite.py:67
 msgid "help_fromname"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:24
+#: ./ftw/subsite/content/subsite.py:25
 msgid "help_logo"
 msgstr ""
 
@@ -138,13 +133,18 @@ msgstr ""
 msgid "help_subject"
 msgstr ""
 
+#. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
+#: ./ftw/subsite/content/subsite.py:48
+msgid "helpsubsite_languages"
+msgstr ""
+
 #. Default: "The email was sent."
 #: ./ftw/subsite/browser/contact.py:52
 msgid "info_email_sent"
 msgstr ""
 
 #. Default: "Additional CSS"
-#: ./ftw/subsite/content/subsite.py:33
+#: ./ftw/subsite/content/subsite.py:35
 msgid "label_additional_css"
 msgstr ""
 
@@ -154,22 +154,22 @@ msgid "label_cancel"
 msgstr ""
 
 #. Default: "Subsite language"
-#: ./ftw/subsite/content/subsite.py:54
+#: ./ftw/subsite/content/subsite.py:58
 msgid "label_forcelanguage"
 msgstr ""
 
 #. Default: "Email Senderaddress"
-#: ./ftw/subsite/content/subsite.py:68
+#: ./ftw/subsite/content/subsite.py:72
 msgid "label_fromemail"
 msgstr ""
 
 #. Default: "Email Sendername"
-#: ./ftw/subsite/content/subsite.py:62
+#: ./ftw/subsite/content/subsite.py:66
 msgid "label_fromname"
 msgstr ""
 
 #. Default: "Logo"
-#: ./ftw/subsite/content/subsite.py:22
+#: ./ftw/subsite/content/subsite.py:23
 msgid "label_logo"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgid "label_subject"
 msgstr ""
 
 #. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:43
+#: ./ftw/subsite/content/subsite.py:46
 msgid "label_subsite_languages"
 msgstr ""
 

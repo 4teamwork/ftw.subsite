@@ -19,30 +19,39 @@ class TestLanguageswitcher(unittest.TestCase):
         self.browser = Browser(self.layer['app'])
         self.browser.handleErrors = False
 
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Reviewer', 'Contributor'])
+        setRoles(self.portal, TEST_USER_ID,
+                 ['Manager', 'Reviewer', 'Contributor'])
         login(self.portal, TEST_USER_NAME)
-        self.subsite = self.portal.get(self.portal.invokeFactory(
+        self.german = self.portal.get(self.portal.invokeFactory(
             'Subsite',
-            'mysubsite',
-            title="Peter",
-            subsite_languages=['de', 'fr']))
+            'germansubsite',
+            title="German Subsite",
+            forcelanguage="de"))
 
-        self.fr = self.portal.get(self.portal.invokeFactory(
+        self.french = self.portal.get(self.portal.invokeFactory(
             'Subsite',
-            'fr',
-            title="hans",
-            ))
+            'French Subsite',
+            title="frenchsubsite",
+            forcelanguage="fr"))
 
-        self.portal.portal_languages.addSupportedLanguage('fr')
+        self.german.setSubsite_languages(self.french.UID())
+        self.french.setSubsite_languages(self.german.UID())
+
         transaction.commit()
-
-        self.browser.open(self.portal.absolute_url() + '/login_form')
-        self.browser.getControl(name='__ac_name').value = TEST_USER_NAME
-        self.browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
-        self.browser.getControl(name='submit').click()
 
     def tearDown(self):
         self.portal.manage_delObjects(['mysubsite'])
+
+    def _auth(self):
+        self.browser.addHeader('Authorization', 'Basic %s:%s' % (
+            TEST_USER_NAME, TEST_USER_PASSWORD,))
+
+    def test_language_switch(self):
+        self._auth()
+        self.browser.open(self.german.absolute_url())
+
+
+
 
     def test_languageswitch_functional(self):
         self.browser.open(self.subsite.absolute_url())
