@@ -1,15 +1,16 @@
 """Definition of the OrgUnit content type
 """
 
-from Products.Archetypes import atapi
 from ftw.subsite import _
 from ftw.subsite.config import PROJECTNAME
 from ftw.subsite.interfaces import ISubsite
-from zope.interface import implements
+from plone.app.blob.field import ImageField
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
-from plone.app.blob.field import ImageField
+from Products.CMFCore.utils import getToolByName
+from zope.interface import implements
 
 
 schema = atapi.Schema((
@@ -50,7 +51,8 @@ schema = atapi.Schema((
 
     atapi.StringField(
         name="forcelanguage",
-        widget=atapi.StringWidget(
+        vocabulary_factory="plone.app.vocabularies.AvailableContentLanguages",
+        widget=atapi.SelectionWidget(
             label=_(u'label_forcelanguage', default=u'Subsite language'),
             description=_(u'help_forcelanguage',
                           default=u'The Subsite and it\'s content will be '
