@@ -49,6 +49,14 @@ schema = atapi.Schema((
                                    'specifig language must be siblings'))),
 
     atapi.StringField(
+        name="forcelanguage",
+        widget=atapi.StringWidget(
+            label=_(u'label_forcelanguage', default=u'Subsite language'),
+            description=_(u'help_forcelanguage',
+                          default=u'The Subsite and it\'s content will be '
+                                   'delivered in the choosen language'))),
+
+    atapi.StringField(
         name="FromName",
         widget=atapi.StringWidget(
             label=_(u'label_fromname', default=u'Email Sendername'),

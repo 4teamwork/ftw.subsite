@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-27 06:53+0000\n"
+"POT-Creation-Date: 2013-02-07 16:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add Teaser Portlet"
 msgstr "Teaserportlet hinzufügen"
 
-#: ./ftw/subsite/browser/subsiteview.pt:22
+#: ./ftw/subsite/browser/subsiteview.pt:26
 msgid "Choose your Section"
 msgstr "Wählen Sie ihre Sektion"
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Find an internal target  for this image to link to"
 msgstr "Geben Sie ein Ziel für dieses Bild an."
 
-#: ./ftw/subsite/browser/subsiteview.pt:25
+#: ./ftw/subsite/browser/subsiteview.pt:29
 msgid "Information"
 msgstr "Information"
 
@@ -77,8 +77,8 @@ msgstr "Teaserbeschreibung"
 msgid "Teasertitle"
 msgstr "Teasertitel"
 
-#. Default: "add one language per line,  ex. \"de\", \"en\", etc. be sure the subsites have the same ids (de, en, etc.),  all subsite with a specifig language must be siblings"
-#: ./ftw/subsite/content/subsite.py:52
+#. Default: "add one language per line, ex. \"de\", \"en\",etc. be sure the subsites have the same ids (de, en, etc.), all subsite with a specifig language must be siblings"
+#: ./ftw/subsite/content/subsite.py:45
 msgid "_helpsubsite_languages"
 msgstr "Fügen Sie eine Sprache pro Zeile hinzu. Stellen sie sicher, dass die Subsites die selbe id wie die Sprache haben."
 
@@ -101,15 +101,20 @@ msgstr "Text"
 msgid "help_Sender"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:39
+#: ./ftw/subsite/content/subsite.py:35
 msgid "help_additional_css"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:61
+#. Default: "The Subsite and it's content will be delivered in the choosen language"
+#: ./ftw/subsite/content/subsite.py:55
+msgid "help_forcelanguage"
+msgstr "Die aktuelle Subsite und deren Inhalt werden in der angegebenen Sprache angezeigt. Alle anderen Einstellungen werden ignoriert."
+
+#: ./ftw/subsite/content/subsite.py:63
 msgid "help_fromname"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:25
+#: ./ftw/subsite/content/subsite.py:24
 msgid "help_logo"
 msgstr ""
 
@@ -134,7 +139,7 @@ msgid "info_email_sent"
 msgstr "Die Email wurde versendet"
 
 #. Default: "Additional CSS"
-#: ./ftw/subsite/content/subsite.py:37
+#: ./ftw/subsite/content/subsite.py:33
 msgid "label_additional_css"
 msgstr "zusätzliches CSS"
 
@@ -143,18 +148,23 @@ msgstr "zusätzliches CSS"
 msgid "label_cancel"
 msgstr "Abbrechen"
 
+#. Default: "Subsite language"
+#: ./ftw/subsite/content/subsite.py:54
+msgid "label_forcelanguage"
+msgstr "Sprache für die Subsite festlegen"
+
 #. Default: "Email Senderaddress"
-#: ./ftw/subsite/content/subsite.py:65
+#: ./ftw/subsite/content/subsite.py:68
 msgid "label_fromemail"
 msgstr "Absender E-Mail"
 
 #. Default: "Email Sendername"
-#: ./ftw/subsite/content/subsite.py:60
+#: ./ftw/subsite/content/subsite.py:62
 msgid "label_fromname"
 msgstr "Absender Name"
 
 #. Default: "Logo"
-#: ./ftw/subsite/content/subsite.py:23
+#: ./ftw/subsite/content/subsite.py:22
 msgid "label_logo"
 msgstr "Logo"
 
@@ -179,7 +189,7 @@ msgid "label_subject"
 msgstr "Betreff"
 
 #. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:50
+#: ./ftw/subsite/content/subsite.py:43
 msgid "label_subsite_languages"
 msgstr "Sprachen"
 
@@ -187,3 +197,5 @@ msgstr "Sprachen"
 #: ./ftw/subsite/browser/contact.py:24
 msgid "mail_address"
 msgstr "E-Mail"
+
+

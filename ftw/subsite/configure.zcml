@@ -32,6 +32,8 @@
            Products.Archetypes.interfaces.IObjectInitializedEvent"
       handler=".handlers.block_parent_portlets" />
 
-  <!-- -*- extra stuff goes here -*- -->
+
+  <!-- After traversal hook to set the language -->
+  <subscriber handler=".handlers.language_negotiator"/>
 
 </configure>
