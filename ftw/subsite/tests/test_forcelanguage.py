@@ -25,7 +25,7 @@ class TestSubsite(unittest.TestCase):
             # Set this only for better testing ability
             setCookieEverywhere=True)
 
-        #XXX setCookieEverywhere does not work
+        #XXX setCookieEverywhere does not work - dont't know why
 
         transaction.commit()
 

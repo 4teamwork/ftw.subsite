@@ -21,7 +21,8 @@ def block_parent_portlets(object_, event):
     else:
         for i in range(1, 7):
             try:
-                manager = getUtility(IPortletManager, name='ftw.subsite.front%s' % str(i))
+                manager = getUtility(IPortletManager,
+                                     name='ftw.subsite.front%s' % str(i))
 
             except ComponentLookupError:
                 # This happens when the plone site is removed.
