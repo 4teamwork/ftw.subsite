@@ -51,8 +51,6 @@ def language_negotiator(event):
 
     if ISubsite.providedBy(nav_root):
         # Get language stored on Subsite
-        if 'forcelanguage' not in nav_root.Schema():
-            return None
         language = nav_root.Schema().get('forcelanguage').get(nav_root)
         if language:
             event.request['LANGUAGE'] = language
