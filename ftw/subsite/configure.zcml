@@ -33,7 +33,5 @@
       handler=".handlers.block_parent_portlets" />
 
 
-  <!-- After traversal hook to set the language -->
-  <subscriber handler=".handlers.language_negotiator"/>
 
 </configure>
