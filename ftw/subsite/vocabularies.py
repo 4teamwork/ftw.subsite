@@ -1,6 +1,7 @@
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
 from zope.schema.vocabulary import SimpleVocabulary
+from ftw.subsite import _
 
 
 class AvailableLanguagesVocabulary(object):
@@ -15,7 +16,7 @@ class AvailableLanguagesVocabulary(object):
             context=context)
         vocab = factory(context)
         terms = vocab._terms
-        terms.append(vocab.createTerm("", "empty", "empty"))
+        terms.append(vocab.createTerm("", "default", _(u"inherit_language")))
         return SimpleVocabulary(terms)
 
 

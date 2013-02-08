@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-07 17:13+0000\n"
+"POT-Creation-Date: 2013-02-08 15:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,11 +101,11 @@ msgid "help_additional_css"
 msgstr ""
 
 #. Default: "The Subsite and it's content will be delivered in the choosen language"
-#: ./ftw/subsite/content/subsite.py:59
+#: ./ftw/subsite/content/subsite.py:62
 msgid "help_forcelanguage"
 msgstr "Die aktuelle Subsite und deren Inhalt werden in der angegebenen Sprache angezeigt. Alle anderen Einstellungen werden ignoriert."
 
-#: ./ftw/subsite/content/subsite.py:67
+#: ./ftw/subsite/content/subsite.py:70
 msgid "help_fromname"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgid "help_subject"
 msgstr ""
 
 #. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
-#: ./ftw/subsite/content/subsite.py:48
+#: ./ftw/subsite/content/subsite.py:49
 msgid "helpsubsite_languages"
 msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsite ein Sprache definiert haben."
 
@@ -137,6 +137,10 @@ msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsite
 #: ./ftw/subsite/browser/contact.py:52
 msgid "info_email_sent"
 msgstr "Die Email wurde versendet"
+
+#: ./ftw/subsite/vocabularies.py:19
+msgid "inherit_language"
+msgstr "Standart Sprache übernehmen"
 
 #. Default: "Additional CSS"
 #: ./ftw/subsite/content/subsite.py:35
@@ -149,17 +153,17 @@ msgid "label_cancel"
 msgstr "Abbrechen"
 
 #. Default: "Subsite language"
-#: ./ftw/subsite/content/subsite.py:58
+#: ./ftw/subsite/content/subsite.py:61
 msgid "label_forcelanguage"
 msgstr "Sprache für die Subsite festlegen"
 
 #. Default: "Email Senderaddress"
-#: ./ftw/subsite/content/subsite.py:72
+#: ./ftw/subsite/content/subsite.py:75
 msgid "label_fromemail"
 msgstr "Absender E-Mail"
 
 #. Default: "Email Sendername"
-#: ./ftw/subsite/content/subsite.py:66
+#: ./ftw/subsite/content/subsite.py:69
 msgid "label_fromname"
 msgstr "Absender Name"
 
@@ -189,7 +193,7 @@ msgid "label_subject"
 msgstr "Betreff"
 
 #. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:46
+#: ./ftw/subsite/content/subsite.py:47
 msgid "label_subsite_languages"
 msgstr "Auf andere Sprachen verlinken"
 
