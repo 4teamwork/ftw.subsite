@@ -41,6 +41,7 @@ schema = atapi.Schema((
         name='subsite_languages',
         storage=atapi.AnnotationStorage(),
         schemata='subsite',
+        multiValued=True,
         relationship='subsite_subsite',
         widget=ReferenceBrowserWidget(
             label=_(u'label_subsite_languages',

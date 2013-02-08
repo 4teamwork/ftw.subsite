@@ -75,3 +75,30 @@ class TestLanguageswitcher(unittest.TestCase):
 
         self.browser.open(self.portal.portal_url())
         self.assertRaises(LinkNotFoundError, self.browser.getLink, 'French')
+
+    def test_language_switch_multiple_sites(self):
+        self.italy = self.portal.get(self.portal.invokeFactory(
+            'Subsite',
+            'Italian Subsite',
+            title="italiansubsite",
+            forcelanguage="it"))
+
+        self.german.setSubsite_languages([self.french.UID(), self.italy.UID()])
+        transaction.commit()
+
+        self.browser.open(self.german.absolute_url())
+        self.assertTrue(self.browser.getLink('French'))
+        self.assertTrue(self.browser.getLink('Italian'))
+
+    def test_language_switch_multiple_sites_no_lang_set(self):
+        self.italy = self.portal.get(self.portal.invokeFactory(
+            'Subsite',
+            'Italian Subsite',
+            title="italiansubsite"))
+
+        self.german.setSubsite_languages([self.french.UID(), self.italy.UID()])
+        transaction.commit()
+
+        self.browser.open(self.german.absolute_url())
+        self.assertTrue(self.browser.getLink('French'))
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Italian')
