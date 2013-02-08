@@ -24,7 +24,7 @@ class LanguageSelector(common.ViewletBase):
         ltool = getToolByName(self.nav_root(), 'portal_languages')
         languages = []
         subsites = self.nav_root().getSubsite_languages()
-        if isinstance(subsites, list):
+        if not isinstance(subsites, list):
             subsites = [subsites]
         for subsite in subsites:
             lang = subsite.getForcelanguage()
