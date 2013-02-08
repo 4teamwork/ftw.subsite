@@ -56,6 +56,7 @@ schema = atapi.Schema((
         name="forcelanguage",
         default="",
         vocabulary_factory="ftw.subsites.languages",
+        schemata='subsite',
         widget=atapi.SelectionWidget(
             label=_(u'label_forcelanguage', default=u'Subsite language'),
             description=_(u'help_forcelanguage',
