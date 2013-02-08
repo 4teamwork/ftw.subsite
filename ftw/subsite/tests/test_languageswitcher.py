@@ -1,9 +1,10 @@
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import TEST_USER_PASSWORD
+from mechanize._mechanize import LinkNotFoundError
+from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from plone.app.testing import login
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 import unittest2 as unittest
 import transaction
@@ -63,3 +64,14 @@ class TestLanguageswitcher(unittest.TestCase):
         self.assertTrue(link)
         link.click()
         self.assertEquals(self.browser.url, self.german.absolute_url())
+
+    def test_language_switch_available(self):
+        self.german.setSubsite_languages([])
+        transaction.commit()
+
+        self._auth()
+        self.browser.open(self.german.absolute_url())
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'French')
+
+        self.browser.open(self.portal.portal_url())
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'French')
