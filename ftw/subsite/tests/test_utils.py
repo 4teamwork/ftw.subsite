@@ -1,9 +1,7 @@
-from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from ftw.subsite.utils import find_context
 from ftw.subsite.utils import get_nav_root
 from plone.app.layout.navigation.interfaces import INavigationRoot
-from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 import unittest2 as unittest
 
@@ -36,5 +34,6 @@ class TestUtilsIntegration(unittest.TestCase):
     def test_find_context(self):
         # This tests the edge case if no real Request (from a browser)
         # is available. It should return the app
+        # All other testcases are tested by test_forcelanguage
         doc = self.portal.get(self.portal.invokeFactory('Document', 'doc'))
         self.assertEquals(self.layer['app'], find_context(doc.REQUEST))
