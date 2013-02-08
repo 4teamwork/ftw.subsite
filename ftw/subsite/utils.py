@@ -17,5 +17,4 @@ def get_nav_root(context):
     """Returns the navigation root"""
 
     plone_state = context.restrictedTraverse('@@plone_portal_state')
-    navigation_root_path = plone_state.navigation_root_path()
-    return context.restrictedTraverse(navigation_root_path)
+    return plone_state.navigation_root()
