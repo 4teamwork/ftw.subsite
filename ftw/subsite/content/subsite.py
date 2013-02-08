@@ -54,7 +54,8 @@ schema = atapi.Schema((
 
     atapi.StringField(
         name="forcelanguage",
-        vocabulary_factory="plone.app.vocabularies.AvailableContentLanguages",
+        default="",
+        vocabulary_factory="ftw.subsites.languages",
         widget=atapi.SelectionWidget(
             label=_(u'label_forcelanguage', default=u'Subsite language'),
             description=_(u'help_forcelanguage',

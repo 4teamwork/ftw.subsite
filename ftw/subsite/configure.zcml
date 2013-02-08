@@ -33,5 +33,10 @@
       handler=".handlers.block_parent_portlets" />
 
 
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        component=".vocabularies.AvailableLanguagesVocabularyFactory"
+        name="ftw.subsites.languages"
+        />
 
 </configure>
