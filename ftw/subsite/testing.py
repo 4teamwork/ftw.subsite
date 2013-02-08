@@ -20,6 +20,9 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', ftw.subsite,
                        context=configurationContext)
 
+        xmlconfig.file('overrides.zcml', ftw.subsite,
+                       context=configurationContext)
+
         import plone.app.portlets
         xmlconfig.file('configure.zcml', plone.app.portlets,
                        context=configurationContext)

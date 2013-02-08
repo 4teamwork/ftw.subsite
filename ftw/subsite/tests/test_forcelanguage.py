@@ -55,21 +55,19 @@ class TestSubsite(unittest.TestCase):
 
     def test_language_plone_root(self):
         self._auth()
-        self.browser.open(self.portal.portal_url())
         #Should have plone default language 'en'
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
-            self.browser.contents)
+        self.browser.open(self.portal.portal_url())
+        link = self.browser.getLink('Site Map')
+        self.assertIn(link.text, 'Site Map')
 
     def test_force_language_default(self):
         self._auth()
         subsite = self._create_subsite()  # No language
 
+        # Plone default - 'en'
         self.browser.open(subsite.absolute_url())
-        # Plone default is en
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
-            self.browser.contents)
+        link = self.browser.getLink('Site Map')
+        self.assertIn(link.text, 'Site Map')
 
     def test_force_language_change(self):
         self._auth()
@@ -79,9 +77,8 @@ class TestSubsite(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(subsite.absolute_url())
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="de">',
-            self.browser.contents)
+        link = self.browser.getLink('\xc3\x9cbersicht')
+        self.assertIn(link.text, '\xc3\x9cbersicht')
 
     def test_force_language_change_subfolder(self):
         self._auth()
@@ -92,9 +89,8 @@ class TestSubsite(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(folder.absolute_url())
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="de">',
-            self.browser.contents)
+        link = self.browser.getLink('\xc3\x9cbersicht')
+        self.assertIn(link.text, '\xc3\x9cbersicht')
 
     def test_force_language_change_subitem(self):
         self._auth()
@@ -105,9 +101,8 @@ class TestSubsite(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(doc.absolute_url())
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="de">',
-            self.browser.contents)
+        link = self.browser.getLink('\xc3\x9cbersicht')
+        self.assertIn(link.text, '\xc3\x9cbersicht')
 
     def test_force_language_nav_root(self):
         # If there is a navigation root, which does not provide ISubsite
@@ -117,6 +112,5 @@ class TestSubsite(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(folder.absolute_url())
-        self.assertIn(
-            '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
-            self.browser.contents)
+        link = self.browser.getLink('Site Map')
+        self.assertIn(link.text, 'Site Map')
