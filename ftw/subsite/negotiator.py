@@ -6,6 +6,7 @@ from Products.CMFCore.interfaces import IFolderish
 from zope.i18n.interfaces import INegotiator
 from zope.i18n.negotiator import negotiator as base_negotiator
 from zope.interface import implements
+from ftw.subsite.interfaces import IFtwSubsiteLayer
 
 
 class Negotiator(object):
@@ -15,6 +16,10 @@ class Negotiator(object):
     implements(INegotiator)
 
     def getLanguage(self, langs, env):
+
+        if not IFtwSubsiteLayer.providedBy(env):
+            return base_negotiator.getLanguage(langs, env)
+
         # Get current published object
         obj = find_context(env)
 
