@@ -13,13 +13,14 @@ from Products.CMFCore.interfaces import IFolderish
 
 
 def block_parent_portlets(object_, event):
-    """Adds a custom navigation Portlet for Buch
+    """Block parent portlets for Subsite columns
     """
     if 'portal_factory' in object_.getPhysicalPath():
         # do not run in portal_factory
         pass
     else:
         for i in range(1, 7):
+            # We have 6 column manager on subsites
             try:
                 manager = getUtility(IPortletManager,
                                      name='ftw.subsite.front%s' % str(i))
