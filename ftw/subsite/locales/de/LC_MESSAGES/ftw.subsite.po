@@ -112,7 +112,7 @@ msgstr ""
 #. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
 #: ./ftw/subsite/content/subsite.py:49
 msgid "help_language_references"
-msgstr ""
+msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsites ein Sprache definiert haben."
 
 #: ./ftw/subsite/content/subsite.py:25
 msgid "help_logo"
@@ -170,7 +170,7 @@ msgstr "Absender Name"
 #. Default: "Languages"
 #: ./ftw/subsite/content/subsite.py:47
 msgid "label_language_references"
-msgstr ""
+msgstr "Auf andere Sprachen verlinken"
 
 #. Default: "Logo"
 #: ./ftw/subsite/content/subsite.py:23
