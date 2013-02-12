@@ -35,8 +35,8 @@ class TestLanguageswitcher(unittest.TestCase):
             title="frenchsubsite",
             forcelanguage="fr"))
 
-        self.german.setSubsite_languages(self.french.UID())
-        self.french.setSubsite_languages(self.german.UID())
+        self.german.setLanguage_references(self.french.UID())
+        self.french.setLanguage_references(self.german.UID())
 
         transaction.commit()
 
@@ -66,7 +66,7 @@ class TestLanguageswitcher(unittest.TestCase):
         self.assertEquals(self.browser.url, self.german.absolute_url())
 
     def test_language_switch_available(self):
-        self.german.setSubsite_languages([])
+        self.german.setLanguage_references([])
         transaction.commit()
 
         self._auth()
@@ -83,7 +83,8 @@ class TestLanguageswitcher(unittest.TestCase):
             title="italiansubsite",
             forcelanguage="it"))
 
-        self.german.setSubsite_languages([self.french.UID(), self.italy.UID()])
+        self.german.setLanguage_references(
+            [self.french.UID(), self.italy.UID()])
         transaction.commit()
 
         self.browser.open(self.german.absolute_url())
@@ -96,7 +97,8 @@ class TestLanguageswitcher(unittest.TestCase):
             'Italian Subsite',
             title="italiansubsite"))
 
-        self.german.setSubsite_languages([self.french.UID(), self.italy.UID()])
+        self.german.setLanguage_references(
+            [self.french.UID(), self.italy.UID()])
         transaction.commit()
 
         self.browser.open(self.german.absolute_url())

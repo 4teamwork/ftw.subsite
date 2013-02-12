@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-08 15:47+0000\n"
+"POT-Creation-Date: 2013-02-12 10:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,6 +109,11 @@ msgstr "Die aktuelle Subsite und deren Inhalt werden in der angegebenen Sprache 
 msgid "help_fromname"
 msgstr ""
 
+#. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
+#: ./ftw/subsite/content/subsite.py:49
+msgid "help_language_references"
+msgstr ""
+
 #: ./ftw/subsite/content/subsite.py:25
 msgid "help_logo"
 msgstr ""
@@ -127,11 +132,6 @@ msgstr ""
 #: ./ftw/subsite/browser/contact.py:29
 msgid "help_subject"
 msgstr ""
-
-#. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
-#: ./ftw/subsite/content/subsite.py:49
-msgid "helpsubsite_languages"
-msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsite ein Sprache definiert haben."
 
 #. Default: "The email was sent."
 #: ./ftw/subsite/browser/contact.py:52
@@ -167,6 +167,11 @@ msgstr "Absender E-Mail"
 msgid "label_fromname"
 msgstr "Absender Name"
 
+#. Default: "Languages"
+#: ./ftw/subsite/content/subsite.py:47
+msgid "label_language_references"
+msgstr ""
+
 #. Default: "Logo"
 #: ./ftw/subsite/content/subsite.py:23
 msgid "label_logo"
@@ -191,11 +196,6 @@ msgstr "Kontaktformular"
 #: ./ftw/subsite/browser/contact.py:27
 msgid "label_subject"
 msgstr "Betreff"
-
-#. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:47
-msgid "label_subsite_languages"
-msgstr "Auf andere Sprachen verlinken"
 
 #. Default: "E-Mail"
 #: ./ftw/subsite/browser/contact.py:24

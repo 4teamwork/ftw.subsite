@@ -38,15 +38,15 @@ schema = atapi.Schema((
                               default=u''))),
 
     atapi.ReferenceField(
-        name='subsite_languages',
+        name='language_references',
         storage=atapi.AnnotationStorage(),
         schemata='subsite',
         multiValued=True,
         relationship='subsite_subsite',
         widget=ReferenceBrowserWidget(
-            label=_(u'label_subsite_languages',
+            label=_(u'label_language_references',
                     default=u'Languages'),
-            description=_(u'helpsubsite_languages',
+            description=_(u'help_language_references',
                           default=_(u'The language switch will only be '
                                      'displayed, if the chosen Subsite(s)'
                                      'has a value in the forcelangage '

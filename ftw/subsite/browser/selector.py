@@ -16,14 +16,14 @@ class LanguageSelector(common.ViewletBase):
 
     def available(self):
         if ISubsite.providedBy(self.nav_root()):
-            return bool(self.nav_root().getSubsite_languages())
+            return bool(self.nav_root().getLanguage_references())
 
     def languages(self):
         """Returns all possible languages based on the Subsite configuration.
         """
         ltool = getToolByName(self.nav_root(), 'portal_languages')
         languages = []
-        subsites = self.nav_root().getSubsite_languages()
+        subsites = self.nav_root().getLanguage_references()
 
         for subsite in subsites:
             lang = subsite.getForcelanguage()
