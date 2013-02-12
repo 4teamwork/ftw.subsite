@@ -8,7 +8,7 @@ import unittest2 as unittest
 import transaction
 
 
-class TestSubsite(unittest.TestCase):
+class TestSubsiteForceLanguage(unittest.TestCase):
 
     layer = FTW_SUBSITE_FUNCTIONAL_TESTING
 
