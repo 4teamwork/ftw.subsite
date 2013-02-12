@@ -1,15 +1,16 @@
 """Definition of the OrgUnit content type
 """
 
-from Products.Archetypes import atapi
 from ftw.subsite import _
 from ftw.subsite.config import PROJECTNAME
 from ftw.subsite.interfaces import ISubsite
-from zope.interface import implements
+from plone.app.blob.field import ImageField
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
-from plone.app.blob.field import ImageField
+from zope.interface import implements
+from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 
 
 schema = atapi.Schema((
@@ -28,6 +29,7 @@ schema = atapi.Schema((
             name='additional_css',
             storage=atapi.AnnotationStorage(),
             schemata='subsite',
+            allowed_types=('Subsite', ),
             widget=atapi.TextAreaWidget(
                 rows=15,
                 label=_(u'label_additional_css',
@@ -35,18 +37,31 @@ schema = atapi.Schema((
                 description=_(u'help_additional_css',
                               default=u''))),
 
-    atapi.LinesField(
-        name='subsite_languages',
+    atapi.ReferenceField(
+        name='language_references',
         storage=atapi.AnnotationStorage(),
         schemata='subsite',
-        widget=atapi.LinesWidget(
-            label=_(u'label_subsite_languages',
+        multiValued=True,
+        relationship='subsite_subsite',
+        widget=ReferenceBrowserWidget(
+            label=_(u'label_language_references',
                     default=u'Languages'),
-            description=_(u'_helpsubsite_languages',
-                          default=u'add one language per line, ex. "de", "en",'
-                                   'etc. be sure the subsites have the same '
-                                   'ids (de, en, etc.), all subsite with a '
-                                   'specifig language must be siblings'))),
+            description=_(u'help_language_references',
+                          default=_(u'The language switch will only be '
+                                     'displayed, if the chosen Subsite(s)'
+                                     'has a value in the forcelangage '
+                                     'field')))),
+
+    atapi.StringField(
+        name="forcelanguage",
+        default="",
+        vocabulary_factory="ftw.subsites.languages",
+        schemata='subsite',
+        widget=atapi.SelectionWidget(
+            label=_(u'label_forcelanguage', default=u'Subsite language'),
+            description=_(u'help_forcelanguage',
+                          default=u'The Subsite and it\'s content will be '
+                                   'delivered in the choosen language'))),
 
     atapi.StringField(
         name="FromName",

@@ -4,16 +4,19 @@ from plone.portlets.interfaces import IPortletManager
 from zope.component import getUtility, getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 
+
 def block_parent_portlets(object_, event):
-    """Adds a custom navigation Portlet for Buch
+    """Block parent portlets for Subsite columns
     """
     if 'portal_factory' in object_.getPhysicalPath():
         # do not run in portal_factory
         pass
     else:
         for i in range(1, 7):
+            # We have 6 column manager on subsites
             try:
-                manager = getUtility(IPortletManager, name='ftw.subsite.front%s' % str(i))
+                manager = getUtility(IPortletManager,
+                                     name='ftw.subsite.front%s' % str(i))
 
             except ComponentLookupError:
                 # This happens when the plone site is removed.

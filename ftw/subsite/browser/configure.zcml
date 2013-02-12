@@ -40,14 +40,6 @@
     permission="cmf.ModifyPortalContent"
     />
 
-  <browser:page
-    for="*"
-    class=".languageswitcher.LanguageSwitcher"
-    name="switchLanguage"
-    permission="zope2.View"
-    layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
-    />
-
   <browser:viewlet
       layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
       name="ftw.subsite.languageselector"
