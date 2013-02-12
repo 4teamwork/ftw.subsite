@@ -80,7 +80,6 @@ class TestSubsite(unittest.TestCase):
         return renderer
 
     def test_portlet_type_registered(self):
-        print 'peter'
         portlet = getUtility(
             IPortletType, name='ftw.subsite.teaserportlet')
         self.assertEquals(
