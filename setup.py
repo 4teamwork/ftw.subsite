@@ -6,6 +6,7 @@ version = '1.0.dev0'
 tests_require = [
     'plone.app.testing',
     'plone.app.portlets',
+    'pyquery',
     ]
 
 setup(name='ftw.subsite',
