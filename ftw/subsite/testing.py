@@ -41,8 +41,23 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         login(portal, TEST_USER_NAME)
 
 
+class FtwSubsiteWithoutApplyProfileLayer(FtwSubsiteIntegrationLayer):
+    """Special layer, which does not install the ftw.subsite profile.
+    This way the ftw.subsite browserlay will net be installed
+    """
+
+    def setUpPloneSite(self, portal):
+
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        login(portal, TEST_USER_NAME)
+
+
 FTW_SUBSITE_FIXTURE = FtwSubsiteIntegrationLayer()
 FTW_SUBSITE_INTEGRATION_TESTING = IntegrationTesting(
     bases=(FTW_SUBSITE_FIXTURE,), name="FtwSubsite:Integration")
 FTW_SUBSITE_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FTW_SUBSITE_FIXTURE,), name="FtwSubsite:Functional")
+
+FTW_SUBSITE_SPECIAL_FIXTURE = FtwSubsiteWithoutApplyProfileLayer()
+FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FTW_SUBSITE_SPECIAL_FIXTURE,), name="FtwSubsite:SpecialFunctional")

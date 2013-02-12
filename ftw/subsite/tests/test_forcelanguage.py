@@ -1,4 +1,5 @@
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
+from ftw.subsite.testing import FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
@@ -112,5 +113,28 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(folder.absolute_url())
+        link = self.browser.getLink('Site Map')
+        self.assertIn(link.text, 'Site Map')
+
+
+class TestNegotiatorSpecialCase(unittest.TestCase):
+
+    # Do not setup ftw.subsite to test if the customized negotiator behaves
+    # normal
+    layer = FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+        self.browser = Browser(self.layer['app'])
+        self.browser.handleErrors = False
+
+        self.browser.addHeader('Authorization', 'Basic %s:%s' % (
+            TEST_USER_NAME, TEST_USER_PASSWORD,))
+
+    def test_subsitelayer_not_available(self):
+        # The Subsite browserlayer is not available, so it should behave like
+        # Plone default
+        self.browser.open(self.portal.portal_url())
         link = self.browser.getLink('Site Map')
         self.assertIn(link.text, 'Site Map')
