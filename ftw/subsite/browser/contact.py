@@ -68,13 +68,14 @@ class ContactForm(form.Form):
         """
         mh = getToolByName(self.context, 'MailHost')
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
+        nav_root = None
         if not '/'.join(portal.getPhysicalPath()) == getNavigationRoot(self.context):
             nav_root = self.context.restrictedTraverse(getNavigationRoot(self.context))
         if nav_root:
             site_title = nav_root.Title()
             site_url = nav_root.absolute_url()
         else:
-            site_title = portal.get('title')
+            site_title = portal.Title()
             site_url = portal.absolute_url()
 
         text = translate(
