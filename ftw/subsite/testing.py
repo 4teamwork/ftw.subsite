@@ -24,16 +24,21 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', plone.app.portlets,
                        context=configurationContext)
 
+        import collective.MockMailHost
+        xmlconfig.file('configure.zcml', collective.MockMailHost,
+                       context=configurationContext)
+
         # installProduct() is *only* necessary for packages outside
         # the Products.* namespace which are also declared as Zope 2 products,
         # using <five:registerPackage /> in ZCML.
         z2.installProduct(app, 'plone.app.portlets')
         z2.installProduct(app, 'ftw.subsite')
+        z2.installProduct(app, 'collective.MockMailHost')
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         applyProfile(portal, 'ftw.subsite:default')
-
+        applyProfile(portal, 'collective.MockMailHost:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 
