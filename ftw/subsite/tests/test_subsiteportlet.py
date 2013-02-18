@@ -1,21 +1,22 @@
-import unittest2 as unittest
+from StringIO import StringIO
+from ftw.subsite.portlets import teaserportlet
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
-from plone.testing.z2 import Browser
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
-from zope.component import getUtility
-from plone.portlets.interfaces import IPortletType
-from ftw.subsite.portlets import teaserportlet
-import transaction
-from StringIO import StringIO
+from plone.namedfile.file import NamedImage
+from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletRenderer
-from plone.namedfile.file import NamedImage
-from zope.component import getMultiAdapter
+from plone.portlets.interfaces import IPortletType
+from plone.testing.z2 import Browser
 from plone.uuid.interfaces import IUUID
+from pyquery import PyQuery as pq
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+import transaction
+import unittest2 as unittest
 import zope.event
 import zope.lifecycleevent
-from plone.portlets.interfaces import IPortletAssignmentMapping
 
 class TestSubsite(unittest.TestCase):
 
@@ -80,7 +81,6 @@ class TestSubsite(unittest.TestCase):
         return renderer
 
     def test_portlet_type_registered(self):
-        print 'peter'
         portlet = getUtility(
             IPortletType, name='ftw.subsite.teaserportlet')
         self.assertEquals(
@@ -128,7 +128,10 @@ class TestSubsite(unittest.TestCase):
         file_field.add_file(StringIO(file_.read()), 'image/png', 'blue.png')
         self.browser.getControl(name="form.buttons.add").click()
         self.assertEqual(self.browser.url, "http://nohost/plone/mysubsite")
-        self.assertIn('<a href="http://nohost/plone/mysubsite/mypage">', self.browser.contents)
+
+        doc = pq(self.browser.contents)
+        link = doc('a[href="http://nohost/plone/mysubsite/mypage"]')
+        self.assertTrue(link, 'Teaser portlet Link "MyPage" missing.')
 
     def test_edit_form(self):
         self._auth()

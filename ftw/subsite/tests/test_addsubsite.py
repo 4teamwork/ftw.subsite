@@ -2,8 +2,9 @@ from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
-import unittest2 as unittest
+from pyquery import PyQuery as pq
 import transaction
+import unittest2 as unittest
 
 
 class TestSubsite(unittest.TestCase):
@@ -39,10 +40,14 @@ class TestSubsite(unittest.TestCase):
         self.browser.getControl('Save').click()
         # Stay on add form
         self.assertIn(factory_url, self.browser.url)
+
+        doc = pq(self.browser.contents)
+
         # Title is required
-        self.assertIn('field error ArchetypesStringWidget  '
-                      'kssattr-atfieldname-title',
-                      self.browser.contents)
+        input_field = doc('input#title').parents('.field')
+        self.assertTrue(input_field, 'Title field not found')
+        self.assertIn('error', input_field.attr('class').split(' '),
+                      'Title seems not to be required, but should be')
 
         # Set title and submit form
         self.browser.getControl(name="title").value = "Testsubsite"

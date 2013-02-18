@@ -8,10 +8,9 @@
         tal:attributes="class codeclass">
         <a href=""
            tal:define="name lang/native|lang/name"
-           tal:attributes="href string:${here_url}/switchLanguage?set_language=${code};
+           tal:attributes="href lang/url;
                            title name"
-            ><tal:nonflag
-                          replace="name">language name</tal:nonflag
+            ><tal:nonflag replace="name">language name</tal:nonflag
         ></a>
     </li>
     </tal:language>

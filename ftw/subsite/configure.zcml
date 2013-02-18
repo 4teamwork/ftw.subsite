@@ -32,6 +32,11 @@
            Products.Archetypes.interfaces.IObjectInitializedEvent"
       handler=".handlers.block_parent_portlets" />
 
-  <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        component=".vocabularies.AvailableLanguagesVocabularyFactory"
+        name="ftw.subsites.languages"
+        />
 
 </configure>
