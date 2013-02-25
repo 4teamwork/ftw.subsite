@@ -25,7 +25,7 @@ class Negotiator(object):
 
         # Filter out CSS/JS and other non contentish objects
         # IFolderish check includes site root
-        if not (IContentish.providedBy(obj) or not IFolderish.providedBy(obj)):
+        if not (IContentish.providedBy(obj) or IFolderish.providedBy(obj)):
             return base_negotiator.getLanguage(langs, env)
 
         nav_root = get_nav_root(obj)
