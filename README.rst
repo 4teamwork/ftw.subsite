@@ -6,16 +6,16 @@ within a Plone site.
 It does this by defining it as navigation root.
 
 
-Aditional functionality provided by ``ftw.subsite``
+Additional functionality provided by ``ftw.subsite``
 ---------------------------------------------------
 
-- It is possible to define a language on a subsite, which overrides the
+- It is possible to define a language on a subsite content, which overrides the
   default behavior of how Plone deals with languages (PloneLanguageTool).
   If you define a language on a subsite all content on and in the
-  subsite will be delivered with the chosen language. This functionality
-  has nothing to do with LinguaPlone.
+  subsite will be delivered in the chosen language. This functionality
+  is not related to the product LinguaPlone.
 
-  Be sure you have activated the languages you want, for example:
+  Make sure you have all languages activated you want, for example:
 
   .. code:: ini
 
@@ -24,7 +24,7 @@ Aditional functionality provided by ``ftw.subsite``
           zope_i18n_allowed_languages de en fr
 
 
-- ``ftw.subsite`` has its own language switch viewlet, it's based
+- ``ftw.subsite`` has its own language switch viewlet which is based
   on the Subsite configuration. You can connect two or more subsites with
   different languages together by referencing each other with the custom
   reference field on the Subsite.
