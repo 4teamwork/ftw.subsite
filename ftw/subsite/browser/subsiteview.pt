@@ -11,9 +11,7 @@
 
     <metal:main fill-slot="content-title">
       <tal:title tal:condition="python: not view.is_anon()">
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
         <h1 class="documentFirstHeading" tal:content="context/Title" />
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
       </tal:title>
     </metal:main>
 
