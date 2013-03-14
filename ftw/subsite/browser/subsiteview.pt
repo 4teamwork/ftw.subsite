@@ -19,7 +19,6 @@
 
         <div tal:replace="structure provider:plone.contentviews" />
       </div>
-      <div id="content">
         <tal:title tal:condition="python: not view.is_anon()">
           <div tal:replace="structure provider:plone.abovecontenttitle" />
           <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view" />
@@ -48,7 +47,6 @@
         <div id="subsite-column-6" class="column"
              tal:content="structure provider:ftw.subsite.front6" />
         <div class="visualClear"><!-- --></div>
-      </div>
 
     </div>
   </body>
