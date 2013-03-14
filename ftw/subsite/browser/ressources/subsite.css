@@ -13,6 +13,10 @@
   width:48%;
 }
 
+.column dl dd {
+  margin: 0;
+}
+
 .template-manage-subsiteview #dashboard #dashboard-portlets1,
 .template-manage-subsiteview #dashboard #dashboard-portlets2,
 .template-manage-subsiteview #dashboard #dashboard-portlets3,
