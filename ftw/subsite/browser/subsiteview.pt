@@ -7,46 +7,47 @@
       i18n:domain="ftw.subsite">
 
 
-<body>
+  <body>
 
-	<div metal:fill-slot="content"
-		 class="colGroup">
-    <div id="edit-bar">
+    <!-- <metal:main fill-slot="content-core"> -->
+    <div metal:fill-slot="content"
+         class="colGroup">
+      <div id="edit-bar">
 
 
-     <h5 class="hiddenStructure">Ansichten</h5>
+        <h5 class="hiddenStructure">Ansichten</h5>
 
-    <div tal:replace="structure provider:plone.contentviews" />
-    </div>
-    <tal:title tal:condition="python: not view.is_anon()">
-      <div tal:replace="structure provider:plone.abovecontenttitle" />
-      <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view" />
-      <div tal:replace="structure provider:plone.belowcontenttitle" />
-    </tal:title>
-            <h1 i18n:translate="" class="hiddenStructure">Choose your Section</h1>
-            <dl tal:condition="view/empty"
-                class="portalMessage info visualClear" id="dashboard-info-message">
-                <dt i18n:translate="">Information</dt>
-                <dd>
-                    The dashboard is empty, click on "edit dashboard"
-                </dd>
-            </dl>
+        <div tal:replace="structure provider:plone.contentviews" />
+      </div>
+      <tal:title tal:condition="python: not view.is_anon()">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view" />
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+      </tal:title>
+      <h1 i18n:translate="" class="hiddenStructure">Choose your Section</h1>
+      <dl tal:condition="view/empty"
+          class="portalMessage info visualClear" id="dashboard-info-message">
+        <dt i18n:translate="">Information</dt>
+        <dd>
+          The dashboard is empty, click on "edit dashboard"
+        </dd>
+      </dl>
 
-            <div id="subsite-column-1" class="column"
-              tal:content="structure provider:ftw.subsite.front1" />
-            <div id="subsite-column-2" class="column"
-              tal:content="structure provider:ftw.subsite.front2" />
-            <div id="subsite-column-3" class="column"
-              tal:content="structure provider:ftw.subsite.front3" />
-            <div id="subsite-column-4" class="column"
-              tal:content="structure provider:ftw.subsite.front4" />
+      <div id="subsite-column-1" class="column"
+           tal:content="structure provider:ftw.subsite.front1" />
+      <div id="subsite-column-2" class="column"
+           tal:content="structure provider:ftw.subsite.front2" />
+      <div id="subsite-column-3" class="column"
+           tal:content="structure provider:ftw.subsite.front3" />
+      <div id="subsite-column-4" class="column"
+           tal:content="structure provider:ftw.subsite.front4" />
 
-            <div id="subsite-column-5" class="column"
-              tal:content="structure provider:ftw.subsite.front5" />
-            <div id="subsite-column-6" class="column"
-              tal:content="structure provider:ftw.subsite.front6" />
+      <div id="subsite-column-5" class="column"
+           tal:content="structure provider:ftw.subsite.front5" />
+      <div id="subsite-column-6" class="column"
+           tal:content="structure provider:ftw.subsite.front6" />
       <div class="visualClear"><!-- --></div>
 
-	</div>
-</body>
+    </div>
+  </body>
 </html>
