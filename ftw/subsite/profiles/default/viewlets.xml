@@ -7,14 +7,4 @@
         <viewlet name="ftw.subsite.banner" insert-after="plone.logo" />
         <viewlet name="plone.global_sections" insert-after="ftw.subsite.banner" />
     </order>
-
-    <hidden manager="plone.portalheader" skinname="*">
-        <viewlet name="plone.app.i18n.locales.languageselector" />
-    </hidden>
-
-    <!-- Plone 4.1 does not hide on skinname="*" -->
-    <hidden manager="plone.portalheader" skinname="Plone Default">
-        <viewlet name="plone.app.i18n.locales.languageselector" />
-    </hidden>
-
 </object>
