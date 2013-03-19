@@ -46,6 +46,9 @@ class TestSubsiteForceLanguage(unittest.TestCase):
 
         return subsite
     def _set_language(self):
+        """This Function is used to set the language of the plone site.
+        We need this, because we wan't to make sure that the language is inherited when there isn't one forced.
+        """
         locale = locales.getLocale('de')
         target_language = base_language = locale.id.language
 
@@ -138,6 +141,7 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         self.assertIn(link.text, 'Site Map')
 
     def test_language_inherited(self):
+        """This test checks if the language is inherited correctly, if no language is forced on the subsite."""
         self._set_language()
         subsite = self._create_subsite(language='')
         self.browser.open(subsite.absolute_url())
