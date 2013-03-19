@@ -7,7 +7,8 @@ from plone.testing.z2 import Browser
 from zope.interface import alsoProvides
 import unittest2 as unittest
 import transaction
-
+from zope.i18n.locales import locales
+from Products.CMFCore.utils import getToolByName
 
 class TestSubsiteForceLanguage(unittest.TestCase):
 
@@ -44,6 +45,26 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         transaction.commit()
 
         return subsite
+    def _set_language(self):
+        locale = locales.getLocale('de')
+        target_language = base_language = locale.id.language
+
+        # If we get a territory, we enab le the combined language codes
+        use_combined = False
+        if locale.id.territory:
+            use_combined = True
+            target_language += '_' + locale.id.territory
+
+            # As we have a sensible language code set now, we disable the
+            # start neutral functionality
+
+        tool = getToolByName(self.portal, "portal_languages")
+
+        tool.manage_setLanguageSettings(target_language,
+                                        [target_language],
+                                        setUseCombinedLanguageCodes=use_combined,
+                                        startNeutral=False)
+        transaction.commit()
 
     def _auth(self):
         self.browser.addHeader('Authorization', 'Basic %s:%s' % (
@@ -115,6 +136,13 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         self.browser.open(folder.absolute_url())
         link = self.browser.getLink('Site Map')
         self.assertIn(link.text, 'Site Map')
+
+    def test_language_inherited(self):
+        self._set_language()
+        subsite = self._create_subsite(language='')
+        self.browser.open(subsite.absolute_url())
+        self.assertIn('Anmelden', self.browser.contents)
+
 
 
 class TestNegotiatorSpecialCase(unittest.TestCase):
