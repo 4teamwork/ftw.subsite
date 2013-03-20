@@ -22,13 +22,11 @@ class TestContactFrom(unittest.TestCase):
             'mysubsite',
             title="Peter",
             ))
-
+        subsite.setFromEmail("blubber@blubb.ch")
+        subsite.setFromName("Subsite")
         return subsite
 
     def test_contact_everything_ok(self):
-        self.subsite.setFromEmail("blubber@blubb.ch")
-        self.subsite.setFromName("Subsite")
-        transaction.commit()
         self.browser.open(self.subsite.absolute_url()+'/contact-info')
         self.browser.getControl(name='form.widgets.sender').value = 'hans peter'
         self.browser.getControl(name='form.widgets.email').value = 'test@test.com'
@@ -70,3 +68,12 @@ from your site Peter(http://=\nnohost/plone/mysubsite):\nLorem ipsum dolor sit a
         sub = msg.get('Subject')
         self.assertEqual(sub.encode('utf8'), 'Testsubject')
         self.assertEqual(msg.get_payload(), 'hans peter (test@test.com) sends you a message from your site Test(http://n=\nohost/plone):\nLorem ipsum dolor sit amet')
+
+    def test_contact_invalid_email(self):
+        self.browser.open(self.subsite.absolute_url()+'/contact-info')
+        self.browser.getControl(name='form.widgets.sender').value = 'hans peter'
+        self.browser.getControl(name='form.widgets.email').value = 'test@test'
+        self.browser.getControl(name='form.widgets.subject').value = 'Testsubject'
+        self.browser.getControl(name='form.widgets.message').value = 'Lorem ipsum dolor sit amet'
+        self.browser.getControl(name="form.buttons.53656e64204d61696c").click()
+        self.assertIn('<div class="error">Your e-mailaddress is not valid</div>', self.browser.contents)
