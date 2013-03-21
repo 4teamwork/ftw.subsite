@@ -1,14 +1,19 @@
 #content-core .subsiteColumns .column {
-    width: 23%;
+    width: 23.5%;
     float: left;
     padding-right: 2%;
 }
+.subsiteColumns #subsite-column-4.column,
+.subsiteColumns #subsite-column-6.column {
+  padding-right: 0;
+}
+
 .subsiteColumns .column img {
     width:100%;
 }
 .subsiteColumns #subsite-column-5.column,
 .subsiteColumns #subsite-column-6.column {
-  width:48%;
+  width:49%;
 }
 
 .column dl dd {
