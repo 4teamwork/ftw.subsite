@@ -43,14 +43,14 @@ class TestSubsite(unittest.TestCase):
     def test_view_render(self):
         self.browser.open(self.subsite.absolute_url())
         for item in range(1, 8):
-            self.assertIn('<div id="subsite-column-%s" class="column">' % str(item), self.browser.contents)
+            self.assertIn('<div id="subsite-column-%s" class="column' % str(item), self.browser.contents)
 
 
     def test_manageview_render(self):
         self._auth()
         self.browser.open(self.subsite.absolute_url() + '/manage-subsiteview')
         for item in range(1, 8):
-            self.assertIn('<div id="subsite-column-%s" class="column">' % str(item), self.browser.contents)
+            self.assertIn('<div id="subsite-column-%s" class="column' % str(item), self.browser.contents)
 
     def test_view_authorized(self):
         self._auth()
