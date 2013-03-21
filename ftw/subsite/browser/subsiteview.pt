@@ -38,10 +38,13 @@
 
         <div class="visualClear"><!-- --></div>
 
-        <div id="subsite-column-5" class="column"
+        <div id="subsite-column-5" class="column row2"
              tal:content="structure provider:ftw.subsite.front5" />
-        <div id="subsite-column-6" class="column"
+        <div id="subsite-column-6" class="column row2"
              tal:content="structure provider:ftw.subsite.front6" />
+        <div id="subsite-column-7" class="column row2"
+             tal:content="structure provider:ftw.subsite.front6" />
+
         <div class="visualClear"><!-- --></div>
 
     </div>

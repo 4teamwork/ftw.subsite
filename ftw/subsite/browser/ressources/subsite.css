@@ -15,6 +15,9 @@
 .subsiteColumns #subsite-column-6.column {
   width:49%;
 }
+.subsiteColumns #subsite-column-7.column {
+  display: none; /* hide this column, its for special themes */
+}
 
 .column dl dd {
   margin: 0;
