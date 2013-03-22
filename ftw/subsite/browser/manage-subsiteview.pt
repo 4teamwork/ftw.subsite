@@ -1,66 +1,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="ftw.subsite">
 
-  <head>
-    <metal:block fill-slot="top_slot"
-                 tal:define="dummy python:request.set('disable_border',1)" />
-    <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
-      <link type="text/css" rel="kinetic-stylesheet"
-            tal:attributes="href string:${context/absolute_url}/++resource++manage-portlets.kss"/>
+
+  <body>
+
+    <metal:left fill-slot="column_one_slot" />
+    <metal:right fill-slot="column_two_slot" />
+
+    <metal:main fill-slot="content-title">
+      <h1 class="documentFirstHeading"
+          i18n:translate="">Manage Subsite Portlets</h1>
+    </metal:main>
+
+    <div metal:fill-slot="content-core"
+         class="colGroup subsiteColumns">
+
+      <div id="subsite-column-1" class="column"
+           tal:content="structure provider:ftw.subsite.front1" />
+      <div id="subsite-column-2" class="column"
+           tal:content="structure provider:ftw.subsite.front2" />
+      <div id="subsite-column-3" class="column"
+           tal:content="structure provider:ftw.subsite.front3" />
+      <div id="subsite-column-4" class="column"
+           tal:content="structure provider:ftw.subsite.front4" />
+
+      <div class="visualClear"><!-- --></div>
+
+      <div id="subsite-column-5" class="column row2"
+           tal:content="structure provider:ftw.subsite.front5" />
+      <div id="subsite-column-6" class="column row2"
+           tal:content="structure provider:ftw.subsite.front6" />
+      <div id="subsite-column-7" class="column row2"
+           tal:content="structure provider:ftw.subsite.front7" />
+
+      <div class="visualClear"><!-- --></div>
+
     </div>
-  </head>
-<body>
-
-
-<metal:left fill-slot="column_one_slot" />
-<metal:right fill-slot="column_two_slot" />
-
-<metal:main fill-slot="content"
-    tal:define="errors options/state/getErrors | nothing">
-    <tal:main-macro metal:define-macro="main">
-
-    <div id="content" class="colGroup">
-
-        <ul class="contentViews">
-          <li>
-            <a href=""
-               tal:attributes="href string: ./view"
-               i18n:translate="label_dashboard">Subsite Front page</a>
-          </li>
-        </ul>
-
-        <div class="documentContent" id="region-content">
-
-            <a name="documentContent"></a>
-
-            <div metal:use-macro="context/global_statusmessage/macros/portal_message">
-                Portal status message
-            </div>
-
-            <h1 class="documentFirstHeading">
-                Edit subsite frontpage
-            </h1>
-
-            <div id="subsite-column-1" class="column"
-              tal:content="structure provider:ftw.subsite.front1" />
-            <div id="subsite-column-2" class="column"
-              tal:content="structure provider:ftw.subsite.front2" />
-            <div id="subsite-column-3" class="column"
-              tal:content="structure provider:ftw.subsite.front3" />
-            <div id="subsite-column-4" class="column"
-              tal:content="structure provider:ftw.subsite.front4" />
-
-            <div id="subsite-column-5" class="column"
-              tal:content="structure provider:ftw.subsite.front5" />
-            <div id="subsite-column-6" class="column"
-              tal:content="structure provider:ftw.subsite.front6" />
-
-
-    </tal:main-macro>
-
-</metal:main>
-
-</body>
+  </body>
 </html>
