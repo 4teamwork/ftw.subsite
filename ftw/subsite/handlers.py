@@ -12,8 +12,8 @@ def block_parent_portlets(object_, event):
         # do not run in portal_factory
         pass
     else:
-        for i in range(1, 7):
-            # We have 6 column manager on subsites
+        for i in range(1, 8):
+            # We have 7 column manager on subsites
             try:
                 manager = getUtility(IPortletManager,
                                      name='ftw.subsite.front%s' % str(i))

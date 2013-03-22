@@ -1,28 +1,26 @@
-.template-subsite_view .column {
-    width: 25%;
+#content-core .subsiteColumns .column {
+    width: 23.5%;
     float: left;
-    padding-right: 1.4em;
+    padding-right: 2%;
 }
-.template-subsite_view .column img {
-    width:100%;
-}
-
-.template-subsite_view .column1,
-.template-subsite_view .column2
-{
-  width:50%;
+.subsiteColumns #subsite-column-4.column,
+.subsiteColumns #subsite-column-6.column {
+  padding-right: 0;
 }
 
-.template-manage-subsiteview #dashboard #dashboard-portlets1,
-.template-manage-subsiteview #dashboard #dashboard-portlets2,
-.template-manage-subsiteview #dashboard #dashboard-portlets3,
-.template-manage-subsiteview #dashboard #dashboard-portlets4,
-.template-manage-subsiteview #dashboard #dashboard-portlets5,
-.template-manage-subsiteview #dashboard #dashboard-portlets6
-{
-  width: 21%;
-  float: left;
-  padding: 0.7em 1.3em 0 0;
+.subsiteColumns .column img {
+    max-width:100%;
+}
+.subsiteColumns #subsite-column-5.column,
+.subsiteColumns #subsite-column-6.column {
+  width:49%;
+}
+.subsiteColumns #subsite-column-7.column {
+  display: none; /* hide this column, its for special themes */
+}
+
+.column dl dd {
+  margin: 0;
 }
 
 #banner-image {

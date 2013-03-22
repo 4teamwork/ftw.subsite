@@ -14,7 +14,8 @@ class SubsiteView(BrowserView):
                          'ftw.subsite.front3',
                          'ftw.subsite.front4',
                          'ftw.subsite.front5',
-                         'ftw.subsite.front6']]
+                         'ftw.subsite.front6',
+                         'ftw.subsite.front7']]
 
         num_portlets = 0
         for dashboard in dashboards:
