@@ -10,6 +10,7 @@ import transaction
 from zope.i18n.locales import locales
 from Products.CMFCore.utils import getToolByName
 
+
 class TestSubsiteForceLanguage(unittest.TestCase):
 
     layer = FTW_SUBSITE_FUNCTIONAL_TESTING
@@ -45,12 +46,14 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         transaction.commit()
 
         return subsite
+
     def _set_language(self):
         """This Function is used to set the language of the plone site.
-        We need this, because we wan't to make sure that the language is inherited when there isn't one forced.
+        We need this, because we wan't to make sure that the language is
+        inherited when there isn't one forced.
         """
         locale = locales.getLocale('de')
-        target_language = base_language = locale.id.language
+        target_language = locale.id.language
 
         # If we get a territory, we enab le the combined language codes
         use_combined = False
@@ -63,10 +66,11 @@ class TestSubsiteForceLanguage(unittest.TestCase):
 
         tool = getToolByName(self.portal, "portal_languages")
 
-        tool.manage_setLanguageSettings(target_language,
-                                        [target_language],
-                                        setUseCombinedLanguageCodes=use_combined,
-                                        startNeutral=False)
+        tool.manage_setLanguageSettings(
+            target_language,
+            [target_language],
+            setUseCombinedLanguageCodes=use_combined,
+            startNeutral=False)
         transaction.commit()
 
     def _auth(self):
@@ -141,12 +145,13 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         self.assertIn(link.text, 'Site Map')
 
     def test_language_inherited(self):
-        """This test checks if the language is inherited correctly, if no language is forced on the subsite."""
+        """This test checks if the language is inherited correctly, if no
+        language is forced on the subsite.
+        """
         self._set_language()
         subsite = self._create_subsite(language='')
         self.browser.open(subsite.absolute_url())
         self.assertIn('Anmelden', self.browser.contents)
-
 
 
 class TestNegotiatorSpecialCase(unittest.TestCase):
