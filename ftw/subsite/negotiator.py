@@ -22,7 +22,6 @@ class Negotiator(object):
 
         # Get current published object
         obj = find_context(env)
-
         # Filter out CSS/JS and other non contentish objects
         # IFolderish check includes site root
         if not (IContentish.providedBy(obj) or IFolderish.providedBy(obj)):
@@ -32,10 +31,12 @@ class Negotiator(object):
 
         if ISubsite.providedBy(nav_root):
             # Get language stored on Subsite
-
             language = nav_root.Schema().get('forcelanguage').get(nav_root)
             if language:
                 return language
+            else:
+                return base_negotiator.getLanguage(langs, env)
+
         else:
             # Use normal Negotiator
             return base_negotiator.getLanguage(langs, env)
