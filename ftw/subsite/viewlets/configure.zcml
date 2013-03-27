@@ -4,7 +4,7 @@
     i18n_domain="ftw.subsite">
 
   <browser:viewlet
-      name="plone.logo"
+      name="subsite.logo"
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       class=".subsitelogoviewlet.SubsiteLogoViewlet"
       permission="zope2.View"
