@@ -3,8 +3,13 @@
 
     <order manager="plone.portalheader" skinname="*">
         <viewlet name="ftw.subsite.languageselector" />
-        <viewlet name="plone.logo" inser-before="ftw.subsite.banner" />
-        <viewlet name="ftw.subsite.banner" insert-after="plone.logo" />
+        <viewlet name="subsite.logo" inser-before="ftw.subsite.banner" />
+        <viewlet name="ftw.subsite.banner" insert-after="subsite.logo" />
         <viewlet name="plone.global_sections" insert-after="ftw.subsite.banner" />
     </order>
+
+    <hidden manager="plone.portalheader" skinname="*">
+        <viewlet name="plone.logo" />
+    </hidden>
+
 </object>
