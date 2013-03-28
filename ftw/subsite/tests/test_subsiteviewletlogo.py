@@ -1,10 +1,12 @@
 from ftw.subsite.browser.subsiteview import SubsiteView
+from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 from zope.component import queryMultiAdapter
 from zope.viewlet.interfaces import IViewletManager
+from zope.interface import alsoProvides
 import os
 import transaction
 import unittest2 as unittest
@@ -35,6 +37,7 @@ class TestLogoViewlet(unittest.TestCase):
 
     def _get_viewlet(self):
         subsite = self._create_subsite()
+        alsoProvides(subsite.REQUEST, IFtwSubsiteLayer)
         view = SubsiteView(subsite, subsite.REQUEST)
         manager_name = 'plone.portalheader'
         manager = queryMultiAdapter(
@@ -44,7 +47,7 @@ class TestLogoViewlet(unittest.TestCase):
         self.failUnless(manager)
         # Set up viewlets
         manager.update()
-        name = 'plone.logo'
+        name = 'subsite.logo'
         return [v for v in manager.viewlets if v.__name__ == name]
 
     def tearDown(self):

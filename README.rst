@@ -31,7 +31,9 @@ Additional functionality provided by ``ftw.subsite``
 
 - Custom CSS for a Subsite
 
-- Custom Logo for a Subsite
+- Custom Logo for a Subsite. The logo is registered with a different name `subsite.logo`.
+  The setup of `ftw.subsite` hides the default plone logo. You can change this afterwards
+  if you like.
 
 Usage
 -----
