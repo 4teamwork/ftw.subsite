@@ -64,3 +64,7 @@ Copyright
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
 ``ftw.subsite`` is licensed under GNU General Public License, version 2.
+
+.. image:: https://cruel-carlota.pagodabox.com/fc72df1ade53c50967d1f08b8dbbfe4e
+   :alt: githalytics.com
+   :target: http://githalytics.com/4teamwork/ftw.subsite
