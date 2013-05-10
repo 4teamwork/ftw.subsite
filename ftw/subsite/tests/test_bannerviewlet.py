@@ -160,3 +160,12 @@ class TestBannerViewlet(unittest.TestCase):
         self.assertIn("MySubsite", viewlet[0].get_banner_tag())
         self.assertIn("%s/@@images" % image.absolute_url(),
                       viewlet[0].get_banner_tag())
+
+    def test_find_image_in_subfolder(self):
+        bannerfolder = self._setup_bannerfolder(self.portal)
+        subfolder = bannerfolder.get(
+            bannerfolder.invokeFactory('Folder', 'subfolder'))
+        subfolder.invokeFactory('Image', 'image1')
+
+        viewlet = self._get_viewlet(self.portal)
+        self.assertTrue(viewlet[0].available, 'Expect to find an image')

@@ -7,6 +7,7 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from random import choice
 from zExceptions import Unauthorized
+from Products.CMFCore.utils import getToolByName
 
 
 class Banner(common.ViewletBase):
@@ -18,6 +19,7 @@ class Banner(common.ViewletBase):
 
     @instance.memoize
     def get_banners(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
         bannerfolder = self.get_banner_folder()
         if not bannerfolder:
             return []
@@ -25,9 +27,9 @@ class Banner(common.ViewletBase):
         registry = getUtility(IRegistry)
         root_only = registry.get('ftw.subsite.banner_root_only', True)
 
-        query = dict(portal_type='Image')
-        imgs = bannerfolder.getFolderContents(contentFilter=query,
-                                              full_objects=True)
+        query = dict(portal_type='Image',
+                     path='/'.join(bannerfolder.getPhysicalPath()))
+        imgs = [brain.getObject() for brain in catalog(query)]
 
         if root_only:
             context_state = self.context.restrictedTraverse(
