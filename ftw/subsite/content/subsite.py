@@ -10,7 +10,6 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 from zope.interface import implements
-from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 
 
 schema = atapi.Schema((
@@ -42,8 +41,10 @@ schema = atapi.Schema((
         storage=atapi.AnnotationStorage(),
         schemata='subsite',
         multiValued=True,
+        allowed_types=['Subsite'],
         relationship='subsite_subsite',
-        widget=ReferenceBrowserWidget(
+        widget=atapi.ReferenceWidget(
+            checkbox_bound=1,
             label=_(u'label_language_references',
                     default=u'Languages'),
             description=_(u'help_language_references',

@@ -4,6 +4,10 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
+- Use plone default reference widget to make references between
+  subsites (lanaguage selector).
+  [mathias.leimgruber]
+
 - Find banner images recursively.
   [mathias.leimgruber]
 
