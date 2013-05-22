@@ -4,6 +4,9 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
+- Move subsite css viewlet into plone.portaltop manager.
+  [mathias.leimgruber]
+
 - Use plone default reference widget to make references between
   subsites (lanaguage selector).
   [mathias.leimgruber]
