@@ -14,7 +14,7 @@
   <browser:viewlet
       name="ftw.subsite.css"
       class=".cssviewlet.CSSViewlet"
-      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
       permission="zope2.View"
       />
 

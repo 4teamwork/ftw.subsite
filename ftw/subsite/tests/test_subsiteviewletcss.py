@@ -40,7 +40,7 @@ class TestSubsite(unittest.TestCase):
 
     def _get_viewlet(self):
         view = SubsiteView(self.subsite, self.subsite.REQUEST)
-        manager_name = 'plone.htmlhead'
+        manager_name = 'plone.portaltop'
         manager = queryMultiAdapter(
             (self.subsite, self.subsite.REQUEST, view),
             IViewletManager,
