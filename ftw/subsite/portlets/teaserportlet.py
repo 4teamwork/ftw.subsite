@@ -20,12 +20,12 @@ class ITeaserPortlet(IPortletDataProvider):
     """A portlet which can some given Infos
     """
 
-    teasertitle = schema.TextLine(title=_(u'Teasertitle'),
-                                  description=_(u'Enter a Title'),
+    teasertitle = schema.TextLine(title=_(u'Title'),
+                                  description=u'',
                                   required=True)
 
-    teaserdesc = schema.Text(title=_(u'Teaserdescription'),
-                             description=_(u"Enter a description"),
+    teaserdesc = schema.Text(title=_(u'Description'),
+                             description=u'',
                              required=True)
 
     internal_target = schema.Choice(title=_(u"Internal Target"),
@@ -34,8 +34,8 @@ class ITeaserPortlet(IPortletDataProvider):
                                    required=False,
                                    source=UUIDSourceBinder({})
                                     )
-    image = NamedImage(title=u'Image field',
-                        description=u"Add or replace image for the portlet",
+    image = NamedImage(title=_(u'Image'),
+                        description=u'',
                         required=True)
 
 
