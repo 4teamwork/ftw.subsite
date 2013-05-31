@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Use logo image scale for logo instead of mini.
+  [Julian Infanger]
+
 - Updated translations for teaser portlet.
   [Julian Infanger]
 
@@ -26,4 +29,3 @@ Changelog
 ----------------
 
 - inital release
-
