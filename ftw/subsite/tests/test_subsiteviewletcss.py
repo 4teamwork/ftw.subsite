@@ -26,7 +26,7 @@ class TestSubsite(unittest.TestCase):
         self.browser.handleErrors = False
 
         self.subsite = self._create_subsite()
-        self.subsite.setAdditional_css('.column {color: red;}')
+        self.subsite.setAdditional_css('.column > div {color: red;}')
         transaction.commit()
 
     def _create_subsite(self):
@@ -62,9 +62,9 @@ class TestSubsite(unittest.TestCase):
     def test_cssviewlet_in_subsite(self):
         self._auth()
         self.browser.open(self.subsite.absolute_url())
-        self.assertIn('<style type="text/css" media="all">.column {color: red;}</style>', self.browser.contents)
+        self.assertIn('<style type="text/css" media="all">.column > div {color: red;}</style>', self.browser.contents)
         self.browser.open(self.portal.absolute_url())
-        self.assertTrue('<style type="text/css" media="all">.column {color: red;}</style>' not in self.browser.contents)
+        self.assertTrue('<style type="text/css" media="all">.column > div {color: red;}</style>' not in self.browser.contents)
 
     def test_component_registered(self):
         self.assertTrue(len(self._get_viewlet()) == 1)
@@ -77,4 +77,4 @@ class TestSubsite(unittest.TestCase):
         transaction.commit()
         self._auth()
         self.browser.open(folder.absolute_url())
-        self.assertIn('<style type="text/css" media="all">.column {color: red;}</style>', self.browser.contents)
+        self.assertIn('<style type="text/css" media="all">.column > div {color: red;}</style>', self.browser.contents)
