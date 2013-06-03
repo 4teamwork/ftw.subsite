@@ -4,7 +4,9 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Set input/output mime type of the addition_css text area to text/plain.
+  Also return the addional_css as structured text.
+  [mathias.leimgruber]
 
 
 1.1.1 (2013-06-03)
