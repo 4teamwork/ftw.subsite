@@ -4,6 +4,9 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
+- Make sitemap work relative to a subsite and plone root.
+  [mathias.leimgruber]
+
 - Set input/output mime type of the addition_css text area to text/plain.
   Also return the addional_css as structured text.
   [mathias.leimgruber]
