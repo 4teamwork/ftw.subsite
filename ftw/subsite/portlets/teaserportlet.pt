@@ -1,11 +1,10 @@
-<metal:block use-macro="here/global_defines/macros/defines" />
 <dl class="portlet teaser_portlet" tal:define="teasertitle view/getTeaserTitle;
                  teaserdesc view/getTeaserDesc;
-                 internal_target nocall:view/internal_obj;
+                 internal_url view/internal_url;
                  image view/image_tag
                  ">
     <dt class="portletHeader">
-    	<a tal:omit-tag="not: internal_target" tal:attributes="href python:internal_target and internal_target.absolute_url()">
+    	<a tal:omit-tag="not: internal_url" tal:attributes="href internal_url">
           <img tal:replace="structure image" />
           <span class="teaser_title" tal:replace="structure teasertitle" />
     	</a>

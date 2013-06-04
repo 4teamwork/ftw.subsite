@@ -157,9 +157,9 @@ class TestSubsite(unittest.TestCase):
         renderer = self._get_renderer()
         self.assertEqual("<img src='http://nohost/plone/++contextportlets++ftw.subsite.front1/hans/@@image' alt=''/>", renderer.image_tag)
 
-    def test_renderer_internal_obj(self):
+    def test_renderer_internal_url(self):
         renderer = self._get_renderer()
-        self.assertEqual(self.page, renderer.internal_obj)
+        self.assertEqual(self.page.absolute_url(), renderer.internal_url)
 
     def test_image_view(self):
         self._auth()
