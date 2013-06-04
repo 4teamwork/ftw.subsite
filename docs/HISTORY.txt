@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.4 (unreleased)
+1.1.4 (2013-06-04)
 ------------------
 
 - Use SitemapQueryBuilder not NavtreeQueryBuilder for sitemap customization.
