@@ -66,9 +66,13 @@ class Renderer(base.Renderer):
         return self.data.teaserdesc
 
     @property
-    def internal_obj(self):
+    def internal_url(self):
         object_path = self.data.internal_target
-        return uuidToObject(object_path)
+        internal_obj = uuidToObject(object_path)
+        if internal_obj:
+            return internal_obj.absolute_url()
+        else:
+            return ''
 
     @property
     @memoize
