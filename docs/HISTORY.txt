@@ -4,7 +4,8 @@ Changelog
 1.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use SitemapQueryBuilder not NavtreeQueryBuilder for sitemap customization.
+  [mathias.leimgruber]
 
 
 1.1.3 (2013-06-04)

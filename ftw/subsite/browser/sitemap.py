@@ -7,7 +7,7 @@ from Products.CMFPlone.browser import navtree
 from zope.component import getMultiAdapter
 
 
-class SubsiteSitemapQueryBuilder(navtree.NavtreeQueryBuilder):
+class SubsiteSitemapQueryBuilder(navtree.SitemapQueryBuilder):
 
     def __init__(self, context):
         super(SubsiteSitemapQueryBuilder, self).__init__(context)

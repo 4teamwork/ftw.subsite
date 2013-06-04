@@ -53,7 +53,7 @@ class TestSubsiteSitemap(unittest2.TestCase):
     def test_subsite_sitemap_view_on_plone_root(self):
         self.browser.open("%s/sitemap" % self.portal.absolute_url())
         doc = PyQuery(self.browser.contents)
-        subsite = doc('#content-core a[href*="plone/mysubsite"]')
+        subsite = doc('#content-core a[href="http://nohost/plone/mysubsite"]')
 
         self.assertEquals(len(subsite), 1, 'Expect to find our Subsite')
 
