@@ -49,4 +49,14 @@
       template="languageselector.pt"
       />
 
+  <!-- Custom sitemap for subsites (inclucdes only a custom SitemapQueryBuilder) -->
+    <browser:page
+      for="*"
+      name="sitemap_builder_view"
+      class=".sitemap.SubsiteCatalogSiteMap"
+      permission="zope.Public"
+      allowed_attributes="siteMap"
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
+      />
+
 </configure>
