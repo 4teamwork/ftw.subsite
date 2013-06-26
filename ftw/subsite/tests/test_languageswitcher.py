@@ -55,12 +55,12 @@ class TestLanguageswitcher(unittest.TestCase):
         self._auth()
         self.browser.open(self.german.absolute_url())
 
-        link = self.browser.getLink('French')
+        link = self.browser.getLink('Fran\xc3\xa7ais')
         self.assertTrue(link)
         link.click()
         self.assertEquals(self.browser.url, self.french.absolute_url())
 
-        link = self.browser.getLink('German')
+        link = self.browser.getLink('Deutsch')
         self.assertTrue(link)
         link.click()
         self.assertEquals(self.browser.url, self.german.absolute_url())
@@ -71,10 +71,10 @@ class TestLanguageswitcher(unittest.TestCase):
 
         self._auth()
         self.browser.open(self.german.absolute_url())
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'French')
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Fran\xc3\xa7ais')
 
         self.browser.open(self.portal.portal_url())
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'French')
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Fran\xc3\xa7ais')
 
     def test_language_switch_multiple_sites(self):
         self.italy = self.portal.get(self.portal.invokeFactory(
@@ -88,8 +88,8 @@ class TestLanguageswitcher(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(self.german.absolute_url())
-        self.assertTrue(self.browser.getLink('French'))
-        self.assertTrue(self.browser.getLink('Italian'))
+        self.assertTrue(self.browser.getLink('Fran\xc3\xa7ais'))
+        self.assertTrue(self.browser.getLink('Italiano'))
 
     def test_language_switch_multiple_sites_no_lang_set(self):
         self.italy = self.portal.get(self.portal.invokeFactory(
@@ -102,5 +102,5 @@ class TestLanguageswitcher(unittest.TestCase):
         transaction.commit()
 
         self.browser.open(self.german.absolute_url())
-        self.assertTrue(self.browser.getLink('French'))
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Italian')
+        self.assertTrue(self.browser.getLink('Fran\xc3\xa7ais'))
+        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Italiano')

@@ -31,5 +31,13 @@ class LanguageSelector(common.ViewletBase):
                 languages.append(
                     dict(code=lang,
                          url=subsite.absolute_url(),
-                         native=ltool.getNameForLanguageCode(lang)))
+                         native=self.getNativeForLanguageCode(ltool, lang)))
         return languages
+
+
+    def getNativeForLanguageCode(self, ltool, langCode):
+        """Returns the name for a language code."""
+        info = ltool.getAvailableLanguageInformation().get(langCode, None)
+        if info is not None:
+            return info.get(u'native', None)
+        return None
