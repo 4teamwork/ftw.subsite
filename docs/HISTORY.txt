@@ -4,7 +4,8 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use native languagename for languageswitcher.
+  [tschanzt]
 
 
 1.1.4 (2013-06-04)
