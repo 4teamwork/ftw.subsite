@@ -22,7 +22,13 @@ class LanguageSelector(common.ViewletBase):
         return self._nav_root
 
     def available(self):
-        if ISubsite.providedBy(self.navigation_root):
+        if not ISubsite.providedBy(self.navigation_root):
+            return False
+
+        elif self.navigation_root.showLinkToSiteInLanguageChooser():
+            return True
+
+        else:
             return bool(self.navigation_root.getLanguage_references())
 
     def languages(self):
@@ -39,6 +45,15 @@ class LanguageSelector(common.ViewletBase):
                     dict(code=lang,
                          url=subsite.absolute_url(),
                          native=self.getNativeForLanguageCode(ltool, lang)))
+
+        if self.navigation_root.showLinkToSiteInLanguageChooser():
+            portal_url = getToolByName(self.navigation_root, 'portal_url')
+            lang = ltool.getDefaultLanguage()
+
+            languages.append(
+                dict(code=lang,
+                     url=portal_url(),
+                     native=self.getNativeForLanguageCode(ltool, lang)))
 
         return languages
 

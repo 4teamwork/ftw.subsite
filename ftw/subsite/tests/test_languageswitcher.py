@@ -107,6 +107,27 @@ class TestLanguageswitcher(unittest.TestCase):
             [u'Fran\xe7ais'],
             self.german.absolute_url())
 
+    def test_listing_plone_site_and_language_references_combined(self):
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais'],
+            self.german.absolute_url())
+
+        self.german.setLinkSiteInLanguagechooser(True)
+        transaction.commit()
+
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais', u'English'],
+            self.german.absolute_url())
+
+    def test_listing_only_plone_site(self):
+        self.german.setLinkSiteInLanguagechooser(True)
+        self.german.setLanguage_references([])
+        transaction.commit()
+
+        self.assertSelectableLanguagesOnPage(
+            [u'English'],
+            self.german.absolute_url())
+
     def assertSelectableLanguagesOnPage(self, expected_languages, url):
         self.browser.open(url)
         doc = PyQuery(self.browser.contents)
