@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-30 06:22+0000\n"
+"POT-Creation-Date: 2013-06-27 08:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,9 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:91
+#: ./ftw/subsite/portlets/teaserportlet.py:95
 msgid "Add Teaser Portlet"
 msgstr "Teaserportlet hinzufügen"
 
@@ -24,7 +23,7 @@ msgstr "Wählen Sie ihre Sektion"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:148
+#: ./ftw/subsite/portlets/teaserportlet.py:152
 msgid "Edit Teaser Portlet"
 msgstr "Teaserportlet bearbeiten"
 
@@ -44,6 +43,10 @@ msgstr "Information"
 msgid "Internal Target"
 msgstr "Internes Ziel"
 
+#: ./ftw/subsite/content/subsite.py:65
+msgid "Link Plone Site in language chooser"
+msgstr "Plone Seite in Sprachauswahl anzeigen."
+
 #: ./ftw/subsite/browser/manage-subsiteview.pt:16
 #: ./ftw/subsite/profiles/default/actions.xml
 msgid "Manage Subsite Portlets"
@@ -58,7 +61,7 @@ msgstr "Mail versenden"
 msgid "Sender_Name"
 msgstr "Name"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:92
+#: ./ftw/subsite/portlets/teaserportlet.py:96
 msgid "Shows the given infos on the front-page."
 msgstr "Zeigt die eingegebenen Informationen auf der Subsite an."
 
@@ -84,30 +87,26 @@ msgstr "Abbrechen"
 msgid "error_invalid_addresses"
 msgstr "Die eingegebene E-Mailaddresse ist nicht korrekt"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:91
-msgid "feedback_mail_text"
-msgstr "Text"
-
 #. Default: "Please enter your Name"
 #: ./ftw/subsite/browser/contact.py:23
 msgid "help_Sender"
 msgstr ""
 
-#: ./ftw/subsite/content/subsite.py:36
+#: ./ftw/subsite/content/subsite.py:39
 msgid "help_additional_css"
 msgstr ""
 
 #. Default: "The Subsite and it's content will be delivered in the choosen language"
-#: ./ftw/subsite/content/subsite.py:63
+#: ./ftw/subsite/content/subsite.py:74
 msgid "help_forcelanguage"
 msgstr "Die aktuelle Subsite und deren Inhalt werden in der angegebenen Sprache angezeigt. Alle anderen Einstellungen werden ignoriert."
 
-#: ./ftw/subsite/content/subsite.py:71
+#: ./ftw/subsite/content/subsite.py:82
 msgid "help_fromname"
 msgstr ""
 
 #. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
-#: ./ftw/subsite/content/subsite.py:50
+#: ./ftw/subsite/content/subsite.py:53
 msgid "help_language_references"
 msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsites ein Sprache definiert haben."
 
@@ -141,32 +140,32 @@ msgid "inherit_language"
 msgstr "Standart Sprache übernehmen"
 
 #. Default: "Additional CSS"
-#: ./ftw/subsite/content/subsite.py:34
+#: ./ftw/subsite/content/subsite.py:37
 msgid "label_additional_css"
 msgstr "zusätzliches CSS"
 
 #. Default: "Cancel"
-#: ./ftw/subsite/portlets/teaserportlet.py:123
+#: ./ftw/subsite/portlets/teaserportlet.py:127
 msgid "label_cancel"
 msgstr "Abbrechen"
 
 #. Default: "Subsite language"
-#: ./ftw/subsite/content/subsite.py:62
+#: ./ftw/subsite/content/subsite.py:73
 msgid "label_forcelanguage"
 msgstr "Sprache für die Subsite festlegen"
 
 #. Default: "Email Senderaddress"
-#: ./ftw/subsite/content/subsite.py:76
+#: ./ftw/subsite/content/subsite.py:87
 msgid "label_fromemail"
 msgstr "Absender E-Mail"
 
 #. Default: "Email Sendername"
-#: ./ftw/subsite/content/subsite.py:70
+#: ./ftw/subsite/content/subsite.py:81
 msgid "label_fromname"
 msgstr "Absender Name"
 
 #. Default: "Languages"
-#: ./ftw/subsite/content/subsite.py:48
+#: ./ftw/subsite/content/subsite.py:51
 msgid "label_language_references"
 msgstr "Auf andere Sprachen verlinken"
 
@@ -181,7 +180,7 @@ msgid "label_message"
 msgstr "Nachricht"
 
 #. Default: "Save"
-#: ./ftw/subsite/portlets/teaserportlet.py:112
+#: ./ftw/subsite/portlets/teaserportlet.py:116
 msgid "label_save"
 msgstr "Speichern"
 
@@ -199,5 +198,3 @@ msgstr "Betreff"
 #: ./ftw/subsite/browser/contact.py:24
 msgid "mail_address"
 msgstr "E-Mail"
-
-
