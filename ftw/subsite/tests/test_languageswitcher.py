@@ -1,13 +1,13 @@
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
-from mechanize._mechanize import LinkNotFoundError
-from plone.app.testing import login
-from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.testing.z2 import Browser
-import unittest2 as unittest
+from pyquery import PyQuery
 import transaction
+import unittest2 as unittest
 
 
 class TestLanguageswitcher(unittest.TestCase):
@@ -70,11 +70,13 @@ class TestLanguageswitcher(unittest.TestCase):
         transaction.commit()
 
         self._auth()
-        self.browser.open(self.german.absolute_url())
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Fran\xc3\xa7ais')
+        self.assertSelectableLanguagesOnPage(
+            [],
+            self.german.absolute_url())
 
-        self.browser.open(self.portal.portal_url())
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Fran\xc3\xa7ais')
+        self.assertSelectableLanguagesOnPage(
+            [],
+            self.portal.absolute_url())
 
     def test_language_switch_multiple_sites(self):
         self.italy = self.portal.get(self.portal.invokeFactory(
@@ -87,9 +89,9 @@ class TestLanguageswitcher(unittest.TestCase):
             [self.french.UID(), self.italy.UID()])
         transaction.commit()
 
-        self.browser.open(self.german.absolute_url())
-        self.assertTrue(self.browser.getLink('Fran\xc3\xa7ais'))
-        self.assertTrue(self.browser.getLink('Italiano'))
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais', u'Italiano'],
+            self.german.absolute_url())
 
     def test_language_switch_multiple_sites_no_lang_set(self):
         self.italy = self.portal.get(self.portal.invokeFactory(
@@ -101,6 +103,34 @@ class TestLanguageswitcher(unittest.TestCase):
             [self.french.UID(), self.italy.UID()])
         transaction.commit()
 
-        self.browser.open(self.german.absolute_url())
-        self.assertTrue(self.browser.getLink('Fran\xc3\xa7ais'))
-        self.assertRaises(LinkNotFoundError, self.browser.getLink, 'Italiano')
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais'],
+            self.german.absolute_url())
+
+    def test_listing_plone_site_and_language_references_combined(self):
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais'],
+            self.german.absolute_url())
+
+        self.german.setLinkSiteInLanguagechooser(True)
+        transaction.commit()
+
+        self.assertSelectableLanguagesOnPage(
+            [u'Fran\xe7ais', u'English'],
+            self.german.absolute_url())
+
+    def test_listing_only_plone_site(self):
+        self.german.setLinkSiteInLanguagechooser(True)
+        self.german.setLanguage_references([])
+        transaction.commit()
+
+        self.assertSelectableLanguagesOnPage(
+            [u'English'],
+            self.german.absolute_url())
+
+    def assertSelectableLanguagesOnPage(self, expected_languages, url):
+        self.browser.open(url)
+        doc = PyQuery(self.browser.contents)
+        self.assertEquals(
+            set(expected_languages),
+            set([link.text for link in doc('#portal-languageselector a')]))

@@ -11,19 +11,32 @@ class LanguageSelector(common.ViewletBase):
     """
     implements(IViewlet)
 
-    def nav_root(self):
-        return get_nav_root(self.context)
+    def __init__(self, *args, **kwargs):
+        super(LanguageSelector, self).__init__(*args, **kwargs)
+        self._nav_root = None
+
+    @property
+    def navigation_root(self):
+        if self._nav_root is None:
+            self._nav_root = get_nav_root(self.context)
+        return self._nav_root
 
     def available(self):
-        if ISubsite.providedBy(self.nav_root()):
-            return bool(self.nav_root().getLanguage_references())
+        if not ISubsite.providedBy(self.navigation_root):
+            return False
+
+        elif self.navigation_root.showLinkToSiteInLanguageChooser():
+            return True
+
+        else:
+            return bool(self.navigation_root.getLanguage_references())
 
     def languages(self):
         """Returns all possible languages based on the Subsite configuration.
         """
-        ltool = getToolByName(self.nav_root(), 'portal_languages')
+        ltool = getToolByName(self.navigation_root, 'portal_languages')
         languages = []
-        subsites = self.nav_root().getLanguage_references()
+        subsites = self.navigation_root.getLanguage_references()
 
         for subsite in subsites:
             lang = subsite.getForcelanguage()
@@ -32,8 +45,17 @@ class LanguageSelector(common.ViewletBase):
                     dict(code=lang,
                          url=subsite.absolute_url(),
                          native=self.getNativeForLanguageCode(ltool, lang)))
-        return languages
 
+        if self.navigation_root.showLinkToSiteInLanguageChooser():
+            portal_url = getToolByName(self.navigation_root, 'portal_url')
+            lang = ltool.getDefaultLanguage()
+
+            languages.append(
+                dict(code=lang,
+                     url=portal_url(),
+                     native=self.getNativeForLanguageCode(ltool, lang)))
+
+        return languages
 
     def getNativeForLanguageCode(self, ltool, langCode):
         """Returns the name for a language code."""

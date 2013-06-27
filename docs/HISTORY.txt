@@ -4,6 +4,9 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
+- Add checkbox for showing Plone Site in language switcher.
+  [jone]
+
 - Added css-class to subsite logo.
   [Julian Infanger]
 

@@ -56,6 +56,14 @@ schema = atapi.Schema((
                                      'has a value in the forcelangage '
                                      'field')))),
 
+    atapi.BooleanField(
+            name='linkSiteInLanguagechooser',
+            accessor='showLinkToSiteInLanguageChooser',
+            schemata='subsite',
+            default=False,
+            widget=atapi.BooleanWidget(
+                label=_(u'Link Plone Site in language chooser'))),
+
     atapi.StringField(
         name="forcelanguage",
         default="",
