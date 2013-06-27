@@ -1,5 +1,6 @@
 <a metal:define-macro="portal_logo"
    id="portal-logo"
+   class="subsiteLogo"
    accesskey="1"
    tal:attributes="href view/navigation_root_url;
                    title view/title"

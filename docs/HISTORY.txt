@@ -4,6 +4,9 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
+- Added css-class to subsite logo.
+  [Julian Infanger]
+
 - Use native languagename for languageswitcher.
   [tschanzt]
 
