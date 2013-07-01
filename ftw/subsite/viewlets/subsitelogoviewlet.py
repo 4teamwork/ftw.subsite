@@ -13,6 +13,7 @@ class SubsiteLogoViewlet(LogoViewlet):
         self.navigation_root_url = None
         self.logo_tag = None
         self.title = None
+        self.is_subsitelogo = False
 
     def update(self):
         super(SubsiteLogoViewlet, self).update()
@@ -33,6 +34,7 @@ class SubsiteLogoViewlet(LogoViewlet):
             self.logo_tag = scale.scale('logo', scale="logo").tag()
             self.title = self.context.restrictedTraverse(
                 getNavigationRoot(self.context)).Title()
+            self.is_subsitelogo = True
         else:
             # standard plone logo
             logoName = portal.restrictedTraverse('base_properties').logoName
