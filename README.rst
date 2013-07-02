@@ -35,6 +35,27 @@ Additional functionality provided by ``ftw.subsite``
   The setup of `ftw.subsite` hides the default plone logo. You can change this afterwards
   if you like.
 
+
+Compatibility
+-------------
+
+Plone 4.3
+
+.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg/badge/icon
+   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg
+
+Plone 4.2
+
+.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg/badge/icon
+   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg
+
+Plone 4.1
+
+.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.1.x.cfg/badge/icon
+   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.1.x.cfg
+
+
+
 Usage
 -----
 
