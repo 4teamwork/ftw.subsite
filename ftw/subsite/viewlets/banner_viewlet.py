@@ -15,7 +15,18 @@ class Banner(common.ViewletBase):
 
     @property
     def available(self):
-        return bool(self.get_banners())
+        if not self.get_banners():
+            return False
+
+        registry = getUtility(IRegistry)
+        root_only = registry.get('ftw.subsite.banner_root_only', True)
+
+        if root_only:
+            context_state = self.context.restrictedTraverse(
+                'plone_context_state')
+            return context_state.is_view_template()
+
+        return True
 
     @instance.memoize
     def get_banners(self):
