@@ -4,7 +4,8 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Hide banner viewlet from folder_contents when root_only option enabled.
+  [jone]
 
 
 1.2.0 (2013-07-02)
