@@ -1,14 +1,12 @@
-
+from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
-from zope.component import queryMultiAdapter
-from zope.viewlet.interfaces import IViewletManager
-from zope.publisher.browser import BrowserView
-from zope.component import getUtility
+from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
-from plone.registry import Record, field
-from ftw.subsite.interfaces import IFtwSubsiteLayer
+from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
+from zope.publisher.browser import BrowserView
+from zope.viewlet.interfaces import IViewletManager
 import os
 import unittest2 as unittest
 
