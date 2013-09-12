@@ -2,6 +2,7 @@ from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
@@ -32,8 +33,18 @@ class TestBannerViewlet(unittest.TestCase):
         return context.get(
             context.invokeFactory('Folder', bannerfoldername))
 
-    def _get_viewlet(self, context):
-        view = BrowserView(context, context.REQUEST)
+    def _get_viewlet(self, context, view=None):
+        if not view:
+            view = BrowserView(context, context.REQUEST)
+            context_state = context.restrictedTraverse(
+                'plone_context_state')
+            view.__name__ = context_state.view_template_id()
+
+        context.REQUEST['ACTUAL_URL'] = '/'.join((context.absolute_url(),
+                                                  view.__name__))
+        # invalidate caches
+        del IAnnotations(context.REQUEST)['plone.memoize']
+
         alsoProvides(context.REQUEST, IFtwSubsiteLayer)
         manager = queryMultiAdapter(
             (context, context.REQUEST, view),
@@ -167,3 +178,49 @@ class TestBannerViewlet(unittest.TestCase):
 
         viewlet = self._get_viewlet(self.portal)
         self.assertTrue(viewlet[0].available, 'Expect to find an image')
+
+    def test_do_not_show_on_folder_contents_when_root_only_enabled(self):
+        registry = getUtility(IRegistry)
+        registry.records['ftw.subsite.banner_root_only'] = \
+            Record(field.Bool(title=u"dummy", default=True),
+                   value=True)
+
+        bannerfolder = self._setup_bannerfolder(self.portal)
+        subfolder = bannerfolder.get(
+            bannerfolder.invokeFactory('Folder', 'subfolder'))
+        subfolder.invokeFactory('Image', 'image1')
+
+        viewlet = self._get_viewlet(self.portal)
+        self.assertTrue(
+            viewlet[0].available,
+            'Expected viewlet to be available on default view')
+
+        folder_contents = self.portal.restrictedTraverse('folder_contents')
+        viewlet = self._get_viewlet(self.portal, view=folder_contents)
+        self.assertFalse(
+            viewlet[0].available,
+            'Expected viewlet not to be available on folder_contents,'
+            ' since root_only is enabled.')
+
+    def test_show_on_folder_contents_when_root_only_disabled(self):
+        registry = getUtility(IRegistry)
+        registry.records['ftw.subsite.banner_root_only'] = \
+            Record(field.Bool(title=u"dummy", default=True),
+                   value=False)
+
+        bannerfolder = self._setup_bannerfolder(self.portal)
+        subfolder = bannerfolder.get(
+            bannerfolder.invokeFactory('Folder', 'subfolder'))
+        subfolder.invokeFactory('Image', 'image1')
+
+        viewlet = self._get_viewlet(self.portal)
+        self.assertTrue(
+            viewlet[0].available,
+            'Expected viewlet to be available on default view')
+
+        folder_contents = self.portal.restrictedTraverse('folder_contents')
+        viewlet = self._get_viewlet(self.portal, view=folder_contents)
+        self.assertTrue(
+            viewlet[0].available,
+            'Expected viewlet to be available on folder_contents,'
+            ' since root_only is disabled.')
