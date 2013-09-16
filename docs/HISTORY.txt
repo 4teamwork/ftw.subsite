@@ -4,6 +4,9 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
+- Fixed problem if the subsite logo is deleted.
+  [Julian Infanger]
+
 - Hide banner viewlet from folder_contents when root_only option enabled.
   [jone]
 

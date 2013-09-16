@@ -25,7 +25,7 @@ class SubsiteLogoViewlet(LogoViewlet):
         in_factory = IFactoryTempFolder.providedBy(
             self.context.aq_inner.aq_parent)
 
-        if subsite_logo and len(subsite_logo()) and not in_factory:
+        if subsite_logo and subsite_logo() and not in_factory:
             # we are in a subsite
             navigation_root_path = self.portal_state.navigation_root_path()
             scale = portal.restrictedTraverse(
