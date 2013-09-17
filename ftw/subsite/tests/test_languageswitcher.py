@@ -100,9 +100,8 @@ class TestLanguageSwitcher(TestCase):
         Plone().login()
 
         self.assertEquals(
-            # TODO: make langauges display on site root too
-            {'site root': [],
-             'german': [u'Fran\xe7ais', u'English'],
+            {'site root': [u'Deutsch', u'Fran\xe7ais'],
+             'german': [u'English', u'Fran\xe7ais'],
              'french': [u'Deutsch', u'English']},
 
             {'site root': LanguageSwitcher().visit_portal().languages,
@@ -123,3 +122,10 @@ class TestLanguageSwitcher(TestCase):
 
         Plone().login().visit(german)
         self.assertEquals(u'Deutsch', LanguageSwitcher().current)
+
+    def test_current_link_is_language_on_plone_site_root(self):
+        create(Builder('subsite').with_language('de')
+               .having(linkSiteInLanguagechooser=True))
+
+        Plone().login().visit_portal()
+        self.assertEquals(u'English', LanguageSwitcher().current)
