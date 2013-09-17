@@ -1,18 +1,28 @@
-<tal:language tal:condition="view/available">
-<ul id="portal-languageselector"
-    tal:define="languages view/languages;
-                here_url context/absolute_url">
-    <tal:language repeat="lang languages">
-    <li tal:define="code lang/code;
-                    codeclass string:language-${code};"
-        tal:attributes="class codeclass">
-        <a href=""
-           tal:define="name lang/native|lang/name"
-           tal:attributes="href lang/url;
-                           title name"
-            ><tal:nonflag replace="name">language name</tal:nonflag
-        ></a>
-    </li>
-    </tal:language>
-</ul>
-</tal:language>
+<div tal:condition="view/available" id="portal-languageselector-wrapper">
+    <dl id="portal-languageselector" class="actionMenu deactivated"
+        tal:define="languages view/languages;
+                    here_url context/absolute_url">
+
+        <dt class="actionMenuHeader">
+            <a href="#" tal:content="view/current">Foo</a>
+            <div class="visualClear"><!-- --></div>
+        </dt>
+
+        <dd class="actionMenuContent">
+            <ul>
+                <tal:language repeat="lang languages">
+                    <li tal:define="code lang/code;
+                                    codeclass string:language-${code};"
+                        tal:attributes="class codeclass">
+                        <a href=""
+                           tal:define="name lang/native|lang/name"
+                           tal:attributes="href lang/url;
+                                           title name"
+                           ><tal:nonflag replace="name">language name</tal:nonflag
+                           ></a>
+                    </li>
+                </tal:language>
+            </ul>
+        </dd>
+    </dl>
+</div>

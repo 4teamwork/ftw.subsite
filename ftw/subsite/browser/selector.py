@@ -31,6 +31,11 @@ class LanguageSelector(common.ViewletBase):
         else:
             return bool(self.navigation_root.getLanguage_references())
 
+    def current(self):
+        ltool = getToolByName(self.navigation_root, 'portal_languages')
+        return self.getNativeForLanguageCode(
+            ltool, self.navigation_root.getForcelanguage())
+
     def languages(self):
         """Returns all possible languages based on the Subsite configuration.
         """

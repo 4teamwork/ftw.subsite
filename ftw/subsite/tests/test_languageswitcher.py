@@ -115,3 +115,11 @@ class TestLanguageSwitcher(TestCase):
 
         Plone().login().visit(german)
         self.assertEquals([u'English'], LanguageSwitcher().languages)
+
+    def test_current_link_is_current_language(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
+        introduce_language_subsites(german, french)
+
+        Plone().login().visit(german)
+        self.assertEquals(u'Deutsch', LanguageSwitcher().current)

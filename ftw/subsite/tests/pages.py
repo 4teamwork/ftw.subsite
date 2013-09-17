@@ -9,14 +9,24 @@ class LanguageSwitcher(Plone):
         return browser().find_by_css('#portal-languageselector')
 
     @property
+    def current(self):
+        current_link = browser().find_by_css(
+            '#portal-languageselector .actionMenuHeader a').first
+        return current_link.text.strip()
+
+    @property
+    def language_links(self):
+        return browser().find_by_css(
+            '#portal-languageselector .actionMenuContent a')
+
+    @property
     def languages(self, sort=False):
-        links = browser().find_by_css('#portal-languageselector a')
-        return [link.text.strip() for link in links]
+        return [link.text.strip() for link in self.language_links]
 
     def click_language(self, label):
         label = label.strip()
-        links = browser().find_by_css('#portal-languageselector a')
-        langs = dict([(link.text.strip(), link) for link in links])
+        langs = dict([(link.text.strip(), link)
+                      for link in self.language_links])
         assert label in langs, \
             'Language "%s" not found in %s' % (label, langs.keys())
         langs[label].click()
