@@ -8,7 +8,6 @@
             tal:define="current view/current">
             <a tal:content="current/title"
                tal:attributes="href current/url"/>
-            <div class="visualClear"><!-- --></div>
         </dt>
 
         <dd class="actionMenuContent">
