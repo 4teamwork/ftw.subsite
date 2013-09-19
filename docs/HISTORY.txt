@@ -4,6 +4,11 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
+- Refactor the language selector to be a "actionMenu" instead of a linklist
+  and show the language selector on the site root too, when subsites are
+  configured to show the site root as language.
+  [jone]
+
 - Fixed problem if the subsite logo is deleted.
   [Julian Infanger]
 

@@ -1,136 +1,131 @@
+from ftw.builder import Builder
+from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
+from ftw.subsite.tests.pages import LanguageSwitcher
+from ftw.testing import browser
+from ftw.testing.pages import Plone
 from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import TEST_USER_PASSWORD
-from plone.app.testing import login
 from plone.app.testing import setRoles
-from plone.testing.z2 import Browser
-from pyquery import PyQuery
+from unittest2 import TestCase
 import transaction
-import unittest2 as unittest
 
 
-class TestLanguageswitcher(unittest.TestCase):
+def introduce_language_subsites(*subsites):
+    for subsite in subsites:
+        uids = [obj.UID() for obj in subsites]
+        uids.remove(subsite.UID())
+        subsite.setLanguage_references(uids)
+
+    transaction.commit()
+
+
+class TestLanguageSwitcher(TestCase):
 
     layer = FTW_SUBSITE_FUNCTIONAL_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-        self.browser = Browser(self.layer['app'])
-        self.browser.handleErrors = False
+    def test_shows_other_referenced_languages(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
+        italian = create(Builder('subsite').with_language('it'))
+        introduce_language_subsites(german, french, italian)
 
-        setRoles(self.portal, TEST_USER_ID,
-                 ['Manager', 'Reviewer', 'Contributor'])
-        login(self.portal, TEST_USER_NAME)
-        self.german = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'germansubsite',
-            title="German Subsite",
-            forcelanguage="de"))
+        Plone().login().visit(german)
+        self.assertEquals([u'Fran\xe7ais', u'Italiano'],
+                          LanguageSwitcher().languages)
 
-        self.french = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'French Subsite',
-            title="frenchsubsite",
-            forcelanguage="fr"))
+    def test_going_to_another_language(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
+        introduce_language_subsites(german, french)
 
-        self.german.setLanguage_references(self.french.UID())
-        self.french.setLanguage_references(self.german.UID())
+        Plone().login().visit(german)
+        LanguageSwitcher().click_language(u'Fran\xe7ais')
+        self.assertEquals(french.absolute_url(), browser().url)
+        LanguageSwitcher().click_language(u'Deutsch')
+        self.assertEquals(german.absolute_url(), browser().url)
 
-        transaction.commit()
+    def test_language_switch_invisible_unless_languages_hooked_up(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
 
-    def tearDown(self):
-        if 'germansubsite' in self.portal.objectIds():
-            self.portal.manage_delObjects(['germansubsite'])
-        if 'frenchsubsite' in self.portal.objectIds():
-            self.portal.manage_delObjects(['frenchsubsite'])
-        transaction.commit()
+        Plone().login().visit(german)
+        self.assertFalse(LanguageSwitcher().available)
+        introduce_language_subsites(german, french)
+        Plone().visit(german)
+        self.assertTrue(LanguageSwitcher().available)
 
-    def _auth(self):
-        self.browser.addHeader('Authorization', 'Basic %s:%s' % (
-            TEST_USER_NAME, TEST_USER_PASSWORD,))
+    def test_other_site_not_visible_when_no_subsite_language_defined(self):
+        german = create(Builder('subsite').with_language('de'))
+        unkown = create(Builder('subsite').titled('unkown'))
+        introduce_language_subsites(german, unkown)
 
-    def test_language_switch(self):
-        self._auth()
-        self.browser.open(self.german.absolute_url())
+        Plone().login().visit(german)
+        self.assertEquals([], LanguageSwitcher().languages)
 
-        link = self.browser.getLink('Fran\xc3\xa7ais')
-        self.assertTrue(link)
-        link.click()
-        self.assertEquals(self.browser.url, self.french.absolute_url())
+    def test_does_not_show_subsites_of_other_language_groups(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
+        italian = create(Builder('subsite').with_language('it'))
+        spanish = create(Builder('subsite').with_language('es'))
 
-        link = self.browser.getLink('Deutsch')
-        self.assertTrue(link)
-        link.click()
-        self.assertEquals(self.browser.url, self.german.absolute_url())
+        introduce_language_subsites(german, french)
+        introduce_language_subsites(italian, spanish)
 
-    def test_language_switch_available(self):
-        self.german.setLanguage_references([])
-        transaction.commit()
+        Plone().login()
 
-        self._auth()
-        self.assertSelectableLanguagesOnPage(
-            [],
-            self.german.absolute_url())
-
-        self.assertSelectableLanguagesOnPage(
-            [],
-            self.portal.absolute_url())
-
-    def test_language_switch_multiple_sites(self):
-        self.italy = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'Italian Subsite',
-            title="italiansubsite",
-            forcelanguage="it"))
-
-        self.german.setLanguage_references(
-            [self.french.UID(), self.italy.UID()])
-        transaction.commit()
-
-        self.assertSelectableLanguagesOnPage(
-            [u'Fran\xe7ais', u'Italiano'],
-            self.german.absolute_url())
-
-    def test_language_switch_multiple_sites_no_lang_set(self):
-        self.italy = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'Italian Subsite',
-            title="italiansubsite"))
-
-        self.german.setLanguage_references(
-            [self.french.UID(), self.italy.UID()])
-        transaction.commit()
-
-        self.assertSelectableLanguagesOnPage(
-            [u'Fran\xe7ais'],
-            self.german.absolute_url())
-
-    def test_listing_plone_site_and_language_references_combined(self):
-        self.assertSelectableLanguagesOnPage(
-            [u'Fran\xe7ais'],
-            self.german.absolute_url())
-
-        self.german.setLinkSiteInLanguagechooser(True)
-        transaction.commit()
-
-        self.assertSelectableLanguagesOnPage(
-            [u'Fran\xe7ais', u'English'],
-            self.german.absolute_url())
-
-    def test_listing_only_plone_site(self):
-        self.german.setLinkSiteInLanguagechooser(True)
-        self.german.setLanguage_references([])
-        transaction.commit()
-
-        self.assertSelectableLanguagesOnPage(
-            [u'English'],
-            self.german.absolute_url())
-
-    def assertSelectableLanguagesOnPage(self, expected_languages, url):
-        self.browser.open(url)
-        doc = PyQuery(self.browser.contents)
         self.assertEquals(
-            set(expected_languages),
-            set([link.text for link in doc('#portal-languageselector a')]))
+            {'german': [u'Fran\xe7ais'],
+             'french': [u'Deutsch'],
+             'italian': [u'Espa\xf1ol'],
+             'spanish': [u'Italiano']},
+
+            {'german': LanguageSwitcher().visit(german).languages,
+             'french': LanguageSwitcher().visit(french).languages,
+             'italian': LanguageSwitcher().visit(italian).languages,
+             'spanish': LanguageSwitcher().visit(spanish).languages})
+
+    def test_hooking_up_language_subsites_with_site_root(self):
+        # Assumed that the site root is configured to be english.
+        german = create(Builder('subsite').with_language('de')
+                        .having(linkSiteInLanguagechooser=True))
+        french = create(Builder('subsite').with_language('fr')
+                        .having(linkSiteInLanguagechooser=True))
+
+        introduce_language_subsites(german, french)
+
+        Plone().login()
+
+        self.assertEquals(
+            {'site root': [u'Deutsch', u'Fran\xe7ais'],
+             'german': [u'English', u'Fran\xe7ais'],
+             'french': [u'Deutsch', u'English']},
+
+            {'site root': LanguageSwitcher().visit_portal().languages,
+             'german': LanguageSwitcher().visit(german).languages,
+             'french': LanguageSwitcher().visit(french).languages})
+
+    def test_listing_only_site_root_works(self):
+        german = create(Builder('subsite').with_language('de')
+                        .having(linkSiteInLanguagechooser=True))
+
+        Plone().login().visit(german)
+        self.assertEquals([u'English'], LanguageSwitcher().languages)
+
+    def test_current_link_is_current_language(self):
+        german = create(Builder('subsite').with_language('de'))
+        french = create(Builder('subsite').with_language('fr'))
+        introduce_language_subsites(german, french)
+
+        Plone().login().visit(german)
+        self.assertEquals(u'Deutsch', LanguageSwitcher().current)
+
+    def test_current_link_is_language_on_plone_site_root(self):
+        create(Builder('subsite').with_language('de')
+               .having(linkSiteInLanguagechooser=True))
+
+        Plone().login().visit_portal()
+        self.assertEquals(u'English', LanguageSwitcher().current)
