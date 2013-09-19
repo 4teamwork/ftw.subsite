@@ -8,6 +8,8 @@ tests_require = [
     'plone.app.portlets',
     'collective.mockmailhost',
     'pyquery',
+    'ftw.testing [splinter]',
+    'ftw.builder',
     ]
 
 setup(name='ftw.subsite',
