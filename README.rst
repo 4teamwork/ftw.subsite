@@ -6,8 +6,8 @@ within a Plone site.
 It does this by defining it as navigation root.
 
 
-Additional functionality provided by ``ftw.subsite``
----------------------------------------------------
+Additional functionality provided by `ftw.subsite`
+--------------------------------------------------
 
 - It is possible to define a language on a subsite content, which overrides the
   default behavior of how Plone deals with languages (PloneLanguageTool).
