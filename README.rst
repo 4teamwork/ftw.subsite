@@ -49,12 +49,12 @@ Plone 4.2
 .. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg/badge/icon
    :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg
 
-Plone 4.1
+**Important**
 
-.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.1.x.cfg/badge/icon
-   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.1.x.cfg
+Plone 4.1 support has been dropped due to Plonebugs which interfere with our testsetup
+which were fixed in Plone 4.2.
 
-
+Last Version of ftw.subsite to support Plone 4.1 is 1.3.0.
 
 Usage
 -----
