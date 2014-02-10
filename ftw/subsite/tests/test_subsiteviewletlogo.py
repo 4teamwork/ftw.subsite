@@ -2,6 +2,7 @@ from ftw.subsite.browser.subsiteview import SubsiteView
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 from zope.component import queryMultiAdapter
@@ -100,7 +101,6 @@ class TestLogoViewlet(unittest.TestCase):
     def test_with_logo_subcontent(self):
         subsite = self._create_subsite()
         file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        file_.seek(0)
         subsite.setLogo(file_)
 
         # Create more content
@@ -130,3 +130,11 @@ class TestLogoViewlet(unittest.TestCase):
 
         self.assertIn("%s/logo.png" % self.portal.absolute_url(),
                       self.browser.contents)
+
+    def test_logo_in_portal_tools(self):
+        subsite = self._create_subsite()
+        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
+        subsite.setLogo(file_)
+        transaction.commit()
+        self._auth()
+        self.browser.open(subsite.absolute_url() + '/mail_password?userid=' + TEST_USER_ID)
