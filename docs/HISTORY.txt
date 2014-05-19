@@ -4,7 +4,8 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Set a caching header for teaser portlet images.
+  [deif]
 
 
 1.3.1 (2014-02-10)
