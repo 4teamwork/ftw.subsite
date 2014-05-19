@@ -22,5 +22,7 @@ class ImageView(BrowserView):
         if isinstance(image.data, FileChunk):
             data = str(data)
 
+        # cache for one day.
+        self.request.response.setHeader('Cache-Control', 'max-age=86400')
         self.request.response.setHeader('Content-Type', image.contentType)
         self.request.response.write(data)

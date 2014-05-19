@@ -14,6 +14,7 @@ from plone.namedfile.field import NamedImage
 from Acquisition import aq_inner, aq_parent
 from plone.formwidget.contenttree import UUIDSourceBinder
 from plone.app.uuid.utils import uuidToObject
+from DateTime import DateTime
 
 
 class ITeaserPortlet(IPortletDataProvider):
@@ -47,8 +48,18 @@ class Assignment(base.Assignment):
         self.assignment_context_path = assignment_context_path
         self.teasertitle = teasertitle
         self.teaserdesc = teaserdesc
-        self.image = image
+        self._image = image
         self.internal_target = internal_target
+        self.image_timestamp = DateTime()
+
+    @property
+    def image(self):
+        return self._image
+
+    @image.setter
+    def image(self, image):
+        self.image_timestamp = DateTime()
+        self._image = image
 
     @property
     def title(self):
@@ -75,18 +86,17 @@ class Renderer(base.Renderer):
             return ''
 
     @property
-    @memoize
     def image_tag(self):
         state = getMultiAdapter((self.context, self.request),
                                 name="plone_portal_state")
         portal = state.portal()
-        assignment_url = \
-            portal.unrestrictedTraverse(
-            self.data.assignment_context_path).absolute_url()
-        return "<img src='%s/%s/@@image' alt=''/>" % \
-            (assignment_url,
-             self.data.__name__
-             )
+
+        assignments = portal.unrestrictedTraverse(
+            self.data.assignment_context_path)
+        assignment_url = assignments.absolute_url()
+        modified = self.data.image_timestamp
+        return "<img src='{0}/{1}/@@image?_={2}' alt=''/>".format(
+            assignment_url, self.data.__name__, modified.millis())
 
 
 class AddForm(form.AddForm):

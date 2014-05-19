@@ -155,7 +155,10 @@ class TestSubsite(unittest.TestCase):
 
     def test_renderer_image_tag(self):
         renderer = self._get_renderer()
-        self.assertEqual("<img src='http://nohost/plone/++contextportlets++ftw.subsite.front1/hans/@@image' alt=''/>", renderer.image_tag)
+        markup = renderer.image_tag
+        self.assertIn(
+            'http://nohost/plone/++contextportlets++ftw.subsite.front1/hans/@@image',
+            markup)
 
     def test_renderer_internal_url(self):
         renderer = self._get_renderer()
@@ -174,4 +177,8 @@ class TestSubsite(unittest.TestCase):
         file_field.add_file(StringIO(file_.read()), 'image/png', 'blue.png')
         self.browser.getControl(name="form.buttons.add").click()
         self.browser.open('http://nohost/plone/mysubsite/++contextportlets++ftw.subsite.front2/hans/@@image')
-        self.assertEqual([('status', '200 Ok'), ('content-length', '0'), ('content-type', 'image/png')], self.browser.mech_browser.response()._headers.items())
+        self.assertEqual([
+            ('status', '200 Ok'), ('content-length', '0'),
+            ('content-type', 'image/png'),
+            ('cache-control', 'max-age=86400')],
+            self.browser.mech_browser.response()._headers.items())
