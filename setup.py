@@ -4,12 +4,12 @@ import os
 version = '1.3.2.dev0'
 
 tests_require = [
-    'plone.app.testing',
-    'plone.app.portlets',
     'collective.mockmailhost',
-    'pyquery',
-    'ftw.testing [splinter]',
     'ftw.builder',
+    'ftw.testing [splinter]',
+    'plone.app.portlets',
+    'plone.app.testing',
+    'pyquery',
     ]
 
 setup(name='ftw.subsite',
@@ -42,11 +42,11 @@ setup(name='ftw.subsite',
       zip_safe=False,
 
       install_requires=[
-        'setuptools',
+        'ftw.upgrade',
         'plone.formwidget.contenttree',
-        'plone.namedfile',
         'plone.formwidget.namedfile',
-        # -*- Extra requirements: -*-
+        'plone.namedfile',
+        'setuptools',
         ],
 
       tests_require=tests_require,
