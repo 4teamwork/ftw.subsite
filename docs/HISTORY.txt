@@ -4,6 +4,9 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
+- Add missing rolemap.xml (Add permission for Manager/Contributor).
+  [mathias.leimgruber]
+
 - Set a caching header for teaser portlet images.
   [deif]
 

@@ -1,16 +1,27 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
     i18n_domain="ftw.subsite">
 
     <include package="ftw.upgrade" file="meta.zcml" />
 
+    <!-- 1000 -> 1001 -->
     <genericsetup:upgradeStep
         profile="ftw.subsite:default"
         source="1000"
         destination="1001"
         title="Update teaser portlet attributes."
         handler=".to1001.FixAttributes"
+        />
+
+    <!-- 1001 -> 1002 -->
+    <upgrade-step:importProfile
+        title="Add rolemap.xml (Add permission for Manager/Contributor)"
+        profile="ftw.subsite:default"
+        source="1001"
+        destination="1002"
+        directory="profiles/1002"
         />
 
 </configure>
