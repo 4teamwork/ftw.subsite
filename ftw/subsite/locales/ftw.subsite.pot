@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-06-27 08:03+0000\n"
+"POT-Creation-Date: 2014-11-17 09:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,12 +12,9 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: ftw.subsite\n"
 
-#: ./ftw/subsite/portlets/teaserportlet.py:95
+#: ./ftw/subsite/portlets/teaserportlet.py:122
 msgid "Add Teaser Portlet"
 msgstr ""
 
@@ -25,19 +22,19 @@ msgstr ""
 msgid "Choose your Section"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:27
+#: ./ftw/subsite/portlets/teaserportlet.py:28
 msgid "Description"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:152
+#: ./ftw/subsite/portlets/teaserportlet.py:179
 msgid "Edit Teaser Portlet"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:32
+#: ./ftw/subsite/portlets/teaserportlet.py:33
 msgid "Find an internal target  for this image to link to"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:37
+#: ./ftw/subsite/portlets/teaserportlet.py:38
 msgid "Image"
 msgstr ""
 
@@ -45,7 +42,7 @@ msgstr ""
 msgid "Information"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:31
+#: ./ftw/subsite/portlets/teaserportlet.py:32
 msgid "Internal Target"
 msgstr ""
 
@@ -67,7 +64,7 @@ msgstr ""
 msgid "Sender_Name"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:96
+#: ./ftw/subsite/portlets/teaserportlet.py:123
 msgid "Shows the given infos on the front-page."
 msgstr ""
 
@@ -79,7 +76,7 @@ msgstr ""
 msgid "Subsite - behave like a ploneroot"
 msgstr ""
 
-#: ./ftw/subsite/portlets/teaserportlet.py:23
+#: ./ftw/subsite/portlets/teaserportlet.py:24
 msgid "Title"
 msgstr ""
 
@@ -91,6 +88,10 @@ msgstr ""
 #. Default: "Your e-mailaddress is not valid"
 #: ./ftw/subsite/browser/contact.py:142
 msgid "error_invalid_addresses"
+msgstr ""
+
+#: ./ftw/subsite/portlets/teaserportlet.py:91
+msgid "feedback_mail_text"
 msgstr ""
 
 #. Default: "Please enter your Name"
@@ -109,6 +110,11 @@ msgstr ""
 
 #: ./ftw/subsite/content/subsite.py:82
 msgid "help_fromname"
+msgstr ""
+
+#. Default: "The provided image title will be used as alt-text."
+#: ./ftw/subsite/portlets/teaserportlet.py:47
+msgid "help_imagetitle"
 msgstr ""
 
 #. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
@@ -151,7 +157,7 @@ msgid "label_additional_css"
 msgstr ""
 
 #. Default: "Cancel"
-#: ./ftw/subsite/portlets/teaserportlet.py:127
+#: ./ftw/subsite/portlets/teaserportlet.py:154
 msgid "label_cancel"
 msgstr ""
 
@@ -170,6 +176,11 @@ msgstr ""
 msgid "label_fromname"
 msgstr ""
 
+#. Default: "Image Title"
+#: ./ftw/subsite/portlets/teaserportlet.py:43
+msgid "label_imagetitle"
+msgstr ""
+
 #. Default: "Languages"
 #: ./ftw/subsite/content/subsite.py:51
 msgid "label_language_references"
@@ -186,7 +197,7 @@ msgid "label_message"
 msgstr ""
 
 #. Default: "Save"
-#: ./ftw/subsite/portlets/teaserportlet.py:116
+#: ./ftw/subsite/portlets/teaserportlet.py:143
 msgid "label_save"
 msgstr ""
 
@@ -204,4 +215,5 @@ msgstr ""
 #: ./ftw/subsite/browser/contact.py:24
 msgid "mail_address"
 msgstr ""
+
 
