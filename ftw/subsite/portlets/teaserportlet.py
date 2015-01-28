@@ -112,7 +112,7 @@ class Renderer(base.Renderer):
             assignment_url,
             self.data.__name__,
             modified.millis(),
-            self.data.imagetitle,
+            getattr(self.data, 'imagetitle', '')
         )
 
 
