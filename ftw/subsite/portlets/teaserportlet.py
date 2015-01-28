@@ -39,16 +39,29 @@ class ITeaserPortlet(IPortletDataProvider):
                         description=u'',
                         required=True)
 
+    imagetitle = schema.TextLine(
+        title=_(
+            u'label_imagetitle',
+            default=u'Image Title',
+        ),
+        description=_(
+            u'help_imagetitle',
+            default=u'The provided image title will be used as alt-text.',
+        ),
+        required=True,
+    )
+
 
 class Assignment(base.Assignment):
     implements(ITeaserPortlet)
 
     def __init__(self, assignment_context_path=None, teasertitle='',
-                 teaserdesc='', image=None, internal_target=None):
+                 teaserdesc='', image=None, imagetitle='', internal_target=None):
         self.assignment_context_path = assignment_context_path
         self.teasertitle = teasertitle
         self.teaserdesc = teaserdesc
         self._image = image
+        self.imagetitle = imagetitle
         self.internal_target = internal_target
         self.image_timestamp = DateTime()
 
@@ -95,8 +108,12 @@ class Renderer(base.Renderer):
             self.data.assignment_context_path)
         assignment_url = assignments.absolute_url()
         modified = self.data.image_timestamp
-        return "<img src='{0}/{1}/@@image?_={2}' alt=''/>".format(
-            assignment_url, self.data.__name__, modified.millis())
+        return "<img src='{0}/{1}/@@image?_={2}' alt='{3}'/>".format(
+            assignment_url,
+            self.data.__name__,
+            modified.millis(),
+            getattr(self.data, 'imagetitle', '')
+        )
 
 
 class AddForm(form.AddForm):

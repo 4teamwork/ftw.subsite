@@ -60,6 +60,7 @@ class TestSubsite(unittest.TestCase):
             assignment_context_path='++contextportlets++ftw.subsite.front1',
             teasertitle=u'hans',
             teaserdesc=u'peter',
+            imagetitle=u'meter',
             internal_target=IUUID(self.page),
             image=image1
             )
@@ -108,6 +109,7 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/++contextportlets++ftw.subsite.front2/+/ftw.subsite.teaserportlet')
         self.browser.getControl(name="form.widgets.teasertitle").value = u"hans"
         self.browser.getControl(name="form.widgets.teaserdesc").value = u"bla bla bla mr. Freeman"
+        self.browser.getControl(name="form.widgets.imagetitle").value = u'meter'
         file_ = open("../../ftw/subsite/tests/blue.png")
         file_field = self.browser.getControl(name="form.widgets.image")
         file_field.add_file(StringIO(file_.read()), 'image/png', 'blue.png')
@@ -120,6 +122,7 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/++contextportlets++ftw.subsite.front2/+/ftw.subsite.teaserportlet')
         self.browser.getControl(name="form.widgets.teasertitle").value = u"hans"
         self.browser.getControl(name="form.widgets.teaserdesc").value = u"bla bla bla mr. Freeman"
+        self.browser.getControl(name="form.widgets.imagetitle").value = u"meter"
         self.browser.getControl(name="form.widgets.internal_target.widgets.query").value = u"my"
         self.browser.getControl(name="form.widgets.internal_target.buttons.search").click()
         self.browser.getControl("MyPage").selected = True
@@ -138,6 +141,7 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/++contextportlets++ftw.subsite.front2/+/ftw.subsite.teaserportlet')
         self.browser.getControl(name="form.widgets.teasertitle").value = u"hans"
         self.browser.getControl(name="form.widgets.teaserdesc").value = u"bla bla bla mr. Freeman"
+        self.browser.getControl(name="form.widgets.imagetitle").value = u"meter"
         self.browser.getControl(name="form.widgets.internal_target.widgets.query").value = u"my"
         self.browser.getControl(name="form.widgets.internal_target.buttons.search").click()
         self.browser.getControl("MyPage").selected = True
@@ -169,6 +173,7 @@ class TestSubsite(unittest.TestCase):
         self.browser.open(self.subsite.absolute_url() + '/++contextportlets++ftw.subsite.front2/+/ftw.subsite.teaserportlet')
         self.browser.getControl(name="form.widgets.teasertitle").value = u"hans"
         self.browser.getControl(name="form.widgets.teaserdesc").value = u"bla bla bla mr. Freeman"
+        self.browser.getControl(name="form.widgets.imagetitle").value = u"meter"
         self.browser.getControl(name="form.widgets.internal_target.widgets.query").value = u"my"
         self.browser.getControl(name="form.widgets.internal_target.buttons.search").click()
         self.browser.getControl("MyPage").selected = True

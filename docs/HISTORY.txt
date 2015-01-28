@@ -4,7 +4,12 @@ Changelog
 1.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use getattr for getting the new alt text for teaser images to
+  prevent us from writing a expensive upgrade step.
+  [mathias.leimgruber]
+
+- Implement alt (required for accessibility) text for teaser images.
+  [kevin.bieri]
 
 
 1.3.2 (2014-09-23)
