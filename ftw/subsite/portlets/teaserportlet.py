@@ -108,7 +108,7 @@ class Renderer(base.Renderer):
             self.data.assignment_context_path)
         assignment_url = assignments.absolute_url()
         modified = self.data.image_timestamp
-        return "<img src='{0}/{1}/@@image?_={2}' alt='{3}'/>".format(
+        return u"<img src='{0}/{1}/@@image?_={2}' alt='{3}'/>".format(
             assignment_url,
             self.data.__name__,
             modified.millis(),
