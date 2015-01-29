@@ -60,7 +60,7 @@ class TestSubsite(unittest.TestCase):
             assignment_context_path='++contextportlets++ftw.subsite.front1',
             teasertitle=u'hans',
             teaserdesc=u'peter',
-            imagetitle=u'meter',
+            imagetitle=u'meter mit \xe4',
             internal_target=IUUID(self.page),
             image=image1
             )
