@@ -1,20 +1,19 @@
-from zope.interface import implements
-from zope.component import getMultiAdapter
-from plone.portlets.interfaces import IPortletDataProvider
-from plone.app.portlets.portlets import base
-from plone.memoize.instance import memoize
-from zope import schema
-from z3c.form import form, button, field
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from ftw.subsite import _
-from plone.formwidget.contenttree import ContentTreeFieldWidget
-from plone.app.z3cform.wysiwyg.widget import WysiwygFieldWidget
-from z3c.form.interfaces import INPUT_MODE
-from plone.namedfile.field import NamedImage
 from Acquisition import aq_inner, aq_parent
-from plone.formwidget.contenttree import UUIDSourceBinder
-from plone.app.uuid.utils import uuidToObject
 from DateTime import DateTime
+from ftw.subsite import _
+from plone.app.portlets.portlets import base
+from plone.app.uuid.utils import uuidToObject
+from plone.app.z3cform.wysiwyg.widget import WysiwygFieldWidget
+from plone.formwidget.contenttree import ContentTreeFieldWidget
+from plone.formwidget.contenttree import UUIDSourceBinder
+from plone.namedfile.field import NamedImage
+from plone.portlets.interfaces import IPortletDataProvider
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form import form, button, field
+from z3c.form.interfaces import INPUT_MODE
+from zope import schema
+from zope.component import getMultiAdapter
+from zope.interface import implements
 
 
 class ITeaserPortlet(IPortletDataProvider):
