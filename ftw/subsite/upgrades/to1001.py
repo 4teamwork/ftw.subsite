@@ -20,6 +20,8 @@ class FixAttributes(UpgradeStep):
             self.migrate_portlet_assignments(obj)
 
     def migrate_portlet_assignments(self, obj):
+        from ftw.subsite.portlets.teaserportlet import ITeaserPortlet
+
         try:
             annotations = IAnnotations(obj)
         except TypeError:
@@ -30,7 +32,7 @@ class FixAttributes(UpgradeStep):
             'plone.portlets.contextassignments', [])
 
         for managername in tuple(known_manager):
-            if not managername in self.MANAGER_NAMES:
+            if managername not in self.MANAGER_NAMES:
                 continue
 
             manager = getUtility(IPortletManager, name=managername,
@@ -38,5 +40,14 @@ class FixAttributes(UpgradeStep):
             assignments = getMultiAdapter((obj, manager),
                                           IPortletAssignmentMapping,
                                           context=obj)
+            assignments._p_changed = True
+
             for assignment in assignments.values():
+                if not ITeaserPortlet.providedBy(assignment):
+                    continue
+
+                if not assignment.__dict__.get('image'):
+                    continue
+
                 assignment.image = assignment.__dict__.pop('image', None)
+                assignment._p_changed = True
