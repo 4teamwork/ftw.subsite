@@ -55,14 +55,20 @@ class Assignment(base.Assignment):
     implements(ITeaserPortlet)
 
     def __init__(self, assignment_context_path=None, teasertitle='',
-                 teaserdesc='', image=None, imagetitle='', internal_target=None):
+                 teaserdesc='', image=None, _image=None,
+                 imagetitle='', internal_target=None, image_timestamp=None):
+
+        # ftw.publisher support
+        if _image:
+            image = _image
+
         self.assignment_context_path = assignment_context_path
         self.teasertitle = teasertitle
         self.teaserdesc = teaserdesc
         self._image = image
         self.imagetitle = imagetitle
         self.internal_target = internal_target
-        self.image_timestamp = DateTime()
+        self.image_timestamp = image_timestamp or DateTime()
 
     @property
     def image(self):
