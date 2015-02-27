@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.2 (unreleased)
+1.4.2 (2015-02-27)
 ------------------
 
 - Add ftw.publisher support for teaser portlet.
