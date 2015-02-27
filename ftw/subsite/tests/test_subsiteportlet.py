@@ -187,3 +187,13 @@ class TestSubsite(unittest.TestCase):
             ('content-type', 'image/png'),
             ('cache-control', 'max-age=86400')],
             self.browser.mech_browser.response()._headers.items())
+
+    def test_publisher_support(self):
+        """ftw.publisher does serialization and deserialization with something like:
+        Assignment(**other_assignment.__dict__)
+        """
+
+        assignment = self._create_portlet()
+        assignment_copy = teaserportlet.Assignment(**assignment.__dict__)
+        self.assertTrue(assignment_copy)
+        self.assertEqual(assignment.__dict__, assignment_copy.__dict__)
