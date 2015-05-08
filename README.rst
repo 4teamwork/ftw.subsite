@@ -73,9 +73,9 @@ Usage
 Links
 -----
 
-- Main github project repository: https://github.com/4teamwork/ftw.subsite
-- Issue tracker: https://github.com/4teamwork/ftw.subsite/issues
-- Package on pypi: http://pypi.python.org/pypi/ftw.subsite
+- Github: https://github.com/4teamwork/ftw.subsite
+- Issues: https://github.com/4teamwork/ftw.subsite/issues
+- Pypi: http://pypi.python.org/pypi/ftw.subsite
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.subsite
 
 
