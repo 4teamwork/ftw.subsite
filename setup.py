@@ -31,7 +31,7 @@ setup(name='ftw.subsite',
         ],
 
       keywords='ftw subsite',
-      author='4teamwork GmbH',
+      author='4teamwork AG',
       author_email='mailto:info@4teamwork.ch',
       url='https://github.com/4teamwork/ftw.subsite',
       license='GPL2',
