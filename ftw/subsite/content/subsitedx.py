@@ -43,6 +43,7 @@ class ISubsiteSchema(model.Schema):
     language_references = RelationList(
         title=_(u'label_language_references', default=u'Languages'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(title=u'Related Subsites',
                                   source=ObjPathSourceBinder(
                                       object_provides=ISubsite.__identifier__)),
