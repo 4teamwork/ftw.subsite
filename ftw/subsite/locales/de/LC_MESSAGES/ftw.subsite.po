@@ -82,7 +82,7 @@ msgstr "Titel"
 msgid "button_cancel"
 msgstr "Abbrechen"
 
-#. Default: "Your e-mailaddress is not valid"
+#. Default: "Your E-mail address is not valid."
 #: ./ftw/subsite/browser/contact.py:142
 msgid "error_invalid_addresses"
 msgstr "Die eingegebene E-Mailaddresse ist nicht korrekt"

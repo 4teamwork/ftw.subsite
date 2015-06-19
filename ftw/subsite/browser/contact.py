@@ -19,23 +19,23 @@ from plone.app.layout.navigation.root import getNavigationRoot
 class IContactForm(Interface):
     """Interface for z3c.form"""
     sender = schema.TextLine(title=_(u"Sender_Name", default=u"Name"),
-                            required = True,
-                            description= _(u"help_Sender", default="Please enter your Name"))
+                             required=True,
+                             description=_(u"help_Sender", default="Please enter your Name"))
     email = schema.TextLine(title=_(u"mail_address", default="E-Mail"),
-                            required = True,
-                            description = _(u"help_mail_address", default="Please enter your e-mail"))
+                            required=True,
+                            description=_(u"help_mail_address", default="Please enter your e-mail"))
     subject = schema.TextLine(title=_(u"label_subject", default="Subject"),
-                            required = True,
-                            description = _(u"help_subject", default="Please enter a Subject"))
+                              required=True,
+                              description=_(u"help_subject", default="Please enter a Subject"))
     message = schema.Text(title=_(u"label_message", default="Message"),
-                        required = True,
-                        description = _(u"help_message", default="Please enter a Message"))
+                          required=True,
+                          description=_(u"help_message", default="Please enter a Message"))
 
 
 class ContactForm(form.Form):
     label = _(u"label_send_feedback", default=u"Send Feedback")
     fields = field.Fields(IContactForm)
-     # don't use context to get widget data
+    # don't use context to get widget data
     ignoreContext = True
 
     @button.buttonAndHandler(_(u'Send Mail'))
@@ -70,7 +70,8 @@ class ContactForm(form.Form):
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         nav_root = None
         if not '/'.join(portal.getPhysicalPath()) == getNavigationRoot(self.context):
-            nav_root = self.context.restrictedTraverse(getNavigationRoot(self.context))
+            nav_root = self.context.restrictedTraverse(
+                getNavigationRoot(self.context))
         if nav_root:
             site_title = nav_root.Title()
             site_url = nav_root.absolute_url()
@@ -85,8 +86,8 @@ class ContactForm(form.Form):
             context=self.request,
             mapping={'sender': "%s (%s)" % (sender, recipient),
                      'msg': message,
-                     'site_title':site_title,
-                     'site_url':site_url})
+                     'site_title': site_title,
+                     'site_url': site_url})
 
         # create the message root with from, to, and subject headers
         msg = MIMEText(text.encode('windows-1252'), 'plain', 'windows-1252')
@@ -96,21 +97,22 @@ class ContactForm(form.Form):
         default_from_email = portal.getProperty('email_from_address', '')
 
         if nav_root:
-            email_from_name = nav_root.getFromName() or default_from_name
-            email_from_email = nav_root.getFromEmail() or default_from_email
+            email_from_name = nav_root.from_name or default_from_name
+            email_from_email = nav_root.from_email or default_from_email
         else:
             email_from_name = default_from_name
             email_from_email = default_from_email
         msg['From'] = "%s <%s>" % (
             email_from_name,
             email_from_email
-            )
+        )
 
         msg['reply-to'] = "%s <%s>" % (sender, recipient)
 
         # send the message
         mh.send(msg, mto=email_from_email,
                 mfrom=[email_from_email])
+
 
 class AddressesValidator(SimpleFieldValidator):
     """Validator for validating the e-mail addresses field
@@ -140,7 +142,7 @@ class AddressesValidator(SimpleFieldValidator):
         address = address.strip()
         if not self.email_expression.match(address):
             msg = _(u'error_invalid_addresses',
-                    default=u'Your e-mailaddress is not valid')
+                    default=u'Your E-mail address is not valid.')
             raise Invalid(msg)
 
 
