@@ -1,7 +1,10 @@
+from ftw.builder import Builder
+from ftw.builder import create
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
+from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
@@ -9,29 +12,20 @@ from zope.interface import alsoProvides
 from zope.publisher.browser import BrowserView
 from zope.viewlet.interfaces import IViewletManager
 import os
-import unittest2 as unittest
 
-
-class TestBannerViewlet(unittest.TestCase):
+class TestBannerViewlet(TestCase):
 
     layer = FTW_SUBSITE_INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
 
-    def _create_subsite(self):
-        subsite = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'mysubsite',
-            title="MySubsite"))
-        return subsite
-
     def _setup_bannerfolder(self, context):
-        # Add banner folder
         registry = getUtility(IRegistry)
         bannerfoldername = registry.get('ftw.subsite.bannerfoldername')
-        return context.get(
-            context.invokeFactory('Folder', bannerfoldername))
+        return create(Builder('folder')
+                      .within(context)
+                      .with_id(bannerfoldername))
 
     def _get_viewlet(self, context, view=None):
         if not view:
@@ -55,12 +49,6 @@ class TestBannerViewlet(unittest.TestCase):
         manager.update()
         name = 'ftw.subsite.banner'
         return [v for v in manager.viewlets if v.__name__ == name]
-
-    def tearDown(self):
-        if 'mysubsite' in self.portal.objectIds():
-            self.portal.manage_delObjects(['mysubsite'])
-        if 'banners' in self.portal.objectIds():
-            self.portal.manage_delObjects(['banners'])
 
     def test_component_registered(self):
         self.assertTrue(len(self._get_viewlet(self.portal)) == 1)
@@ -154,7 +142,7 @@ class TestBannerViewlet(unittest.TestCase):
         self.assertTrue(viewlet[0].available)
 
     def test_on_subsite(self):
-        subsite = self._create_subsite()
+        subsite = create(Builder('subsite').titled(u'MySubsite'))
 
         viewlet = self._get_viewlet(subsite)
         self.assertTrue(len(viewlet) == 1)
@@ -172,9 +160,10 @@ class TestBannerViewlet(unittest.TestCase):
 
     def test_find_image_in_subfolder(self):
         bannerfolder = self._setup_bannerfolder(self.portal)
-        subfolder = bannerfolder.get(
-            bannerfolder.invokeFactory('Folder', 'subfolder'))
-        subfolder.invokeFactory('Image', 'image1')
+        subfolder = create(Builder('folder')
+                           .titled(u'Subfolder')
+                           .within(bannerfolder))
+        create(Builder('image').within(subfolder))
 
         viewlet = self._get_viewlet(self.portal)
         self.assertTrue(viewlet[0].available, 'Expect to find an image')
