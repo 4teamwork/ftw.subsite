@@ -19,6 +19,14 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
+        xmlconfig.string(
+            '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
+            '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
+            '</configure>',
+            context=configurationContext)
+
         # Load ZCML
         import ftw.subsite
         xmlconfig.file('configure.zcml', ftw.subsite,
@@ -27,19 +35,20 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         xmlconfig.file('overrides.zcml', ftw.subsite,
                        context=configurationContext)
 
-        import plone.app.portlets
-        xmlconfig.file('configure.zcml', plone.app.portlets,
-                       context=configurationContext)
+        # import plone.app.portlets
+        # xmlconfig.file('configure.zcml', plone.app.portlets,
+        #                context=configurationContext)
 
-        import collective.MockMailHost
-        xmlconfig.file('configure.zcml', collective.MockMailHost,
-                       context=configurationContext)
+        # import collective.MockMailHost
+        # xmlconfig.file('configure.zcml', collective.MockMailHost,
+        #                context=configurationContext)
 
         # installProduct() is *only* necessary for packages outside
         # the Products.* namespace which are also declared as Zope 2 products,
         # using <five:registerPackage /> in ZCML.
         z2.installProduct(app, 'plone.app.portlets')
         z2.installProduct(app, 'ftw.subsite')
+        z2.installProduct(app, 'ftw.simplelayout')
         z2.installProduct(app, 'collective.MockMailHost')
 
     def setUpPloneSite(self, portal):

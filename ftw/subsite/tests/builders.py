@@ -1,10 +1,10 @@
-from ftw.builder.archetypes import ArchetypesBuilder
+from ftw.builder.dexterity import DexterityBuilder
 from ftw.builder import builder_registry
 
 
-class SubsiteBuilder(ArchetypesBuilder):
+class SubsiteBuilder(DexterityBuilder):
 
-    portal_type = 'Subsite'
+    portal_type = 'ftw.subsite.Subsite'
 
     def with_language(self, language_code):
         if 'title' not in self.arguments:

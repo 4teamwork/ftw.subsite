@@ -18,6 +18,7 @@
   <include package=".portlets" />
   <include package=".content" />
   <include package=".upgrades" />
+  <include file="permissions.zcml" />
 
 <include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
 

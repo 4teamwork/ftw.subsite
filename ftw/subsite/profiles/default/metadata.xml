@@ -3,5 +3,6 @@
   <version>1002</version>
     <dependencies>
       <dependency>profile-plone.formwidget.contenttree:default</dependency>
+      <dependency>profile-ftw.simplelayout:default</dependency>
     </dependencies>
 </metadata>
