@@ -1,33 +1,33 @@
-from ftw.testing import browser
-from ftw.testing.pages import Plone
+from ftw.testbrowser import browser
 
 
-class LanguageSwitcher(Plone):
+class LanguageSwitcher():
 
     @property
     def available(self):
-        return browser().find_by_css('#portal-languageselector')
+        return bool(browser.css('#portal-languageselector'))
 
     @property
     def current(self):
-        current_link = browser().find_by_css(
-            '#portal-languageselector .actionMenuHeader a').first
-        return current_link.text.strip()
+        return browser.css(
+            '#portal-languageselector .actionMenuHeader a').first.text
 
     @property
     def language_links(self):
-        return browser().find_by_css(
-            '#portal-languageselector .actionMenuContent a')
+        return browser.css('#portal-languageselector .actionMenuContent a')
 
     @property
     def languages(self, sort=False):
-        return [link.text.strip() for link in self.language_links]
+        return self.language_links.text
 
     def click_language(self, label):
-        label = label.strip()
-        langs = dict([(link.text.strip(), link)
-                      for link in self.language_links])
-        assert label in langs, \
-            'Language "%s" not found in %s' % (label, langs.keys())
-        langs[label].click()
+        browser.find_link_by_text(label).click()
+        return self
+
+    def visit(self, obj):
+        browser.visit(obj)
+        return self
+
+    def visit_portal(self):
+        browser.visit()
         return self
