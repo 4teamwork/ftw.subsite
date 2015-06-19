@@ -8,10 +8,10 @@ class SubsiteBuilder(DexterityBuilder):
 
     def with_language(self, language_code):
         if 'title' not in self.arguments:
-            return self.having(forcelanguage=language_code,
+            return self.having(force_language=language_code,
                                title=language_code)
         else:
-            return self.having(forcelanguage=language_code)
+            return self.having(force_language=language_code)
 
 
 builder_registry.register('subsite', SubsiteBuilder)
