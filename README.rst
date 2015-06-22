@@ -39,10 +39,30 @@ Additional functionality provided by `ftw.subsite`
 Compatibility
 -------------
 
-Plone 4.3
+Plone 4.3 + Dexterity
+
+With ``ftw.subsite`` 2.x only the AT based Subsite content is replaced with a
+Dexterity based Subsite content + ftw.simplelayout default page. Thus the
+Subsite portlet column, column renderer and the teaser portlet are no longer used and will be removed with ``ftw.subsite`` 2.1.0. The ``ftw.subsite`` release 2.0.x will provide a inplace migration.
+
+Note about versions:
+
+This package provides a version.cfg. Please make sure you are using suitable versions of `plone.app.contenttypes` and `plone.app.event`.
+
+Currently it's recommend to use:
+
+- plone.app.contenttypes 1.1b5: This is the latest 1.x release. 1.2.x is for Plone 5 and does not work.
+- plone.app.event: 1.1.x supports Plone 4.3. Newer releases will require plone.app.widget, which als tries to install Plone 5.
 
 .. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg/badge/icon
    :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg
+
+
+
+Plone 4.3
+
+.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.3.x.cfg/badge/icon
+   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.3.x.cfg
 
 Plone 4.2
 
