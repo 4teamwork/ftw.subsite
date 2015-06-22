@@ -21,4 +21,4 @@ class CSSViewlet(ViewletBase):
             return ''
 
     def get_css(self):
-        return self.nav_root.getAdditional_css()
+        return self.nav_root.additional_css

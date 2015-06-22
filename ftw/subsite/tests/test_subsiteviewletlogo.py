@@ -41,9 +41,9 @@ class TestLogoViewlet(TestCase):
         img_src = browser.css('#portal-logo img').first.attrib['src']
         expected_part_image_src = '{0}/@@images/'.format(
             self.subsite.absolute_url())
-        assert (img_src.startswith(expected_part_image_src),
-                'Wrong logo path, expect img src starting with: {0}'.format(
-            expected_part_image_src))
+        assert img_src.startswith(expected_part_image_src), (
+            'Wrong logo path, expect img src starting with: {0}'.format(
+                expected_part_image_src))
 
     def test_component_registered(self):
         self.assertTrue(len(self._get_viewlet()) == 1)

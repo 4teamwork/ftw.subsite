@@ -36,7 +36,8 @@ class ISubsiteSchema(model.Schema):
     additional_css = schema.Text(
         title=_(u'label_additional_css', default=u'Text'),
         description=_(u'help_additional_css', default=u''),
-        required=False
+        required=False,
+        missing_value=''
     )
 
     form.widget(language_references=MultiContentSearchFieldWidget)
