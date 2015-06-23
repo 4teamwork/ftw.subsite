@@ -31,7 +31,7 @@ class SubsiteLogoViewlet(LogoViewlet):
             navigation_root_path = getNavigationRoot(context)
             scale = portal.restrictedTraverse(
                 navigation_root_path + '/@@images')
-            # XXX Use own scale
+
             self.logo_tag = scale.scale('logo', scale="logo").tag()
             self.title = self.context.restrictedTraverse(
                 getNavigationRoot(self.context)).Title()

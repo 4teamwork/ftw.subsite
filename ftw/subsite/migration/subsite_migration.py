@@ -16,6 +16,7 @@ from z3c.relationfield import RelationValue
 from zope.annotation import IAnnotations
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
+from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 
 
 class BuilderSession(object):
@@ -78,8 +79,9 @@ class FtwSubsiteMigrator(ATCTFolderMigrator):
         if old_logo.data == '':
             return
         filename = safe_unicode(old_logo.filename)
+        normalizer = getUtility(IFileNameNormalizer).normalize
         namedblobimage = NamedBlobImage(data=old_logo.data,
-                                        filename=filename)
+                                        filename=normalizer(filename).decode('utf-8'))
         self.new.logo = namedblobimage
 
     def migrate_language_references(self):
@@ -113,14 +115,15 @@ class FtwSubsiteMigrator(ATCTFolderMigrator):
     def create_portlet(self, portlet, manager, type_):
 
         config = IPageConfiguration(self.new)
-
+        normalizer = getUtility(IFileNameNormalizer).normalize
         if type_ == 'teaser':
             block = create(Builder('sl textblock')
                            .within(self.new)
                            .titled(portlet.teasertitle)
                            .having(text=RichTextValue(portlet.teaserdesc),
                                    image=NamedBlobImage(
-                                       filename=portlet.image.filename,
+                                       filename=normalizer(
+                                           portlet.image.filename).decode('utf-8'),
                                        data=portlet.image.data)))
             if portlet.internal_target:
                 teaser = ITeaser(block)
