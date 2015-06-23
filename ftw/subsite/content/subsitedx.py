@@ -29,7 +29,7 @@ class ISubsiteSchema(model.Schema):
 
     logo = NamedBlobImage(
         title=_(u'label_logo', default=u'Logo'),
-        description=_(u'help_additional_css', default=u''),
+        description=_(u'help_logo', default=u''),
         required=False
     )
 

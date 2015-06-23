@@ -39,11 +39,12 @@ Additional functionality provided by `ftw.subsite`
 Compatibility
 -------------
 
-Plone 4.3 + Dexterity
+Plone 4.3 + Dexterity + Migration
 
 With ``ftw.subsite`` 2.x only the AT based Subsite content is replaced with a
 Dexterity based Subsite content + ftw.simplelayout default page. Thus the
-Subsite portlet column, column renderer and the teaser portlet are no longer used and will be removed with ``ftw.subsite`` 2.1.0. The ``ftw.subsite`` release 2.0.x will provide a inplace migration.
+Subsite portlet column, column renderer and the teaser portlet are no longer used and will be removed with ``ftw.subsite`` 2.1.0. The ``ftw.subsite`` release 2.0.x will provide a inplace migration. Be aware only static text portlets and subsite teaser portlets will be migrated. You need to provide your own migration for other portlets.
+The subsite_view will be available in ``ftw.subsite`` 2.0.x and removed in 2.1.x.
 
 Note about versions:
 
@@ -66,8 +67,8 @@ Plone 4.3
 
 Plone 4.2
 
-.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg/badge/icon
-   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.2.x.cfg
+.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.2.x.cfg/badge/icon
+   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.2.x.cfg
 
 **Important**
 
