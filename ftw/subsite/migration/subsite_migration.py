@@ -1,7 +1,6 @@
 from ftw.builder import Builder
 from ftw.builder import builder_registry
 from ftw.builder import create
-from ftw.builder import registry
 from ftw.builder import session
 from ftw.builder.dexterity import DexterityBuilder
 from ftw.simplelayout.behaviors import ITeaser
@@ -29,7 +28,11 @@ session.current_session = BuilderSession()
 class TextBlockBuilder(DexterityBuilder):
     portal_type = 'ftw.simplelayout.TextBlock'
 
-builder_registry.register('sl textblock', TextBlockBuilder)
+try:
+    # Plone reload support
+    builder_registry.register('sl textblock', TextBlockBuilder)
+except ValueError:
+    pass
 
 
 class FtwSubsiteMigrator(ATCTFolderMigrator):
