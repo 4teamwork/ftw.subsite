@@ -4,10 +4,12 @@ from ftw.builder import create
 from ftw.builder import session
 from ftw.builder.dexterity import DexterityBuilder
 from ftw.simplelayout.behaviors import ITeaser
+from ftw.simplelayout.interfaces import IBlockConfiguration
 from ftw.simplelayout.interfaces import IPageConfiguration
 from plone.app.contenttypes.migration.migration import ATCTFolderMigrator
 from plone.app.textfield.value import RichTextValue
 from plone.app.uuid.utils import uuidToObject
+from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 from plone.namedfile.file import NamedBlobImage
 from plone.uuid.interfaces import IUUID
 from Products.CMFPlone.utils import safe_unicode
@@ -16,7 +18,6 @@ from z3c.relationfield import RelationValue
 from zope.annotation import IAnnotations
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 
 
 class BuilderSession(object):
@@ -106,13 +107,13 @@ class FtwSubsiteMigrator(ATCTFolderMigrator):
         for manager in managers:
             for portlet in portlets.get(manager, {}).values():
                 if portlet.__module__ == 'ftw.subsite.portlets.teaserportlet':
-                    self.create_portlet(portlet, manager, 'teaser')
+                    self.create_block(portlet, manager, 'teaser')
                 elif portlet.__module__ == 'plone.portlet.static.static':
-                    self.create_portlet(portlet, manager, 'static')
+                    self.create_block(portlet, manager, 'static')
                 else:
                     pass
 
-    def create_portlet(self, portlet, manager, type_):
+    def create_block(self, portlet, manager, type_):
 
         config = IPageConfiguration(self.new)
         normalizer = getUtility(IFileNameNormalizer).normalize
@@ -125,6 +126,13 @@ class FtwSubsiteMigrator(ATCTFolderMigrator):
                                        filename=normalizer(
                                            portlet.image.filename).decode('utf-8'),
                                        data=portlet.image.data)))
+
+            blockconfig = IBlockConfiguration(block)
+            blockconfigdata = blockconfig.load()
+            blockconfigdata['scale'] = 'large'
+            blockconfigdata['imagefloat'] = 'no-float'
+            blockconfig.store(blockconfigdata)
+
             if portlet.internal_target:
                 teaser = ITeaser(block)
                 target = uuidToObject(portlet.internal_target)
