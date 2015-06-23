@@ -8,16 +8,16 @@ from ftw.simplelayout.behaviors import ITeaser
 from ftw.simplelayout.interfaces import IPageConfiguration
 from plone.app.contenttypes.migration.migration import ATCTFolderMigrator
 from plone.app.textfield.value import RichTextValue
+from plone.app.uuid.utils import uuidToObject
 from plone.namedfile.file import NamedBlobImage
 from plone.uuid.interfaces import IUUID
 from Products.CMFPlone.utils import safe_unicode
 from Products.contentmigration.basemigrator.walker import CatalogWalker
 from z3c.relationfield import RelationValue
-from z3c.relationfield import RelationValue
 from zope.annotation import IAnnotations
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
-from plone.app.uuid.utils import uuidToObject
+
 
 class BuilderSession(object):
     auto_commit = False
