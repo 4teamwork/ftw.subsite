@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <metadata>
     <dependencies>
-      <dependency>profile-plone.collective.z3cform.widgets:default</dependency>
+      <dependency>profile-collective.z3cform.widgets:default</dependency>
       <dependency>profile-ftw.simplelayout:default</dependency>
     </dependencies>
 </metadata>
