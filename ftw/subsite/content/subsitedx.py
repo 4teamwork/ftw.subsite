@@ -34,7 +34,7 @@ class ISubsiteSchema(model.Schema):
     )
 
     additional_css = schema.Text(
-        title=_(u'label_additional_css', default=u'Text'),
+        title=_(u'label_additional_css', default=u'Additional CSS'),
         description=_(u'help_additional_css', default=u''),
         required=False,
         missing_value=''

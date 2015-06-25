@@ -53,7 +53,7 @@ This package provides a version.cfg. Please make sure you are using suitable ver
 Currently it's recommend to use:
 
 - plone.app.contenttypes 1.1b5: This is the latest 1.x release. 1.2.x is for Plone 5 and does not work.
-- plone.app.event: 1.1.x supports Plone 4.3. Newer releases will require plone.app.widget, which als tries to install Plone 5.
+- plone.app.event: 1.1.x supports Plone 4.3. Newer releases will require plone.app.widget, which also tries to install Plone 5.
 
 .. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg/badge/icon
    :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg
