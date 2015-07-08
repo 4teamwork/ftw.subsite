@@ -1,17 +1,15 @@
+from ftw.builder import Builder
+from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.subsite.testing import FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import TEST_USER_PASSWORD
-from plone.testing.z2 import Browser
-from zope.interface import alsoProvides
-import unittest2 as unittest
-import transaction
-from zope.i18n.locales import locales
+from ftw.testbrowser import browsing
 from Products.CMFCore.utils import getToolByName
+from unittest2 import TestCase
+from zope.i18n.locales import locales
+import transaction
 
 
-class TestSubsiteForceLanguage(unittest.TestCase):
+class TestSubsiteForceLanguage(TestCase):
 
     layer = FTW_SUBSITE_FUNCTIONAL_TESTING
 
@@ -27,27 +25,9 @@ class TestSubsiteForceLanguage(unittest.TestCase):
             setUseCombinedLanguageCodes=False,
             # Set this only for better testing ability
             setCookieEverywhere=True)
-
-        #XXX setCookieEverywhere does not work - dont't know why
-
         transaction.commit()
 
-        self.browser = Browser(self.layer['app'])
-        self.browser.handleErrors = False
-
-    def _create_subsite(self, language=None):
-        subsite = self.portal.get(self.portal.invokeFactory(
-            'Subsite',
-            'mysubsite',
-            title="My Subsite"))
-
-        if language:
-            subsite.setForcelanguage(language)
-        transaction.commit()
-
-        return subsite
-
-    def _set_language(self):
+    def _set_language_de(self):
         """This Function is used to set the language of the plone site.
         We need this, because we wan't to make sure that the language is
         inherited when there isn't one forced.
@@ -55,7 +35,7 @@ class TestSubsiteForceLanguage(unittest.TestCase):
         locale = locales.getLocale('de')
         target_language = locale.id.language
 
-        # If we get a territory, we enab le the combined language codes
+        # If we get a territory, we enable the combined language codes
         use_combined = False
         if locale.id.territory:
             use_combined = True
@@ -73,105 +53,67 @@ class TestSubsiteForceLanguage(unittest.TestCase):
             startNeutral=False)
         transaction.commit()
 
-    def _auth(self):
-        self.browser.addHeader('Authorization', 'Basic %s:%s' % (
-            TEST_USER_NAME, TEST_USER_PASSWORD,))
+    @browsing
+    def test_language_plone_root(self, browser):
+        browser.login().visit()
+        # Grap some translated shizzle on the plone root site -
+        # like site actions
+        self.assertEquals(browser.css('#portal-siteactions').text,
+                          ['Site Map Accessibility Contact'])
 
-    def tearDown(self):
-        if 'mysubsite' in self.portal.objectIds():
-            self.portal.manage_delObjects(['mysubsite'])
-            transaction.commit()
+    @browsing
+    def test_inherit_language_from_plone_root(self, browser):
+        subsite = create(Builder('subsite').titled(u'A Subsite'))
+        browser.login().visit(subsite)
+        self.assertEquals(['Site Map Accessibility Contact'],
+                          browser.css('#portal-siteactions').text)
 
-    def test_language_plone_root(self):
-        self._auth()
-        #Should have plone default language 'en'
-        self.browser.open(self.portal.portal_url())
-        link = self.browser.getLink('Site Map')
-        self.assertIn(link.text, 'Site Map')
-
-    def test_force_language_default(self):
-        self._auth()
-        subsite = self._create_subsite()  # No language
-
-        # Plone default - 'en'
-        self.browser.open(subsite.absolute_url())
-        link = self.browser.getLink('Site Map')
-        self.assertIn(link.text, 'Site Map')
-
-    def test_force_language_change(self):
-        self._auth()
-        subsite = self._create_subsite(language='de')
-
+    @browsing
+    def test_change_language_to_de_on_subsite(self, browser):
+        subsite = create(Builder('subsite')
+                         .titled(u'Subsite')
+                         .with_language('de'))
         self.ltool.setLanguageBindings()
         transaction.commit()
 
-        self.browser.open(subsite.absolute_url())
-        link = self.browser.getLink('\xc3\x9cbersicht')
-        self.assertIn(link.text, '\xc3\x9cbersicht')
+        browser.login().visit(subsite)
+        self.assertEquals([u'\xdcbersicht Barrierefreiheit Kontakt'],
+                          browser.css('#portal-siteactions').text,)
 
-    def test_force_language_change_subfolder(self):
-        self._auth()
-        subsite = self._create_subsite(language='de')
-        folder = subsite.get(subsite.invokeFactory('Folder', 'folder'))
-
+    @browsing
+    def test_language_changed_to_de_also_on_subsite_subcontent(self, browser):
+        subsite = create(Builder('subsite')
+                         .titled(u'Subsite')
+                         .with_language('de'))
+        folder = create(Builder('folder').titled(u'A Folder').within(subsite))
         self.ltool.setLanguageBindings()
         transaction.commit()
 
-        self.browser.open(folder.absolute_url())
-        link = self.browser.getLink('\xc3\x9cbersicht')
-        self.assertIn(link.text, '\xc3\x9cbersicht')
+        browser.login().visit(folder)
+        self.assertEquals([u'\xdcbersicht Barrierefreiheit Kontakt'],
+                          browser.css('#portal-siteactions').text)
 
-    def test_force_language_change_subitem(self):
-        self._auth()
-        subsite = self._create_subsite(language='de')
-        doc = subsite.get(subsite.invokeFactory('Document', 'document'))
-
-        self.ltool.setLanguageBindings()
-        transaction.commit()
-
-        self.browser.open(doc.absolute_url())
-        link = self.browser.getLink('\xc3\x9cbersicht')
-        self.assertIn(link.text, '\xc3\x9cbersicht')
-
-    def test_force_language_nav_root(self):
-        # If there is a navigation root, which does not provide ISubsite
-        # fallback to plone default
-        folder = self.portal.get(self.portal.invokeFactory('Folder', 'folder'))
-        alsoProvides(folder, INavigationRoot)
-        transaction.commit()
-
-        self.browser.open(folder.absolute_url())
-        link = self.browser.getLink('Site Map')
-        self.assertIn(link.text, 'Site Map')
-
-    def test_language_inherited(self):
-        """This test checks if the language is inherited correctly, if no
-        language is forced on the subsite.
-        """
-        self._set_language()
-        subsite = self._create_subsite(language='')
-        self.browser.open(subsite.absolute_url())
-        self.assertIn('Anmelden', self.browser.contents)
+    @browsing
+    def test_language_inherited_on_subcontent_of_subsite(self, browser):
+        self._set_language_de()
+        subsite = create(Builder('subsite').titled(u'Subsite'))
+        folder = create(Builder('folder').within(subsite))
+        browser.login().visit(folder)
+        self.assertEquals([u'\xdcbersicht Barrierefreiheit Kontakt'],
+                          browser.css('#portal-siteactions').text)
 
 
-class TestNegotiatorSpecialCase(unittest.TestCase):
+class TestNegotiatorSpecialCase(TestCase):
 
     # Do not setup ftw.subsite to test if the customized negotiator behaves
     # normal
     layer = FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
 
-    def setUp(self):
-        self.portal = self.layer['portal']
-
-        self.browser = Browser(self.layer['app'])
-        self.browser.handleErrors = False
-
-        self.browser.addHeader('Authorization', 'Basic %s:%s' % (
-            TEST_USER_NAME, TEST_USER_PASSWORD,))
-
-    def test_subsitelayer_not_available(self):
+    @browsing
+    def test_subsitelayer_not_available(self, browser):
         # The Subsite browserlayer is not available, so it should behave like
         # Plone default
-        self.browser.open(self.portal.portal_url())
-        link = self.browser.getLink('Site Map')
-        self.assertIn(link.text, 'Site Map')
+        folder = create(Builder('folder').titled(u'Subsite'))
+        browser.login().visit(folder)
+        self.assertEquals(['Site Map Accessibility Contact'],
+                          browser.css('#portal-siteactions').text)

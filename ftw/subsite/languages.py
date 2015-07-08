@@ -27,7 +27,6 @@ def inherit_languages(context, request):
     return getMultiAdapter((parent, request), ILanguages)
 
 
-
 class SubsiteLanguages(object):
     implements(ILanguages)
     adapts(ISubsite, Interface)
@@ -37,7 +36,7 @@ class SubsiteLanguages(object):
         self.request = request
 
     def get_current_language(self):
-        language_code = self.context.getForcelanguage()
+        language_code = self.context.force_language
         return {'url': self.context.absolute_url(),
                 'title': translate_language(self.context, language_code),
                 'code': language_code}
@@ -45,26 +44,26 @@ class SubsiteLanguages(object):
     def get_related_languages(self):
         results = []
 
-        for subsite in self.context.getLanguage_references():
-            lang_code = subsite.getForcelanguage()
+        for relation in self.context.language_references:
+            subsite = relation.to_object
+            lang_code = subsite.force_language
             if not lang_code:
                 continue
 
             results.append({
-                    'url': subsite.absolute_url(),
-                    'title': translate_language(self.context, lang_code),
-                    'code': lang_code})
+                'url': subsite.absolute_url(),
+                'title': translate_language(self.context, lang_code),
+                'code': lang_code})
 
-        if self.context.showLinkToSiteInLanguageChooser():
+        if self.context.link_site_in_languagechooser:
             portal_url = getToolByName(self.context, 'portal_url')
             ltool = getToolByName(self.context, 'portal_languages')
             lang_code = ltool.getDefaultLanguage()
 
             results.append({
-                    'url': portal_url(),
-                    'title': translate_language(self.context, lang_code),
-                    'code': lang_code})
-
+                'url': portal_url(),
+                'title': translate_language(self.context, lang_code),
+                'code': lang_code})
 
         results.sort(key=lambda item: item.get('title'))
         return results
@@ -91,17 +90,17 @@ class PloneSiteLanguages(object):
 
         for brain in catalog(object_provides=ISubsite.__identifier__):
             subsite = brain.getObject()
-            if not subsite.showLinkToSiteInLanguageChooser():
+            if not subsite.link_site_in_languagechooser:
                 continue
 
-            lang_code = subsite.getForcelanguage()
+            lang_code = subsite.force_language
             if not lang_code:
                 continue
 
             results.append({
-                    'url': subsite.absolute_url(),
-                    'title': translate_language(self.context, lang_code),
-                    'code': lang_code})
+                'url': subsite.absolute_url(),
+                'title': translate_language(self.context, lang_code),
+                'code': lang_code})
 
         results.sort(key=lambda item: item.get('title'))
         return results

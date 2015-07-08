@@ -1,8 +1,7 @@
-from plone.app.layout.viewlets.common import LogoViewlet
 from plone.app.layout.navigation.root import getNavigationRoot
-from borg.localrole.interfaces import IFactoryTempFolder
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.app.layout.viewlets.common import LogoViewlet
 from Products.CMFCore.interfaces._content import IContentish
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SubsiteLogoViewlet(LogoViewlet):
@@ -22,11 +21,9 @@ class SubsiteLogoViewlet(LogoViewlet):
         portal = self.portal_state.portal()
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
-        subsite_logo = getattr(self.context, 'getLogo', None)
-        parent = self.context.aq_inner.aq_parent
-        in_factory = IFactoryTempFolder.providedBy(parent)
+        subsite_logo = getattr(self.context, 'logo', None)
 
-        if subsite_logo and subsite_logo() and not in_factory:
+        if subsite_logo and subsite_logo.data:
             # we are in a subsite
             context = self.context
             if not IContentish.providedBy(context):
@@ -34,7 +31,7 @@ class SubsiteLogoViewlet(LogoViewlet):
             navigation_root_path = getNavigationRoot(context)
             scale = portal.restrictedTraverse(
                 navigation_root_path + '/@@images')
-            # XXX Use own scale
+
             self.logo_tag = scale.scale('logo', scale="logo").tag()
             self.title = self.context.restrictedTraverse(
                 getNavigationRoot(self.context)).Title()

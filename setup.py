@@ -10,25 +10,27 @@ tests_require = [
     'plone.app.portlets',
     'plone.app.testing',
     'pyquery',
+    'ftw.testbrowser',
+    'ftw.builder',
     ]
 
 setup(name='ftw.subsite',
       version=version,
       description="",
       long_description=open('README.rst').read() + '\n' +
-          open(os.path.join('docs', 'HISTORY.txt')).read(),
+      open(os.path.join('docs', 'HISTORY.txt')).read(),
 
       # Get more strings from
       # http://www.python.org/pypi?%3Aaction=list_classifiers
 
       classifiers=[
-        'Framework :: Plone',
-        'Framework :: Plone :: 4.1',
-        'Framework :: Plone :: 4.2',
-        'Framework :: Plone :: 4.3',
-        'Programming Language :: Python',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
+          'Framework :: Plone',
+          'Framework :: Plone :: 4.1',
+          'Framework :: Plone :: 4.2',
+          'Framework :: Plone :: 4.3',
+          'Programming Language :: Python',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+      ],
 
       keywords='ftw subsite',
       author='4teamwork AG',
@@ -42,12 +44,23 @@ setup(name='ftw.subsite',
       zip_safe=False,
 
       install_requires=[
-        'ftw.upgrade',
-        'plone.formwidget.contenttree',
-        'plone.formwidget.namedfile',
-        'plone.namedfile',
-        'setuptools',
-        ],
+          'ftw.upgrade>1.14.0',
+          'plone.formwidget.contenttree',
+          'plone.formwidget.namedfile',
+          'plone.namedfile',
+          'setuptools',
+          'plone.app.dexterity',
+          'plone.directives.form',
+          'plone.app.relationfield',
+          'plone.autoform',
+          'plone.behavior',
+          'ftw.simplelayout [contenttypes]',
+          'collective.z3cform.widgets',
+          'Products.contentmigration',
+          'plone.app.contenttypes<1.2b, >1.1b',
+          'plone.app.event',
+          'ftw.builder',
+      ],
 
       tests_require=tests_require,
       extras_require={'tests': tests_require},

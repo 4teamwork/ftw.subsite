@@ -1,28 +1,3 @@
-#content-core .subsiteColumns .column {
-    width: 23.5%;
-    float: left;
-    padding-right: 2%;
-}
-.subsiteColumns #subsite-column-4.column,
-.subsiteColumns #subsite-column-6.column {
-  padding-right: 0;
-}
-
-.subsiteColumns .column img {
-    max-width:100%;
-}
-.subsiteColumns #subsite-column-5.column,
-.subsiteColumns #subsite-column-6.column {
-  width:49%;
-}
-.subsiteColumns #subsite-column-7.column {
-  display: none; /* hide this column, its for special themes */
-}
-
-.column dl dd {
-  margin: 0;
-}
-
 #banner-image {
   position: relative;
   clear: both;

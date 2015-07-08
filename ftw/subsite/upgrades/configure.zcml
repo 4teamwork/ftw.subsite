@@ -24,4 +24,9 @@
         directory="profiles/1002"
         />
 
+    <upgrade-step:directory
+        profile="ftw.subsite:default"
+        directory="."
+    />
+
 </configure>

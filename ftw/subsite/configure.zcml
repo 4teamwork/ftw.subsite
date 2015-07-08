@@ -17,7 +17,8 @@
   <include package=".viewlets" />
   <include package=".portlets" />
   <include package=".content" />
-  <include package=".upgrades" />
+
+  <include file="permissions.zcml" />
 
 <include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
 
@@ -32,11 +33,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
- <subscriber
-      for=".interfaces.ISubsite
-           Products.Archetypes.interfaces.IObjectInitializedEvent"
-      handler=".handlers.block_parent_portlets" />
-
+  <include package=".upgrades" />
 
     <utility
         provides="zope.schema.interfaces.IVocabularyFactory"
