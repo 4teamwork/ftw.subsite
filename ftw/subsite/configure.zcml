@@ -20,7 +20,8 @@
 
   <include file="permissions.zcml" />
 
-<include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
+  <include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
+  <include file="resources.zcml" zcml:condition="installed ftw.theming" />
 
   <i18n:registerTranslations directory="locales" />
 

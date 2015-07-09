@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:theme="http://namespaces.zope.org/ftw.theming"
+    i18n_domain="ftw.subsite">
+
+    <include package="ftw.theming" file="meta.zcml" />
+
+    <theme:resources profile="ftw.subsite:default" slot="addon">
+        <theme:scss file="browser/ressources/integration.theme.scss" />
+    </theme:resources>
+
+</configure>
