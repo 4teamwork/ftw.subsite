@@ -1,9 +1,7 @@
-from collective.z3cform.widgets.multicontent_search_widget import (
-    MultiContentSearchFieldWidget)
 from ftw.subsite import _
 from ftw.subsite.interfaces import ISubsite
+from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.content import Container
 from plone.formwidget.contenttree import ObjPathSourceBinder
@@ -15,6 +13,21 @@ from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import implements
+
+
+class SubsiteLanguagObjPathSourceBinder(ObjPathSourceBinder):
+
+    def __init__(self):
+        super(SubsiteLanguagObjPathSourceBinder, self).__init__(
+            navigation_tree_query={},
+            portal_type='ftw.subsite.Subsite')
+
+    def __call__(self, context):
+        portal = api.portal.get()
+        portal_path = '/'.join(portal.getPhysicalPath())
+        self.navigation_tree_query['path'] = {
+            'query': portal_path}
+        return super(SubsiteLanguagObjPathSourceBinder, self).__call__(context)
 
 
 class ISubsiteSchema(model.Schema):
@@ -40,14 +53,12 @@ class ISubsiteSchema(model.Schema):
         missing_value=''
     )
 
-    form.widget(language_references=MultiContentSearchFieldWidget)
     language_references = RelationList(
         title=_(u'label_language_references', default=u'Languages'),
         default=[],
         missing_value=[],
         value_type=RelationChoice(title=u'Related Subsites',
-                                  source=ObjPathSourceBinder(
-                                      object_provides=ISubsite.__identifier__)),
+                                  source=SubsiteLanguagObjPathSourceBinder()),
 
         required=False,
         description=_(u'help_language_references',
