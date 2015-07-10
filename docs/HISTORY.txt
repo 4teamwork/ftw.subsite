@@ -4,6 +4,9 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
+- Add ftw.theming integration scss (Currently only a Icon).
+  [mathias.leimgruber]
+
 - Implement Dexterity based subsite content.
   [mathias.leimgruber]
 
