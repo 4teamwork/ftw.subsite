@@ -4,6 +4,10 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
+- Remove ISubsiteLayer from subsite.logo viewlet. This allows us to register
+  a more specific subsite.logo viewlet.
+  [mathias.leimgruber]
+
 - Add ftw.theming integration scss (Currently only a Icon).
   [mathias.leimgruber]
 
