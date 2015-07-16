@@ -2,5 +2,6 @@
 <object name="portal_css" meta_type="Stylesheets Registry" autogroup="False">
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="True" id="++resource++ftw.subsite-ressources/subsite.css" media="all"
-    rel="stylesheet" rendering="import"/>
+    expression="not:request/HTTP_X_FTW_THEMING|nothing"
+    rel="stylesheet" rendering="link"/>
 </object>
