@@ -38,6 +38,7 @@
         <element value="plone.app.content.interfaces.INameFromTitle" />
         <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
         <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
+        <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
     </property>
 
     <!-- View information -->
