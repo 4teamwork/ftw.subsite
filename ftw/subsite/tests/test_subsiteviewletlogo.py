@@ -23,20 +23,6 @@ class TestLogoViewlet(TestCase):
 
         self.subsite = create(Builder('subsite').titled(u'MySubsite'))
 
-    def _get_viewlet(self):
-        alsoProvides(self.subsite.REQUEST, IFtwSubsiteLayer)
-        view = SubsiteView(self.subsite, self.subsite.REQUEST)
-        manager_name = 'plone.portalheader'
-        manager = queryMultiAdapter(
-            (self.subsite, self.subsite.REQUEST, view),
-            IViewletManager,
-            manager_name)
-        self.failUnless(manager)
-        # Set up viewlets
-        manager.update()
-        name = 'subsite.logo'
-        return [v for v in manager.viewlets if v.__name__ == name]
-
     def assert_subsite_logo_src(self, browser):
         img_src = browser.css('#portal-logo img').first.attrib['src']
         expected_part_image_src = '{0}/@@images/'.format(
@@ -44,9 +30,6 @@ class TestLogoViewlet(TestCase):
         assert img_src.startswith(expected_part_image_src), (
             'Wrong logo path, expect img src starting with: {0}'.format(
                 expected_part_image_src))
-
-    def test_component_registered(self):
-        self.assertTrue(len(self._get_viewlet()) == 1)
 
     @browsing
     def test_without_logo(self, browser):
