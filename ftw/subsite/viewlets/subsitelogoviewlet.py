@@ -32,12 +32,14 @@ class SubsiteLogoViewlet(LogoViewlet):
             scale = portal.restrictedTraverse(
                 navigation_root_path + '/@@images')
 
-            self.logo_tag = scale.scale('logo', scale="logo").tag()
             self.title = self.context.restrictedTraverse(
                 getNavigationRoot(self.context)).Title()
+            self.logo_tag = scale.scale(
+                'logo', scale="logo").tag(alt=self.title)
             self.is_subsitelogo = True
         else:
             # standard plone logo
             logoName = portal.restrictedTraverse('base_properties').logoName
-            self.logo_tag = portal.restrictedTraverse(logoName).tag()
+            image = portal.restrictedTraverse(logoName)
             self.title = self.portal_state.portal_title()
+            self.logo_tag = image.tag(alt=self.title)
