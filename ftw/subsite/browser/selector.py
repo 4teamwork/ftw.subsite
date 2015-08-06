@@ -12,14 +12,15 @@ class Languages(BrowserView):
         langs = getMultiAdapter((self.context, self.request), ILanguages)
         return bool(langs.get_related_languages())
 
-
-class LanguageSelector(common.ViewletBase):
-    implements(IViewlet)
-
     def current(self):
         langs = getMultiAdapter((self.context, self.request), ILanguages)
         return langs.get_current_language()
 
+
     def languages(self):
         langs = getMultiAdapter((self.context, self.request), ILanguages)
         return langs.get_related_languages()
+
+
+class LanguageSelector(common.ViewletBase, Languages):
+    implements(IViewlet)

@@ -4,6 +4,9 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
+- Make current language and list of possible languages accessable thru browserview.
+  [mathias.leimgruber]
+
 - Add ftw.theming expression to subsite.css.
   [mathias.leimgruber]
 

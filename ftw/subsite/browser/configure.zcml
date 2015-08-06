@@ -45,7 +45,7 @@
       name="subsite-languages"
       class=".selector.Languages"
       permission="zope2.View"
-      allowed_attributes="available"
+      allowed_attributes="available current languages"
       />
 
   <browser:viewlet
