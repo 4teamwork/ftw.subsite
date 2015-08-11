@@ -41,5 +41,7 @@ class SubsiteLogoViewlet(LogoViewlet):
         else:
             # standard plone logo
             logoName = portal.restrictedTraverse('base_properties').logoName
-            self.logo_tag = portal.restrictedTraverse(logoName).tag()
+            logo_alt_text = portal.getProperty('logo_alt_text', '')
+            self.logo_tag = portal.restrictedTraverse(logoName).tag(
+                alt=logo_alt_text, title='')
             self.title = self.portal_state.portal_title()

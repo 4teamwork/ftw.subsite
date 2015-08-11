@@ -135,3 +135,12 @@ class TestLogoViewlet(TestCase):
             u'My alt text',
             browser.css('#portal-logo img').first.attrib['alt'])
 
+        # Make sure the image has an alt text for non-subsites.
+        self.portal._setProperty('logo_alt_text', 'Plone Logo Alt Text',
+                                 'string')
+        transaction.commit()
+        browser.visit(self.portal)
+        self.assertEqual(
+            u'Plone Logo Alt Text',
+            browser.css('#portal-logo img').first.attrib['alt'])
+
