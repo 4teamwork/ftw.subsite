@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-25 12:16+0000\n"
+"POT-Creation-Date: 2015-08-11 10:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr "Name"
 msgid "Shows the given infos on the front-page."
 msgstr "Zeigt die eingegebenen Informationen auf der Subsite an."
 
-#: ./ftw/subsite/content/subsitedx.py:25
+#: ./ftw/subsite/content/subsitedx.py:38
 #: ./ftw/subsite/profiles/default/types/Subsite.xml
 #: ./ftw/subsite/profiles/default/types/ftw.subsite.Subsite.xml
 msgid "Subsite"
@@ -95,18 +95,18 @@ msgid "help_Sender"
 msgstr ""
 
 #: ./ftw/subsite/content/subsite.py:39
-#: ./ftw/subsite/content/subsitedx.py:38
+#: ./ftw/subsite/content/subsitedx.py:59
 msgid "help_additional_css"
 msgstr ""
 
 #. Default: "The Subsite and it's content will be delivered in the choosen language"
 #: ./ftw/subsite/content/subsite.py:74
-#: ./ftw/subsite/content/subsitedx.py:68
+#: ./ftw/subsite/content/subsitedx.py:87
 msgid "help_forcelanguage"
 msgstr "Die aktuelle Subsite und deren Inhalt werden in der angegebenen Sprache angezeigt. Alle anderen Einstellungen werden ignoriert."
 
 #: ./ftw/subsite/content/subsite.py:82
-#: ./ftw/subsite/content/subsitedx.py:77
+#: ./ftw/subsite/content/subsitedx.py:96
 msgid "help_fromname"
 msgstr ""
 
@@ -117,12 +117,12 @@ msgstr "Der angegebene Bildtitel wird als Alternativtext verwendet."
 
 #. Default: "The language switch will only be displayed, if the chosen Subsite(s)has a value in the forcelangage field"
 #: ./ftw/subsite/content/subsite.py:53
-#: ./ftw/subsite/content/subsitedx.py:53
+#: ./ftw/subsite/content/subsitedx.py:72
 msgid "help_language_references"
 msgstr "Die Sprachsteuerung wird nur angezeigt, falls die referenzierten Subsites ein Sprache definiert haben."
 
 #: ./ftw/subsite/content/subsite.py:24
-#: ./ftw/subsite/content/subsitedx.py:32
+#: ./ftw/subsite/content/subsitedx.py:46
 msgid "help_logo"
 msgstr ""
 
@@ -153,7 +153,7 @@ msgstr "Standart Sprache übernehmen"
 
 #. Default: "Additional CSS"
 #: ./ftw/subsite/content/subsite.py:37
-#: ./ftw/subsite/content/subsitedx.py:37
+#: ./ftw/subsite/content/subsitedx.py:58
 msgid "label_additional_css"
 msgstr "zusätzliches CSS"
 
@@ -164,19 +164,19 @@ msgstr "Abbrechen"
 
 #. Default: "Subsite language"
 #: ./ftw/subsite/content/subsite.py:73
-#: ./ftw/subsite/content/subsitedx.py:67
+#: ./ftw/subsite/content/subsitedx.py:86
 msgid "label_forcelanguage"
 msgstr "Sprache für die Subsite festlegen"
 
 #. Default: "Email Senderaddress"
 #: ./ftw/subsite/content/subsite.py:87
-#: ./ftw/subsite/content/subsitedx.py:81
+#: ./ftw/subsite/content/subsitedx.py:100
 msgid "label_fromemail"
 msgstr "Absender E-Mail"
 
 #. Default: "Email Sendername"
 #: ./ftw/subsite/content/subsite.py:81
-#: ./ftw/subsite/content/subsitedx.py:76
+#: ./ftw/subsite/content/subsitedx.py:95
 msgid "label_fromname"
 msgstr "Absender Name"
 
@@ -187,20 +187,25 @@ msgstr "Bildtitel"
 
 #. Default: "Languages"
 #: ./ftw/subsite/content/subsite.py:51
-#: ./ftw/subsite/content/subsitedx.py:45
+#: ./ftw/subsite/content/subsitedx.py:65
 msgid "label_language_references"
 msgstr "Auf andere Sprachen verlinken"
 
 #. Default: "Link Plone Site in language chooser"
-#: ./ftw/subsite/content/subsitedx.py:61
+#: ./ftw/subsite/content/subsitedx.py:80
 msgid "label_link_site_in_languagechooser"
 msgstr "Plone Seite in Sprachauswahl anzeigen."
 
 #. Default: "Logo"
 #: ./ftw/subsite/content/subsite.py:22
-#: ./ftw/subsite/content/subsitedx.py:31
+#: ./ftw/subsite/content/subsitedx.py:45
 msgid "label_logo"
 msgstr "Logo"
+
+#. Default: "Alternative text of the logo"
+#: ./ftw/subsite/content/subsitedx.py:51
+msgid "label_logo_alt_text"
+msgstr "Alternativer Text des Logos"
 
 #. Default: "Message"
 #: ./ftw/subsite/browser/contact.py:30

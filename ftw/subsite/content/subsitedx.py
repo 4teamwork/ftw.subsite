@@ -36,14 +36,22 @@ class ISubsiteSchema(model.Schema):
     directives.fieldset(
         'subsite',
         label=_(u'Subsite'),
-        fields=('logo', 'additional_css', 'language_references',
-                'link_site_in_languagechooser', 'force_language')
+        fields=('logo', 'logo_alt_text', 'additional_css',
+                'language_references', 'link_site_in_languagechooser',
+                'force_language')
     )
 
     logo = NamedBlobImage(
         title=_(u'label_logo', default=u'Logo'),
         description=_(u'help_logo', default=u''),
         required=False
+    )
+
+    logo_alt_text = schema.TextLine(
+        title=_(u'label_logo_alt_text',
+                default=u'Alternative text of the logo'),
+        required=False,
+        default=u'',
     )
 
     additional_css = schema.Text(

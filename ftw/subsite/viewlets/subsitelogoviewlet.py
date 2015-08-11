@@ -22,6 +22,7 @@ class SubsiteLogoViewlet(LogoViewlet):
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
         subsite_logo = getattr(self.context, 'logo', None)
+        subsite_logo_alt_text = getattr(self.context, 'logo_alt_text', None)
 
         if subsite_logo and subsite_logo.data:
             # we are in a subsite
@@ -32,7 +33,8 @@ class SubsiteLogoViewlet(LogoViewlet):
             scale = portal.restrictedTraverse(
                 navigation_root_path + '/@@images')
 
-            self.logo_tag = scale.scale('logo', scale="logo").tag()
+            self.logo_tag = scale.scale('logo', scale="logo").tag(
+                alt=subsite_logo_alt_text, title=None)
             self.title = self.context.restrictedTraverse(
                 getNavigationRoot(self.context)).Title()
             self.is_subsitelogo = True
