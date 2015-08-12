@@ -4,8 +4,8 @@ from ftw.subsite.browser.subsiteview import SubsiteView
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from plone.namedfile.file import NamedBlobImage
 from plone.app.testing import TEST_USER_ID
+from plone.namedfile.file import NamedBlobImage
 from unittest2 import TestCase
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
@@ -37,6 +37,13 @@ class TestLogoViewlet(TestCase):
         name = 'subsite.logo'
         return [v for v in manager.viewlets if v.__name__ == name]
 
+    def _add_logo(self, subsite):
+        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
+        file_.seek(0)
+        subsite.logo = NamedBlobImage(data=file_.read(),
+                                      filename=u'logo.png')
+        transaction.commit()
+
     def assert_subsite_logo_src(self, browser):
         img_src = browser.css('#portal-logo img').first.attrib['src']
         expected_part_image_src = '{0}/@@images/'.format(
@@ -64,11 +71,7 @@ class TestLogoViewlet(TestCase):
 
     @browsing
     def test_with_logo(self, browser):
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        file_.seek(0)
-        self.subsite.logo = NamedBlobImage(data=file_.read(),
-                                           filename=u'logo.png')
-        transaction.commit()
+        self._add_logo(self.subsite)
 
         browser.login().visit(self.subsite)
 
@@ -83,11 +86,7 @@ class TestLogoViewlet(TestCase):
 
     @browsing
     def test_with_logo_subcontent(self, browser):
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        file_.seek(0)
-        self.subsite.logo = NamedBlobImage(data=file_.read(),
-                                           filename=u'logo.png')
-        transaction.commit()
+        self._add_logo(self.subsite)
 
         subfolder = create(Builder('folder').within(self.subsite))
         subsubfolder = create(Builder('folder').within(subfolder))
@@ -97,13 +96,51 @@ class TestLogoViewlet(TestCase):
 
     @browsing
     def test_logo_in_portal_tools(self, browser):
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        file_.seek(0)
-        self.subsite.logo = NamedBlobImage(data=file_.read(),
-                                           filename=u'logo.png')
-        transaction.commit()
+        self._add_logo(self.subsite)
+
         browser.login().visit(self.subsite,
                               view='mail_password',
                               data={'userid': TEST_USER_ID})
 
         self.assert_subsite_logo_src(browser)
+
+    @browsing
+    def test_logo_img_tag_has_no_title_attribute(self, browser):
+        self._add_logo(self.subsite)
+
+        browser.login().visit(self.subsite)
+
+        self.assertIsNone(
+            browser.css('#portal-logo img').first.attrib.get('title', None))
+
+    @browsing
+    def test_logo_img_tag_has_no_alt_attribute_if_empty(self, browser):
+        self._add_logo(self.subsite)
+
+        browser.login().visit(self.subsite)
+
+        self.assertIsNone(
+            browser.css('#portal-logo img').first.attrib.get('alt', None))
+
+    @browsing
+    def test_logo_img_tag_has_alt_attribute_if_filled(self, browser):
+        subsite = create(Builder('subsite')
+                         .titled(u'My Subsite')
+                         .having(logo_alt_text=u'My alt text'))
+        self._add_logo(subsite)
+
+        browser.login().visit(subsite)
+
+        self.assertEqual(
+            u'My alt text',
+            browser.css('#portal-logo img').first.attrib['alt'])
+
+        # Make sure the image has an alt text for non-subsites.
+        self.portal._setProperty('logo_alt_text', 'Plone Logo Alt Text',
+                                 'string')
+        transaction.commit()
+        browser.visit(self.portal)
+        self.assertEqual(
+            u'Plone Logo Alt Text',
+            browser.css('#portal-logo img').first.attrib['alt'])
+
