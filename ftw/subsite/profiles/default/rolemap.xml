@@ -3,6 +3,7 @@
   <permissions>
     <permission name="ftw.subsite: Add Subsite" acquire="True">
       <role name="Manager" />
+      <role name="Site Administrator"/>
       <role name="Contributor" />
     </permission>
   </permissions>
