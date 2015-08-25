@@ -3,7 +3,7 @@ from ftw.builder import builder_registry
 from ftw.builder import create
 from ftw.builder import session
 from ftw.builder.dexterity import DexterityBuilder
-from ftw.simplelayout.behaviors import ITeaser
+from ftw.simplelayout.contenttypes.behaviors import ITeaser
 from ftw.simplelayout.interfaces import IBlockConfiguration
 from ftw.simplelayout.interfaces import IPageConfiguration
 from plone.app.contenttypes.migration.migration import ATCTFolderMigrator
