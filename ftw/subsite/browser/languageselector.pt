@@ -1,6 +1,9 @@
 <div id="portal-languageselector-wrapper"
+     i18n:domain="ftw.subsite"
      tal:define="languages view/languages"
      tal:condition="languages">
+
+    <h2 i18n:translate="" class="hiddenStructure">Language switch</h2>
 
     <dl id="portal-languageselector" class="actionMenu deactivated">
 
