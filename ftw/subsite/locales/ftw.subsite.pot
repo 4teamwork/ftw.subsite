@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-11 10:09+0000\n"
+"POT-Creation-Date: 2015-09-08 12:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,10 @@ msgstr ""
 
 #: ./ftw/subsite/portlets/teaserportlet.py:31
 msgid "Internal Target"
+msgstr ""
+
+#: ./ftw/subsite/browser/languageselector.pt:6
+msgid "Language switch"
 msgstr ""
 
 #: ./ftw/subsite/content/subsite.py:65
