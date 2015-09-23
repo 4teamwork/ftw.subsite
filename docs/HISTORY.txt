@@ -4,6 +4,9 @@ Changelog
 2.0.0 (unreleased)
 ------------------
 
+- Prevent traversing to a not accessible navigation root.
+  [mathias.leimgruber]
+
 - Make current language and list of possible languages accessable thru browserview.
   [mathias.leimgruber]
 
