@@ -202,7 +202,7 @@ class TestBannerViewlet(TestCase):
         bannerfolder = self._setup_bannerfolder(self.portal)
         subfolder = bannerfolder.get(
             bannerfolder.invokeFactory('Folder', 'subfolder'))
-        subfolder.invokeFactory('Image', 'imagFae1')
+        subfolder.invokeFactory('Image', 'image1')
 
         viewlet = self._get_viewlet(self.portal)
         self.assertTrue(

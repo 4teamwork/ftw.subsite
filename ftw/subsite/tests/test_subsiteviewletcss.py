@@ -1,8 +1,11 @@
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
+from ftw.subsite.viewlets.cssviewlet import CSSViewlet
 from ftw.testbrowser import browsing
+from plone.app.testing import login
 from unittest2 import TestCase
+from zope.publisher.browser import BrowserView
 
 
 class TestSubsite(TestCase):
@@ -37,3 +40,19 @@ class TestSubsite(TestCase):
         self.assertIn(self.styles,
                       browser.contents,
                       'Did not found the substes styles.')
+
+    def test_do_not_fail_if_nav_root_is_not_traversable(self):
+        self.portal.portal_workflow.setChainForPortalTypes(
+            ('Folder', 'ftw.subsite.Subsite'),
+            'simple_publication_workflow')
+
+        subsite = create(Builder('subsite').titled(u'MySubsite'))
+        subfolder = create(Builder('folder').within(subsite))
+        user = create(Builder('user').with_roles('Manager', on=subfolder))
+
+        login(self.portal, user.getId())
+        viewlet = CSSViewlet(subfolder,
+                             subfolder.REQUEST,
+                             BrowserView(subfolder, subfolder.REQUEST))
+
+        self.assertEquals('', viewlet.render())

@@ -28,7 +28,7 @@ class Banner(common.ViewletBase):
 
         return True
 
-    # @instance.memoize
+    @instance.memoize
     def get_banners(self):
         catalog = getToolByName(self.context, 'portal_catalog')
         bannerfolder = self.get_banner_folder()
