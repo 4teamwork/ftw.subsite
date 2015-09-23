@@ -54,12 +54,13 @@ class Banner(common.ViewletBase):
 
     def get_banner_folder(self):
         registry = getUtility(IRegistry)
-        nav_context = self.context.restrictedTraverse(
-            getNavigationRoot(self.context)).aq_explicit
 
         name = registry.get('ftw.subsite.bannerfoldername', 'banners')
         bannerfolder = None
         try:
+            nav_context = self.context.restrictedTraverse(
+                getNavigationRoot(self.context)).aq_explicit
+
             bannerfolder = nav_context.restrictedTraverse(name.encode('utf-8'))
         except (KeyError, AttributeError):
             return None

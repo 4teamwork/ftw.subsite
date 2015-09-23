@@ -2,6 +2,7 @@ from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
+from plone.app.testing import login
 from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
 from unittest2 import TestCase
@@ -12,6 +13,7 @@ from zope.interface import alsoProvides
 from zope.publisher.browser import BrowserView
 from zope.viewlet.interfaces import IViewletManager
 import os
+
 
 class TestBannerViewlet(TestCase):
 
@@ -213,3 +215,16 @@ class TestBannerViewlet(TestCase):
             viewlet[0].available,
             'Expected viewlet to be available on folder_contents,'
             ' since root_only is disabled.')
+
+    def test_do_not_fail_if_nav_root_is_not_traversable(self):
+        self.portal.portal_workflow.setChainForPortalTypes(
+            ('Folder', 'ftw.subsite.Subsite'),
+            'simple_publication_workflow')
+
+        self._setup_bannerfolder(self.portal)
+        subsite = create(Builder('subsite').titled(u'MySubsite'))
+        subfolder = create(Builder('folder').within(subsite))
+        user = create(Builder('user').with_roles('Manager', on=subfolder))
+
+        login(self.portal, user.getId())
+        self.assertFalse(self._get_viewlet(subfolder)[0].available)
