@@ -59,6 +59,7 @@ setup(name='ftw.subsite',
           'plone.app.contenttypes<1.2b, >1.1b',
           'plone.app.event',
           'ftw.builder',
+          'Plone',
       ],
 
       tests_require=tests_require,
