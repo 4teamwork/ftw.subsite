@@ -47,6 +47,7 @@ setup(name='ftw.subsite',
         'plone.formwidget.namedfile',
         'plone.namedfile',
         'setuptools',
+        'Plone',
         ],
 
       tests_require=tests_require,
