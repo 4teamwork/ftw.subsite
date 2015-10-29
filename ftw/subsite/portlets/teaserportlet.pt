@@ -6,7 +6,7 @@
     <dt class="portletHeader">
     	<a tal:omit-tag="not: internal_url" tal:attributes="href internal_url">
           <img tal:replace="structure image" />
-          <span class="teaser_title" tal:replace="structure teasertitle" />
+          <span class="teaser_title" tal:content="structure teasertitle" />
     	</a>
     </dt>
     <dd class="portletItem teaserDescription"
