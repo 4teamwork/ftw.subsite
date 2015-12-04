@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.0 (unreleased)
+2.0.0 (2015-12-04)
 ------------------
 
 - Prevent traversing to a not accessible navigation root in banner and css
