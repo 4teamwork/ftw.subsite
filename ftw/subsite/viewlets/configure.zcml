@@ -26,4 +26,13 @@
       permission="zope2.View"
       for="*"
       />
+
+  <browser:viewlet
+      name="plone.analytics"
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      class=".analytics.SubsiteAnalyticsViewlet"
+      permission="zope2.View"
+      />
+
 </configure>

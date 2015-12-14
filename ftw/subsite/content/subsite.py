@@ -85,7 +85,29 @@ schema = atapi.Schema((
         name="FromEmail",
         widget=atapi.StringWidget(
             label=_(u'label_fromemail', default=u'Email Senderaddress'),
-            description=_(u'help_fromname', default=u'')))
+            description=_(u'help_fromname', default=u''))),
+
+    atapi.StringField(
+        name='webstatsAnalyticsSnippet',
+        schemata='subsite',
+        default='',
+        required=False,
+        searchable=False,
+        write_permission='ftw.subsite: Configure analytics',
+        widget=atapi.TextAreaWidget(
+            label=_(
+                u'label_webstats_analytics_snippet',
+                default=u'Custom JavaScript for web statistics support'
+            ),
+            description=_(
+                u'help_webstats_analytics_snippet',
+                default=u'The JavaScript entered in this field will override '
+                        u'the global analytics JavaScript for this subsite '
+                        u'and its content.'
+            ),
+        ),
+    ),
+
 ))
 
 
