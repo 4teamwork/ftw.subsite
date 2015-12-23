@@ -5,5 +5,8 @@
       <role name="Manager" />
       <role name="Contributor" />
     </permission>
+    <permission name="ftw.subsite: Configure analytics" acquire="True">
+      <role name="Manager" />
+    </permission>
   </permissions>
 </rolemap>

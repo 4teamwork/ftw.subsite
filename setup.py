@@ -6,6 +6,7 @@ version = '1.4.4.dev0'
 tests_require = [
     'collective.mockmailhost',
     'ftw.builder',
+    'ftw.testbrowser',
     'ftw.testing [splinter]',
     'plone.app.portlets',
     'plone.app.testing',
@@ -42,7 +43,8 @@ setup(name='ftw.subsite',
       zip_safe=False,
 
       install_requires=[
-        'ftw.upgrade',
+        'ftw.upgrade>1.14.0',
+        'plone.api',
         'plone.formwidget.contenttree',
         'plone.formwidget.namedfile',
         'plone.namedfile',

@@ -20,3 +20,6 @@ msgstr ""
 #: ./ftw/subsite/portlets/teaserportlet.py:91
 msgid "feedback_mail_text"
 msgstr ""
+
+msgid "configure analytics per subsite"
+msgstr ""
