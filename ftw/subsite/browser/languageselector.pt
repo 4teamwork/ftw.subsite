@@ -5,15 +5,15 @@
 
     <h2 i18n:translate="" class="hiddenStructure">Language switch</h2>
 
-    <dl id="portal-languageselector" class="actionMenu deactivated">
+    <section id="portal-languageselector" class="actionMenu deactivated">
 
-        <dt class="actionMenuHeader"
+        <header class="actionMenuHeader"
             tal:define="current view/current">
             <a tal:content="current/title"
                tal:attributes="href current/url"/>
-        </dt>
+        </header>
 
-        <dd class="actionMenuContent">
+        <div class="actionMenuContent">
             <ul>
                 <tal:language repeat="lang languages">
 
@@ -27,6 +27,6 @@
 
                 </tal:language>
             </ul>
-        </dd>
-    </dl>
+        </div>
+    </section>
 </div>

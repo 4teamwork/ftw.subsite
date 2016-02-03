@@ -4,7 +4,8 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Replace miss-used definition list markup by section/header markup in languageselector.
+  [mathias.leimgruber]
 
 
 2.0.0 (2015-12-04)
