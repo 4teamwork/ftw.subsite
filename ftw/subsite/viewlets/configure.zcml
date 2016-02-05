@@ -8,6 +8,7 @@
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       class=".subsitelogoviewlet.SubsiteLogoViewlet"
       permission="zope2.View"
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
       />
 
   <browser:viewlet
@@ -15,6 +16,7 @@
       class=".cssviewlet.CSSViewlet"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
       permission="zope2.View"
+      layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
       />
 
   <browser:viewlet

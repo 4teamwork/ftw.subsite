@@ -4,6 +4,9 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+- Use browser layer for all viewlets in this package.
+  [mbaechtold]
+
 - Replace miss-used definition list markup by section/header markup in languageselector.
   [mathias.leimgruber]
 
