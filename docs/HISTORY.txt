@@ -4,6 +4,9 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+- Set global lang attribute according to the subsite language.
+  [mathias.leimgruber]
+
 - Use browser layer for all viewlets in this package.
   [mbaechtold]
 

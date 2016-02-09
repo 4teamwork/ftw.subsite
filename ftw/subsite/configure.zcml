@@ -46,4 +46,11 @@
     <adapter factory=".languages.PloneSiteLanguages" />
     <adapter factory=".languages.inherit_languages" />
 
+
+    <!-- Set request language after subsite traversal -->
+    <subscriber
+        for="ZPublisher.pubevents.PubAfterTraversal"
+        handler=".traverse.set_subsite_language"
+        />
+
 </configure>

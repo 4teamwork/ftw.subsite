@@ -29,6 +29,8 @@ Additional functionality provided by `ftw.subsite`
   different languages together by referencing each other with the custom
   reference field on the Subsite.
 
+- The global language attribute is set according to the subsite language. This overrides the plone negotiator. So if you set a language on a document in a susbite and enable content language negotiator, it will have no effect at all. A document in a plone site will still work as expected.
+
 - Custom CSS for a Subsite
 
 - Custom Logo for a Subsite. The logo is registered with a different name `subsite.logo`.
