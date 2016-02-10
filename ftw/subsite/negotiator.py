@@ -17,28 +17,33 @@ class Negotiator(object):
 
     def getLanguage(self, langs, env):
 
-        if not IFtwSubsiteLayer.providedBy(env):
-            return base_negotiator.getLanguage(langs, env)
-
-        # Get current published object
-        obj = find_context(env)
-        # Filter out CSS/JS and other non contentish objects
-        # IFolderish check includes site root
-        if not (IContentish.providedBy(obj) or IFolderish.providedBy(obj)):
-            return base_negotiator.getLanguage(langs, env)
-
-        nav_root = get_nav_root(obj)
-
-        if ISubsite.providedBy(nav_root):
-            # Get language stored on Subsite
-            language = nav_root.force_language
-            if language:
-                return language
-            else:
-                return base_negotiator.getLanguage(langs, env)
-
-        else:
-            # Use normal Negotiator
-            return base_negotiator.getLanguage(langs, env)
+        subsite_language = get_subsite_language(env)
+        return subsite_language or base_negotiator.getLanguage(langs, env)
 
 negotiator = Negotiator()
+
+
+def get_subsite_language(request):
+    """Returns None, or a language code."""
+    if not IFtwSubsiteLayer.providedBy(request):
+        return None
+
+    # Get current published object
+    obj = find_context(request)
+    # Filter out CSS/JS and other non contentish objects
+    # IFolderish check includes site root
+    if not (IContentish.providedBy(obj) or IFolderish.providedBy(obj)):
+        return None
+
+    nav_root = get_nav_root(obj)
+
+    if ISubsite.providedBy(nav_root):
+        # Get language stored on Subsite
+        language = nav_root.force_language
+        if language:
+            return language
+        else:
+            return None
+
+    else:
+        return None
