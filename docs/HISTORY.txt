@@ -4,6 +4,9 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+- Make languageselector accessible.
+  [Kevin Bieri]
+
 - Set global lang attribute according to the subsite language.
   [mathias.leimgruber]
 
