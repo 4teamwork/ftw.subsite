@@ -1,3 +1,7 @@
+from ftw.builder import Builder
+from ftw.builder import create
+from ftw.testbrowser import browsing
+from ftw.testbrowser.pages import factoriesmenu
 from ftw.subsite.browser.subsiteview import SubsiteView
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
@@ -131,6 +135,33 @@ class TestLogoViewlet(unittest.TestCase):
         self.assertIn("%s/logo.png" % self.portal.absolute_url(),
                       self.browser.contents)
 
+    @browsing
+    def test_plone_logo_in_archetypes_factory(self, browser):
+        subsite = create(Builder('subsite')
+                         .titled('My Subsite')
+                         .with_dummy_logo())
+        browser.login().open(subsite)
+        factoriesmenu.add('Folder')
+        self.assertTrue(
+            browser.url.startswith(
+                'http://nohost/plone/my-subsite/portal_factory/Folder/'
+            )
+        )
+        self._assert_custom_logo(browser, subsite)
+
+    @browsing
+    def test_plone_logo_in_dexterity_factory(self, browser):
+        subsite = create(Builder('subsite')
+                         .titled('My Subsite')
+                         .with_dummy_logo())
+        browser.login().open(subsite)
+        factoriesmenu.add('ExampleDxType')
+        self.assertEqual(
+            browser.url,
+            'http://nohost/plone/my-subsite/++add++ExampleDxType'
+        )
+        self._assert_custom_logo(browser, subsite)
+
     def test_logo_in_portal_tools(self):
         subsite = self._create_subsite()
         file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
@@ -138,3 +169,28 @@ class TestLogoViewlet(unittest.TestCase):
         transaction.commit()
         self._auth()
         self.browser.open(subsite.absolute_url() + '/mail_password?userid=' + TEST_USER_ID)
+
+    def _assert_custom_logo(self, browser, subsite):
+        """
+        This set of assertions makes sure that the current context of the
+        browser contains the logo of the given subsite.
+        """
+        self.assertTrue(
+            browser.css('#portal-logo img').first.attrib['src'].startswith(
+                'http://nohost/plone/{0}/@@images/'.format(
+                    subsite.getId(),
+                )
+            )
+        )
+        self.assertEqual(
+            subsite.Title(),
+            browser.css('#portal-logo img').first.attrib['alt']
+        )
+        self.assertEqual(
+            subsite.Title(),
+            browser.css('#portal-logo img').first.attrib['title']
+        )
+        self.assertEqual(
+            subsite.Title(),
+            browser.css('#portal-logo').first.attrib['title']
+        )

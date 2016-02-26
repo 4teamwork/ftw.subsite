@@ -8,6 +8,7 @@ tests_require = [
     'ftw.builder',
     'ftw.testbrowser',
     'ftw.testing [splinter]',
+    'plone.app.dexterity',
     'plone.app.portlets',
     'plone.app.testing',
     'pyquery',
