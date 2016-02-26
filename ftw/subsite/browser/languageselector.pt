@@ -5,21 +5,28 @@
 
     <h2 i18n:translate="" class="hiddenStructure">Language switch</h2>
 
-    <section id="portal-languageselector" class="actionMenu deactivated">
+    <section id="portal-languageselector" role="menubar" class="actionMenu deactivated">
 
         <header class="actionMenuHeader"
-            tal:define="current view/current">
+            tal:define="current view/current"
+            role="menuitem"
+            aria-haspopup="true"
+            aria-owns="languageselector-content"
+            aria-controls="languageselector-content">
             <a tal:content="current/title"
                tal:attributes="href current/url"/>
         </header>
 
-        <div class="actionMenuContent">
-            <ul>
+        <div class="actionMenuContent"
+             id="languageselector-content"
+             aria-hidden="true">
+            <ul role="menubar">
                 <tal:language repeat="lang languages">
 
                     <li tal:define="code lang/code;
                                     codeclass string:language-${code};"
-                        tal:attributes="class codeclass">
+                        tal:attributes="class codeclass"
+                        role="menuitem">
                         <a tal:attributes="href lang/url;
                                            title lang/title"
                            tal:content="lang/title" />
