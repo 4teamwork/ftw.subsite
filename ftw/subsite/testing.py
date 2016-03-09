@@ -19,21 +19,15 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
-        # Load ZCML
-        import ftw.subsite
-        xmlconfig.file('configure.zcml', ftw.subsite,
-                       context=configurationContext)
-
-        xmlconfig.file('overrides.zcml', ftw.subsite,
-                       context=configurationContext)
-
-        import plone.app.portlets
-        xmlconfig.file('configure.zcml', plone.app.portlets,
-                       context=configurationContext)
-
-        import collective.MockMailHost
-        xmlconfig.file('configure.zcml', collective.MockMailHost,
-                       context=configurationContext)
+        xmlconfig.string(
+            '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
+            '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
+            '  <include package="ftw.subsite.tests" />'
+            '  <include package="collective.MockMailHost" />'
+            '</configure>',
+            context=configurationContext)
 
         # installProduct() is *only* necessary for packages outside
         # the Products.* namespace which are also declared as Zope 2 products,
@@ -46,6 +40,8 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         # Install into Plone site using portal_setup
         applyProfile(portal, 'ftw.subsite:default')
         applyProfile(portal, 'collective.MockMailHost:default')
+        applyProfile(portal, 'plone.app.dexterity:default')
+        applyProfile(portal, 'ftw.subsite.tests:dx_creation')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 

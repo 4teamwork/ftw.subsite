@@ -1,8 +1,10 @@
+from Acquisition._Acquisition import aq_inner
+from Acquisition._Acquisition import aq_parent
+from Products.CMFPlone.interfaces import IPloneSiteRoot
+from ftw.subsite.interfaces import ISubsite
+from plone import api
 from plone.app.layout.viewlets.common import LogoViewlet
-from plone.app.layout.navigation.root import getNavigationRoot
-from borg.localrole.interfaces import IFactoryTempFolder
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.interfaces._content import IContentish
 
 
 class SubsiteLogoViewlet(LogoViewlet):
@@ -18,29 +20,35 @@ class SubsiteLogoViewlet(LogoViewlet):
 
     def update(self):
         super(SubsiteLogoViewlet, self).update()
-
-        portal = self.portal_state.portal()
-        self.navigation_root_url = self.portal_state.navigation_root_url()
-
-        subsite_logo = getattr(self.context, 'getLogo', None)
-        parent = self.context.aq_inner.aq_parent
-        in_factory = IFactoryTempFolder.providedBy(parent)
-
-        if subsite_logo and subsite_logo() and not in_factory:
-            # we are in a subsite
-            context = self.context
-            if not IContentish.providedBy(context):
-                context = context.aq_parent
-            navigation_root_path = getNavigationRoot(context)
-            scale = portal.restrictedTraverse(
-                navigation_root_path + '/@@images')
-            # XXX Use own scale
-            self.logo_tag = scale.scale('logo', scale="logo").tag()
-            self.title = self.context.restrictedTraverse(
-                getNavigationRoot(self.context)).Title()
+        portal = api.portal.get()
+        subsite = self.get_nearest_subsite_with_logo()
+        if subsite:
+            subsite_image_scales_path = '/'.join(
+                list(subsite.getPhysicalPath()) + ['@@images']
+            )
+            scales = portal.restrictedTraverse(subsite_image_scales_path)
+            self.logo_tag = scales.scale('logo', scale="logo").tag()
+            self.title = subsite.Title()
             self.is_subsitelogo = True
         else:
             # standard plone logo
             logoName = portal.restrictedTraverse('base_properties').logoName
             self.logo_tag = portal.restrictedTraverse(logoName).tag()
             self.title = self.portal_state.portal_title()
+
+    def get_nearest_subsite_with_logo(self):
+        obj = self.context
+        while obj and not IPloneSiteRoot.providedBy(obj):
+
+            if ISubsite.providedBy(obj):
+                if obj.Schema()['logo'].get_size(obj):
+                    return obj
+
+            # Get the parent of the current obj (which is not a subsite if
+            # we are down here) because the navigation root of a navigation
+            # root is the obj itself.
+            obj = aq_parent(aq_inner(obj))
+            if obj:
+                obj = api.portal.get_navigation_root(context=obj)
+
+        return None

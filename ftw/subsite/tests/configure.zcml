@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="ftw.subsite">
+
+    <include package="zope.i18n" file="meta.zcml" />
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
+    <genericsetup:registerProfile
+        name="dx_creation"
+        title="ftw.subsite.tests:dx_creation"
+        directory="profiles/dx_creation"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>
