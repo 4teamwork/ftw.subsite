@@ -96,7 +96,7 @@ msgstr ""
 #. Default: "Please enter your Name"
 #: ./ftw/subsite/browser/contact.py:23
 msgid "help_Sender"
-msgstr ""
+msgstr "Bitte geben Sie Ihren Namen ein"
 
 #: ./ftw/subsite/content/subsite.py:39
 #: ./ftw/subsite/content/subsitedx.py:59
@@ -133,17 +133,17 @@ msgstr ""
 #. Default: "Please enter your e-mail"
 #: ./ftw/subsite/browser/contact.py:26
 msgid "help_mail_address"
-msgstr ""
+msgstr "Bitte geben Sie Ihre e-Mail ein"
 
 #. Default: "Please enter a Message"
 #: ./ftw/subsite/browser/contact.py:32
 msgid "help_message"
-msgstr ""
+msgstr "Bitte geben Sie eine Nachricht ein"
 
 #. Default: "Please enter a Subject"
 #: ./ftw/subsite/browser/contact.py:29
 msgid "help_subject"
-msgstr ""
+msgstr "Bitte geben Sie ein Thema ein"
 
 #. Default: "The email was sent."
 #: ./ftw/subsite/browser/contact.py:52
