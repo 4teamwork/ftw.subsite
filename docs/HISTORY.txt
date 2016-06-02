@@ -4,7 +4,8 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove invalid aria attributes from section and header tag in languageselector.
+  [mathias.leimgruber]
 
 
 2.0.2 (2016-05-30)
