@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.subsite">
 
   <include package="plone.app.contentmenu" />
@@ -66,5 +67,9 @@
       allowed_attributes="siteMap"
       layer="ftw.subsite.interfaces.IFtwSubsiteLayer"
       />
+
+    <configure zcml:condition="installed ftw.mobile">
+        <adapter factory=".mobile_button.SubsiteLanguageButton" name="subsitelanguage-mobile-button" />
+    </configure>
 
 </configure>

@@ -12,6 +12,7 @@ tests_require = [
     'pyquery',
     'ftw.testbrowser',
     'ftw.builder',
+    'ftw.mobile',
     ]
 
 setup(name='ftw.subsite',

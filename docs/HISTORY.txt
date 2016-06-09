@@ -4,6 +4,9 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
+- Implement ftw.mobile button for subsite languages.
+  [mathias.leimgruber]
+
 - Remove invalid aria attributes from section and header tag in languageselector.
   [mathias.leimgruber]
 
