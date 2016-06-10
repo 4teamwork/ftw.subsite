@@ -6,7 +6,7 @@
     <include package="ftw.theming" file="meta.zcml" />
 
     <theme:resources profile="ftw.subsite:default" slot="addon">
-        <theme:scss file="browser/ressources/integration.theme.scss" />
+        <theme:scss file="browser/ressources/integration.theme.scss" after="ftw.mobile:scss/mobile-buttons.scss" />
     </theme:resources>
 
 </configure>
