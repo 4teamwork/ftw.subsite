@@ -1,27 +1,3 @@
 /* This file is only used when ftw.theming is installed. */
 
 @include portal-type-font-awesome-icon(ftw-subsite-subsite, globe);
-
-
-#subsitelanguage-mobile-button {
-  a {
-    @include auto-text-color($color-mobile-button);
-    background-color: $color-mobile-button;
-    display: inline-block;
-    width: $size-mobile-button;
-    line-height: $size-mobile-button;
-    font-size: $font-size-mobile-button;
-    text-align: center;
-    &:before {
-      display: none;
-    }
-  }
-}
-
-#portal-languageselector-wrapper #portal-languageselector{
-  display: none;
-
-  @include tablet {
-    display: block;
-  }
-}
