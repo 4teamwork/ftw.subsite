@@ -1,17 +1,16 @@
 /* This file is only used when ftw.theming and ftw.mobile is installed. */
 
-#subsitelanguage-mobile-button {
-  a {
-    @include auto-text-color($color-mobile-button);
-    background-color: $color-mobile-button;
-    display: inline-block;
-    width: $size-mobile-button;
-    line-height: $size-mobile-button;
-    font-size: $font-size-mobile-button;
-    text-align: center;
-    &:before {
-      display: none;
-    }
+#ftw-mobile-menu-buttons #subsitelanguage-mobile-button > a {
+  @include auto-text-color($color-mobile-button);
+  @include no-link();
+  background-color: $color-mobile-button;
+  width: $size-mobile-button;
+  line-height: $size-mobile-button;
+  font-size: $font-size-mobile-button;
+  text-align: center;
+  text-transform: uppercase;
+  &:before {
+    display: none;
   }
 }
 
