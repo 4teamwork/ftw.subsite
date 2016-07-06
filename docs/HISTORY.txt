@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.4 (unreleased)
+2.0.4 (2016-07-06)
 ------------------
 
 - Use renamed dependency from ftw.mobile.
