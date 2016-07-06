@@ -4,6 +4,9 @@ Changelog
 2.0.4 (unreleased)
 ------------------
 
+- Use renamed dependency from ftw.mobile.
+  [Kevin Bieri]
+
 - Fix dependency-error if ftw.subsite is installed with ftw.theming but without ftw.mobile.
   Only loads mobilenavigation-specific scss if ftw.mobile and ftw.theming are installed.
   [elioschmutz]

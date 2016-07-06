@@ -7,8 +7,10 @@
     <include package="ftw.theming" file="meta.zcml" />
 
     <theme:resources profile="ftw.subsite:default" slot="addon">
-        <theme:scss file="browser/ressources/integration.theme.scss" after="ftw.mobile:scss/mobile-buttons.scss" />
-        <theme:scss file="browser/ressources/integration.ftw-mobile.theme.scss" after="browser/ressources/integration.theme.scss" zcml:condition="installed ftw.mobile" />
+        <theme:scss file="browser/ressources/integration.theme.scss" />
+        <theme:scss file="browser/ressources/integration.ftw-mobile.theme.scss"
+                    after="ftw.mobile:scss/mobile-menu-buttons.scss"
+                    zcml:condition="installed ftw.mobile" />
     </theme:resources>
 
 </configure>
