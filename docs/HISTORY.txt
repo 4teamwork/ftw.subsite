@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.5 (unreleased)
+2.1.0 (2016-07-20)
 ------------------
 
 - Lawgiver: change default action group to for adding
