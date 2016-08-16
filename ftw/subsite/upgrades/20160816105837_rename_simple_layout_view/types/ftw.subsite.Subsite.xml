@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="ftw.subsite.Subsite"
+        meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="ftw.subsite" >
+
+    <!-- View information -->
+    <property name="default_view" purge="False">simplelayout-view</property>
+    <property name="view_methods" purge="False">
+        <element value="simplelayout-view"/>
+    </property>
+</object>

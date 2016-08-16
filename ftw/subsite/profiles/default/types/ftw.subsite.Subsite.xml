@@ -40,10 +40,10 @@
     </property>
 
     <!-- View information -->
-    <property name="default_view">@@simplelayout-view</property>
+    <property name="default_view">simplelayout-view</property>
     <property name="default_view_fallback">False</property>
     <property name="view_methods">
-        <element value="@@simplelayout-view"/>
+        <element value="simplelayout-view"/>
     </property>
 
     <!-- Method aliases -->
