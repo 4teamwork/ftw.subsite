@@ -48,6 +48,14 @@ Dexterity based Subsite content + ftw.simplelayout default page. Thus the
 Subsite portlet column, column renderer and the teaser portlet are no longer used and will be removed with ``ftw.subsite`` 2.1.0. The ``ftw.subsite`` release 2.0.x will provide a inplace migration. Be aware only static text portlets and subsite teaser portlets will be migrated. You need to provide your own migration for other portlets.
 The subsite_view will be available in ``ftw.subsite`` 2.0.x and removed in 2.1.x.
 
+The Archetypes to Dexterity migration has been rewritten in 2.1.1 and uses the inplace migrator
+introduced in `ftw.upgrade` 2.0.0. The existing upgrade step has been rewritten in order to run
+only when not yet migrated. The migrator is configured to not migrate fields which we had on AT
+but no longer on DX. Instead, those values are backed up in the annotations of the new
+subsite. For projects which add behaviors to the subsite for those old fields, the values can
+be gotten from the annotations and re-set after applying the behavior. This is the responsibility
+of the integration project.
+
 Note about versions:
 
 This package provides a version.cfg. Please make sure you are using suitable versions of `plone.app.contenttypes` and `plone.app.event`.

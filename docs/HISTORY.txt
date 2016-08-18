@@ -4,6 +4,9 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
+- Reimplement AT=>DX migration with inplace migrator introduced in
+  ftw.upgrade 2.0.0. [jone]
+
 - Remove "@@" from simplelayout-view because it is not needed.
   [raphael-s]
 
