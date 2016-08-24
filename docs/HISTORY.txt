@@ -4,6 +4,9 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
+- Fix actionmenu selectors to support structors without definition lists.
+  [mathias.leimgruber]
+
 - Reimplement AT=>DX migration with inplace migrator introduced in
   ftw.upgrade 2.0.0. [jone]
 
