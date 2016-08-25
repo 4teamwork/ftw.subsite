@@ -10,6 +10,9 @@ Changelog
 - Reimplement AT=>DX migration with inplace migrator introduced in
   ftw.upgrade 2.0.0. [jone]
 
+- Make ftw.subsite.Subsite linkable in TinyMCE.
+  [raphael-s]
+
 - Remove "@@" from simplelayout-view because it is not needed.
   [raphael-s]
 
