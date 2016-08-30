@@ -2,5 +2,6 @@
 <metadata>
     <dependencies>
       <dependency>profile-ftw.simplelayout.contenttypes:default</dependency>
+      <dependency>profile-ftw.referencewidget:default</dependency>
     </dependencies>
 </metadata>
