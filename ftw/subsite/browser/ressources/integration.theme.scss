@@ -1,3 +1,10 @@
 /* This file is only used when ftw.theming is installed. */
 
 @include portal-type-font-awesome-icon(ftw-subsite-subsite, globe);
+
+/* Hide the title */
+.portaltype-ftw-subsite-subsite.template-simplelayout-view {
+  h1.documentFirstHeading {
+    display: none;
+  }
+}
