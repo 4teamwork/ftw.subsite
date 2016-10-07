@@ -4,7 +4,8 @@ Changelog
 2.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Hide the title of the subsite with CSS.
+  [mbaechtold]
 
 
 2.2.0 (2016-09-26)
