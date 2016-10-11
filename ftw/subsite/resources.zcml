@@ -8,9 +8,14 @@
 
     <theme:resources profile="ftw.subsite:default" slot="addon">
         <theme:scss file="browser/ressources/integration.theme.scss" />
-        <theme:scss file="browser/ressources/integration.ftw-mobile.theme.scss"
-                    after="ftw.mobile:scss/mobile-menu-buttons.scss"
-                    zcml:condition="installed ftw.mobile" />
     </theme:resources>
+
+    <configure zcml:condition="installed ftw.mobile">
+        <theme:resources profile="ftw.subsite:default" slot="addon"
+                         layer="ftw.mobile.interfaces.IMobileLayer">
+            <theme:scss file="browser/ressources/integration.ftw-mobile.theme.scss"
+                        after="ftw.mobile:scss/mobile-menu-buttons.scss" />
+        </theme:resources>
+    </configure>
 
 </configure>
