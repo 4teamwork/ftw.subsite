@@ -60,6 +60,7 @@ setup(name='ftw.subsite',
           'plone.app.event',
           'ftw.builder',
           'Plone',
+          'ftw.referencewidget',
       ],
 
       tests_require=tests_require,

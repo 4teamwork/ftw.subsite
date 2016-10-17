@@ -17,6 +17,9 @@ Changelog
 2.2.0 (2016-09-26)
 ------------------
 
+- Add ftw.referencewidget and use it instead of plone.formwidget.contenttree.
+  [tschanzt]
+
 - Fix actionmenu selectors to support structors without definition lists.
   [mathias.leimgruber]
 

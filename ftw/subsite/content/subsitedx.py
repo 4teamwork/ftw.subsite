@@ -1,33 +1,17 @@
+from ftw.referencewidget.widget import ReferenceBrowserWidget
 from ftw.subsite import _
 from ftw.subsite.interfaces import ISubsite
-from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.content import Container
-from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.directives.form import widget
 from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import directives
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import implements
-
-
-class SubsiteLanguagObjPathSourceBinder(ObjPathSourceBinder):
-
-    def __init__(self):
-        super(SubsiteLanguagObjPathSourceBinder, self).__init__(
-            navigation_tree_query={},
-            portal_type='ftw.subsite.Subsite')
-
-    def __call__(self, context):
-        portal = api.portal.get()
-        portal_path = '/'.join(portal.getPhysicalPath())
-        self.navigation_tree_query['path'] = {
-            'query': portal_path}
-        return super(SubsiteLanguagObjPathSourceBinder, self).__call__(context)
 
 
 class ISubsiteSchema(model.Schema):
@@ -60,14 +44,12 @@ class ISubsiteSchema(model.Schema):
         required=False,
         missing_value=''
     )
-
+    widget('language_references', ReferenceBrowserWidget,
+           override=True, selectable=["ftw.subsite.Subsite"])
     language_references = RelationList(
         title=_(u'label_language_references', default=u'Languages'),
         default=[],
         missing_value=[],
-        value_type=RelationChoice(title=u'Related Subsites',
-                                  source=SubsiteLanguagObjPathSourceBinder()),
-
         required=False,
         description=_(u'help_language_references',
                       default=_(u'The language switch will only be '
