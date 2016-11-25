@@ -2,6 +2,7 @@ from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.viewlets.common import LogoViewlet
 from Products.CMFCore.interfaces._content import IContentish
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone import api
 
 
 class SubsiteLogoViewlet(LogoViewlet):
@@ -18,13 +19,15 @@ class SubsiteLogoViewlet(LogoViewlet):
     def update(self):
         super(SubsiteLogoViewlet, self).update()
 
-        portal = self.portal_state.portal()
+        portal = api.portal.get_navigation_root(self.context)
+        is_subsite = bool(portal.portal_type == 'ftw.subsite.Subsite')
+
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
         subsite_logo = getattr(self.context, 'logo', None)
         subsite_logo_alt_text = getattr(self.context, 'logo_alt_text', None)
 
-        if subsite_logo and subsite_logo.data:
+        if is_subsite and subsite_logo and subsite_logo.data:
             # we are in a subsite
             context = self.context
             if not IContentish.providedBy(context):
