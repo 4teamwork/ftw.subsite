@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.4.2 (unreleased)
+2.4.2 (2016-11-28)
 ------------------
 
 - Make subsitelogoviewlet only search for a subsite logo when the navigation
