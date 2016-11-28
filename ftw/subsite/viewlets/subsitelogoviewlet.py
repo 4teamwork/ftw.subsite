@@ -2,6 +2,7 @@ from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.viewlets.common import LogoViewlet
 from Products.CMFCore.interfaces._content import IContentish
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone import api
 
 
 class SubsiteLogoViewlet(LogoViewlet):
@@ -18,19 +19,21 @@ class SubsiteLogoViewlet(LogoViewlet):
     def update(self):
         super(SubsiteLogoViewlet, self).update()
 
-        portal = self.portal_state.portal()
+        navroot = api.portal.get_navigation_root(self.context)
+        is_subsite = bool(navroot.portal_type == 'ftw.subsite.Subsite')
+
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
         subsite_logo = getattr(self.context, 'logo', None)
         subsite_logo_alt_text = getattr(self.context, 'logo_alt_text', None)
 
-        if subsite_logo and subsite_logo.data:
+        if is_subsite and subsite_logo and subsite_logo.data:
             # we are in a subsite
             context = self.context
             if not IContentish.providedBy(context):
                 context = context.aq_parent
             navigation_root_path = getNavigationRoot(context)
-            scale = portal.restrictedTraverse(
+            scale = navroot.restrictedTraverse(
                 navigation_root_path + '/@@images')
 
             self.logo_tag = scale.scale('logo', scale="logo").tag(
@@ -40,8 +43,8 @@ class SubsiteLogoViewlet(LogoViewlet):
             self.is_subsitelogo = True
         else:
             # standard plone logo
-            logoName = portal.restrictedTraverse('base_properties').logoName
-            logo_alt_text = portal.getProperty('logo_alt_text', '')
-            self.logo_tag = portal.restrictedTraverse(logoName).tag(
+            logoName = navroot.restrictedTraverse('base_properties').logoName
+            logo_alt_text = navroot.getProperty('logo_alt_text', '')
+            self.logo_tag = navroot.restrictedTraverse(logoName).tag(
                 alt=logo_alt_text, title='')
             self.title = self.portal_state.portal_title()
