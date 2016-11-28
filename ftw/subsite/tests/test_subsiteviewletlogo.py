@@ -144,3 +144,13 @@ class TestLogoViewlet(TestCase):
             u'Plone Logo Alt Text',
             browser.css('#portal-logo img').first.attrib['alt'])
 
+    @browsing
+    def test_logo_with_other_content_with_id_logo(self, browser):
+        self._add_logo(self.subsite)
+
+        contentpage = create(Builder('sl content page').within(self.subsite))
+        create(Builder('sl textblock').titled('logo').within(contentpage))
+
+        browser.login().visit(contentpage)
+
+        self.assertTrue(browser.css('#portal-logo img'))

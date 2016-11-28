@@ -24,8 +24,8 @@ class SubsiteLogoViewlet(LogoViewlet):
 
         self.navigation_root_url = self.portal_state.navigation_root_url()
 
-        subsite_logo = getattr(self.context, 'logo', None)
-        subsite_logo_alt_text = getattr(self.context, 'logo_alt_text', None)
+        subsite_logo = getattr(navroot, 'logo', None)
+        subsite_logo_alt_text = getattr(navroot, 'logo_alt_text', None)
 
         if is_subsite and subsite_logo and subsite_logo.data:
             # we are in a subsite
@@ -43,8 +43,9 @@ class SubsiteLogoViewlet(LogoViewlet):
             self.is_subsitelogo = True
         else:
             # standard plone logo
+            portal = api.portal.get()
             logoName = navroot.restrictedTraverse('base_properties').logoName
-            logo_alt_text = navroot.getProperty('logo_alt_text', '')
-            self.logo_tag = navroot.restrictedTraverse(logoName).tag(
+            logo_alt_text = portal.getProperty('logo_alt_text', '')
+            self.logo_tag = portal.restrictedTraverse(logoName).tag(
                 alt=logo_alt_text, title='')
             self.title = self.portal_state.portal_title()

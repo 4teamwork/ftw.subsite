@@ -1,5 +1,6 @@
 from ftw.builder.dexterity import DexterityBuilder
 from ftw.builder import builder_registry
+from ftw.simplelayout.tests import builders
 
 
 class SubsiteBuilder(DexterityBuilder):
