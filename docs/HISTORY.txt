@@ -4,7 +4,7 @@ Changelog
 2.4.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make Subsite addable on plone site per default [raphael-s]
 
 
 2.4.3 (2016-11-29)
