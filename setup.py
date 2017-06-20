@@ -6,7 +6,7 @@ version = '2.4.5.dev0'
 tests_require = [
     'collective.mockmailhost',
     'ftw.builder',
-    'ftw.testing [splinter]',
+    'ftw.testing',
     'plone.app.portlets',
     'plone.app.testing',
     'pyquery',
