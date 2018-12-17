@@ -7,6 +7,7 @@ tests_require = [
     'collective.mockmailhost',
     'ftw.builder',
     'ftw.testing',
+    'plone.app.contenttypes',
     'plone.app.portlets',
     'plone.app.testing',
     'pyquery',
