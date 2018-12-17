@@ -27,7 +27,7 @@ class TestBannerViewlet(TestCase):
         bannerfoldername = registry.get('ftw.subsite.bannerfoldername')
         return create(Builder('folder')
                       .within(context)
-                      .with_id(bannerfoldername))
+                      .titled(bannerfoldername))
 
     def _get_viewlet(self, context, view=None):
         if not view:
