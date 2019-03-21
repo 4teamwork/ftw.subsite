@@ -27,12 +27,31 @@
 
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
-      name="default"
-      title="ftw.subsite"
-      directory="profiles/default"
-      description=""
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+        zcml:condition="not-have plone-5"
+        name="default"
+        title="ftw.subsite"
+        directory="profiles/default"
+        description="Register ftw.subsite generally"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        zcml:condition="have plone-5"
+        name="default"
+        title="ftw.subsite"
+        directory="profiles/default_plone5"
+        description="Register ftw.subsite generally"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        zcml:condition="have plone-5"
+        name="uninstall"
+        title="Uninstall ftw.subsite"
+        directory="profiles/uninstall_plone5"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        />
 
   <include package=".upgrades" />
 
