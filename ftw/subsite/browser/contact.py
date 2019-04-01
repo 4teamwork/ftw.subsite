@@ -113,11 +113,11 @@ class ContactForm(form.Form):
             from plone import api
             reg = api.portal.get_tool('portal_registry')
             from_email_field = reg._records.get('plone.email_from_address')
-            if not from_email_field.value:
+            if not email_from_email and not from_email_field.value:
                 # especially for testing reasons we need to set a value here
                 # if none is registered on the page in plone5
                 from_email_field._set_value('site@nohost.com')
-            email_from_email = from_email_field.value
+                email_from_email = from_email_field.value
         # send the message
         mh.send(msg, mto=email_from_email,
                 mfrom=[email_from_email])
