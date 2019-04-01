@@ -1,9 +1,10 @@
+from Products.CMFCore.utils import getToolByName
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.subsite.testing import FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from Products.CMFCore.utils import getToolByName
+from ftw.testing import IS_PLONE_5
 from unittest2 import TestCase
 from zope.i18n.locales import locales
 import transaction
@@ -115,5 +116,9 @@ class TestNegotiatorSpecialCase(TestCase):
         # Plone default
         folder = create(Builder('folder').titled(u'Subsite'))
         browser.login().visit(folder)
-        self.assertEquals(['Site Map Accessibility Contact'],
-                          browser.css('#portal-siteactions').text)
+        if not IS_PLONE_5:
+            self.assertEquals(['Site Map Accessibility Contact'],
+                              browser.css('#portal-siteactions').text)
+        else:
+            self.assertEquals(['Site Map Accessibility Contact'],
+                              browser.css('.actions-site_actions').text)

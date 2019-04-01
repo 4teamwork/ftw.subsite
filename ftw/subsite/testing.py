@@ -69,6 +69,8 @@ class FtwSubsiteWithoutApplyProfileLayer(FtwSubsiteIntegrationLayer):
 
     def setUpPloneSite(self, portal):
 
+        if IS_PLONE_5:
+            applyProfile(portal, 'plone.app.contenttypes:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 
