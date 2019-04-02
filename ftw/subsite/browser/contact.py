@@ -3,7 +3,6 @@ from Products.statusmessages.interfaces import IStatusMessage
 from email.header import Header
 from email.mime.text import MIMEText
 from ftw.subsite import _
-from ftw.testing import IS_PLONE_5
 from plone.app.layout.navigation.root import getNavigationRoot
 from z3c.form import form, field, button
 from z3c.form.validator import SimpleFieldValidator
@@ -13,7 +12,11 @@ from zope.component import provideAdapter
 from zope.i18n import translate
 from zope.interface import Interface
 from zope.interface import Invalid
+import pkg_resources
 import re
+
+
+IS_PLONE_5 = pkg_resources.get_distribution('Products.CMFPlone').version >= '5'
 
 
 class IContactForm(Interface):
