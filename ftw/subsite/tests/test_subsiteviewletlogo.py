@@ -99,7 +99,7 @@ class TestLogoViewlet(TestCase):
         self._add_logo(self.subsite)
 
         browser.login().visit(self.subsite,
-                              view='mail_password',
+                              view='mail_password_form',
                               data={'userid': TEST_USER_ID})
 
         self.assert_subsite_logo_src(browser)
