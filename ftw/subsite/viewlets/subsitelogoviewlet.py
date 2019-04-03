@@ -59,6 +59,7 @@ class SubsiteLogoViewlet(LogoViewlet):
                 self.title = self.portal_state.portal_title()
                 rel_context_path = "/".join(self.context.getPhysicalPath())
                 logo_path = '{}/logo.png'.format(rel_context_path)
+                logo_alt_text = portal.getProperty('logo_alt_text', self.title)
                 self.logo_tag = portal.restrictedTraverse(logo_path).tag(
-                    alt=self.title, title='')
+                    alt=logo_alt_text, title='')
                 self.is_subsitelogo = False
