@@ -23,6 +23,8 @@ class SubsiteCatalogSiteMap(navigation.CatalogSiteMap):
 
         queryBuilder = SubsiteSitemapQueryBuilder(context)
         query = queryBuilder()
+        temp_types_completion = {'portal_type': ('Image', 'File', 'Link', 'News Item', 'Folder', 'Document', 'Event', 'ftw.simplelayout.ContentPage', 'ftw.subsite.Subsite')}
+        query.update(temp_types_completion)
 
         strategy = getMultiAdapter((context, self), INavtreeStrategy)
 
