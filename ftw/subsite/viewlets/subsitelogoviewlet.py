@@ -1,8 +1,11 @@
-from plone.app.layout.navigation.root import getNavigationRoot
-from plone.app.layout.viewlets.common import LogoViewlet
 from Products.CMFCore.interfaces._content import IContentish
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
+from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.layout.viewlets.common import LogoViewlet
+import pkg_resources
+
+IS_PLONE_5 = pkg_resources.get_distribution('Products.CMFPlone').version >= '5'
 
 
 class SubsiteLogoViewlet(LogoViewlet):
@@ -43,9 +46,19 @@ class SubsiteLogoViewlet(LogoViewlet):
             self.is_subsitelogo = True
         else:
             # standard plone logo
-            portal = api.portal.get()
-            logoName = navroot.restrictedTraverse('base_properties').logoName
-            logo_alt_text = portal.getProperty('logo_alt_text', '')
-            self.logo_tag = portal.restrictedTraverse(logoName).tag(
-                alt=logo_alt_text, title='')
-            self.title = self.portal_state.portal_title()
+            if not IS_PLONE_5:
+                portal = api.portal.get()
+                logoName = navroot.restrictedTraverse('base_properties').logoName
+                logo_alt_text = portal.getProperty('logo_alt_text', '')
+                self.logo_tag = portal.restrictedTraverse(logoName).tag(
+                    alt=logo_alt_text, title='')
+                self.title = self.portal_state.portal_title()
+
+            if IS_PLONE_5:
+                portal = api.portal.get()
+                self.title = self.portal_state.portal_title()
+                rel_context_path = "/".join(self.context.getPhysicalPath())
+                logo_path = '{}/logo.png'.format(rel_context_path)
+                self.logo_tag = portal.restrictedTraverse(logo_path).tag(
+                    alt=self.title, title='')
+                self.is_subsitelogo = False
