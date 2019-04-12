@@ -1,5 +1,7 @@
-from setuptools import setup, find_packages
 import os
+
+from setuptools import find_packages
+from setuptools import setup
 
 version = '2.4.5.dev0'
 
@@ -56,7 +58,7 @@ setup(name='ftw.subsite',
           'plone.autoform',
           'plone.behavior',
           'ftw.simplelayout [contenttypes]',
-          'plone.app.contenttypes<1.2b, >1.1b',
+          'plone.app.contenttypes',
           'plone.app.event',
           'ftw.builder',
           'ftw.theming >= 2.0.0',
