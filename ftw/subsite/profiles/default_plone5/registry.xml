@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <registry>
 
-    <records
-        interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema"
-        prefix="plone">
+    <records interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" prefix="plone">
         <value key="allowed_sizes" purge="false">
             <element>bannerimage 960:130</element>
             <element>logo 215:56</element>
@@ -24,15 +22,19 @@
         <value>banners</value>
     </record>
 
-    <records prefix="plone.resources/subsite_css"
-             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <records prefix="plone.resources/subsite_css" interface='Products.CMFPlone.interfaces.IResourceRegistry'>
         <value key="css">
             <element>++resource++ftw.subsite-ressources/subsite.css</element>
         </value>
     </records>
 
-    <records prefix="plone.bundles/ftw-subsite-resources"
-             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <record name="plone.displayed_types">
+        <value purge="false">
+            <element>ftw.subsite.Subsite</element>
+        </value>
+    </record>
+
+    <records prefix="plone.bundles/ftw-subsite-resources" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
         <value key="resources">
             <element>subsite_css</element>
         </value>
