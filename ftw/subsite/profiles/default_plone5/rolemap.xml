@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="ftw.subsite: Add Subsite" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator"/>
+      <role name="Contributor" />
+    </permission>
+  </permissions>
+</rolemap>

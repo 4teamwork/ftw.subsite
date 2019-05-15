@@ -1,12 +1,13 @@
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
+from ftw.subsite.tests.helpers import LanguageSetter
 from ftw.testbrowser import browsing
 from unittest2 import TestCase
 import transaction
 
 
-class TestSubsiteForceLanguage(TestCase):
+class TestSubsiteForceLanguage(TestCase, LanguageSetter):
 
     layer = FTW_SUBSITE_FUNCTIONAL_TESTING
 
@@ -16,17 +17,9 @@ class TestSubsiteForceLanguage(TestCase):
         self.make_document_addable_on_subsite()
 
     def setup_language_tool(self):
-        self.ltool = self.portal.portal_languages
         default = 'en'
         supported = ['en', 'de', 'fr']
-        self.ltool.manage_setLanguageSettings(
-            default,
-            supported,
-            setContentN=True,
-            setUseCombinedLanguageCodes=False,
-            # Set this only for better testing ability
-            setCookieEverywhere=True)
-        transaction.commit()
+        self.set_language_settings(default=default, supported=supported)
 
     def make_document_addable_on_subsite(self):
         types_tool = self.portal.portal_types

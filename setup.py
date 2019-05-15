@@ -7,6 +7,7 @@ tests_require = [
     'collective.mockmailhost',
     'ftw.builder',
     'ftw.testing',
+    'plone.app.contenttypes',
     'plone.app.portlets',
     'plone.app.testing',
     'pyquery',
@@ -14,6 +15,14 @@ tests_require = [
     'ftw.builder',
     'ftw.mobile',
     ]
+
+extras_require = {
+    'tests': tests_require,
+    'test': tests_require,
+    'plone4': [
+        'ftw.simplelayout [plone4]',
+    ],
+}
 
 setup(name='ftw.subsite',
       version=version,
@@ -26,9 +35,8 @@ setup(name='ftw.subsite',
 
       classifiers=[
           'Framework :: Plone',
-          'Framework :: Plone :: 4.1',
-          'Framework :: Plone :: 4.2',
           'Framework :: Plone :: 4.3',
+          'Framework :: Plone :: 5.1',
           'Programming Language :: Python',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
@@ -56,7 +64,7 @@ setup(name='ftw.subsite',
           'plone.autoform',
           'plone.behavior',
           'ftw.simplelayout [contenttypes]',
-          'plone.app.contenttypes<1.2b, >1.1b',
+          'plone.app.contenttypes',
           'plone.app.event',
           'ftw.builder',
           'ftw.theming >= 2.0.0',
@@ -65,7 +73,7 @@ setup(name='ftw.subsite',
       ],
 
       tests_require=tests_require,
-      extras_require={'tests': tests_require},
+      extras_require=extras_require,
 
       entry_points="""
       # -*- Entry points: -*-

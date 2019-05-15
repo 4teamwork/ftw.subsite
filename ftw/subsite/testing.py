@@ -1,6 +1,7 @@
 from ftw.builder.testing import BUILDER_LAYER
 from ftw.builder.testing import functional_session_factory
 from ftw.builder.testing import set_builder_session_factory
+from ftw.testing import IS_PLONE_5
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
@@ -55,6 +56,8 @@ class FtwSubsiteIntegrationLayer(PloneSandboxLayer):
         # Install into Plone site using portal_setup
         applyProfile(portal, 'ftw.subsite:default')
         applyProfile(portal, 'collective.MockMailHost:default')
+        if IS_PLONE_5:
+            applyProfile(portal, 'plone.app.contenttypes:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 
@@ -66,6 +69,8 @@ class FtwSubsiteWithoutApplyProfileLayer(FtwSubsiteIntegrationLayer):
 
     def setUpPloneSite(self, portal):
 
+        if IS_PLONE_5:
+            applyProfile(portal, 'plone.app.contenttypes:default')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 

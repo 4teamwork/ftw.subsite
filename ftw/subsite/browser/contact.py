@@ -1,19 +1,22 @@
-import re
-from ftw.subsite import _
-from email.header import Header
-from email.mime.text import MIMEText
-from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
+from email.header import Header
+from email.mime.text import MIMEText
+from ftw.subsite import _
+from plone.app.layout.navigation.root import getNavigationRoot
 from z3c.form import form, field, button
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.validator import WidgetValidatorDiscriminators
-from zope.component import provideAdapter
-from zope.interface import Invalid
 from zope import schema
-from zope.interface import Interface
+from zope.component import provideAdapter
 from zope.i18n import translate
-from plone.app.layout.navigation.root import getNavigationRoot
+from zope.interface import Interface
+from zope.interface import Invalid
+import pkg_resources
+import re
+
+
+IS_PLONE_5 = pkg_resources.get_distribution('Products.CMFPlone').version >= '5'
 
 
 class IContactForm(Interface):
@@ -109,6 +112,15 @@ class ContactForm(form.Form):
 
         msg['reply-to'] = "%s <%s>" % (sender, recipient)
 
+        if IS_PLONE_5:
+            from plone import api
+            reg = api.portal.get_tool('portal_registry')
+            from_email_field = reg._records.get('plone.email_from_address')
+            if not email_from_email and not from_email_field.value:
+                # especially for testing reasons we need to set a value here
+                # if none is registered on the page in plone5
+                from_email_field._set_value('site@nohost.com')
+                email_from_email = from_email_field.value
         # send the message
         mh.send(msg, mto=email_from_email,
                 mfrom=[email_from_email])

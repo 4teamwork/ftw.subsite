@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<registry>
+
+    <records interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" prefix="plone">
+        <value key="allowed_sizes" purge="false">
+            <element>bannerimage 960:130</element>
+            <element>logo 215:56</element>
+        </value>
+    </records>
+
+    <record name="ftw.subsite.banner_root_only">
+        <field type="plone.registry.field.Bool">
+            <title>Show banners only on root or everywhere</title>
+        </field>
+        <value>True</value>
+    </record>
+
+    <record name="ftw.subsite.bannerfoldername">
+        <field type="plone.registry.field.TextLine">
+            <title>Name of folder where banners are stored</title>
+        </field>
+        <value>banners</value>
+    </record>
+
+    <records prefix="plone.resources/subsite_css" interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="css">
+            <element>++resource++ftw.subsite-ressources/subsite.css</element>
+        </value>
+    </records>
+
+    <record name="plone.displayed_types">
+        <value purge="false">
+            <element>ftw.subsite.Subsite</element>
+        </value>
+    </record>
+
+    <records prefix="plone.bundles/ftw-subsite-resources" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="resources">
+            <element>subsite_css</element>
+        </value>
+        <value key="enabled">True</value>
+        <value key="depends">plone-legacy</value>
+        <value key="compile">False</value>
+        <value key="csscompilation">++plone++subsite/ftw-subsite-compiled.css</value>
+        <value key="merge_with">default</value>
+    </records>
+
+</registry>

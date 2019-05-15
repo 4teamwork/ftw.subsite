@@ -3,7 +3,7 @@ Copied from elyself.portlets.image
 the image portlet is not working proper under plone 3.0.6
 """
 from Acquisition import aq_inner
-from zope.app.file.file import FileChunk
+from plone.namedfile.file import FileChunk
 from zope.publisher.browser import BrowserView
 
 

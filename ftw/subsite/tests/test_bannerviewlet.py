@@ -2,6 +2,7 @@ from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.interfaces import IFtwSubsiteLayer
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
+from ftw.testing import IS_PLONE_5
 from plone.app.testing import login
 from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
@@ -27,7 +28,7 @@ class TestBannerViewlet(TestCase):
         bannerfoldername = registry.get('ftw.subsite.bannerfoldername')
         return create(Builder('folder')
                       .within(context)
-                      .with_id(bannerfoldername))
+                      .titled(bannerfoldername))
 
     def _get_viewlet(self, context, view=None):
         if not view:
@@ -81,21 +82,20 @@ class TestBannerViewlet(TestCase):
         # Add images
         image1 = bannerfolder.get(bannerfolder.invokeFactory('Image',
                                                              'image1'))
-        image1.processForm()
         image2 = bannerfolder.get(bannerfolder.invokeFactory('Image',
                                                              'image2'))
-        image2.processForm()
+        if IS_PLONE_5:
+            image1.reindexObject()
+            image2.reindexObject()
+        else:
+            image1.processForm()
+            image2.processForm()
         viewlet = self._get_viewlet(self.portal)  # It's cached
         self.assertEquals(len(viewlet[0].get_banners()), 2)
         self.assertTrue(viewlet[0].available)
 
     def test_get_banner_tag(self):
-        bannerfolder = self._setup_bannerfolder(self.portal)
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        image = bannerfolder.get(bannerfolder.invokeFactory('Image',
-                                                            'image1',
-                                                            image=file_))
-        image.processForm()
+        image = self.help_import_and_preprocess_image_for_AT_and_Dext()
         viewlet = self._get_viewlet(self.portal)
         self.assertIn("height", viewlet[0].get_banner_tag())
         self.assertIn("width", viewlet[0].get_banner_tag())
@@ -104,12 +104,7 @@ class TestBannerViewlet(TestCase):
                       viewlet[0].get_banner_tag())
 
     def test_available_on_navroot(self):
-        bannerfolder = self._setup_bannerfolder(self.portal)
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        image = bannerfolder.get(bannerfolder.invokeFactory('Image',
-                                                            'image1',
-                                                            image=file_))
-        image.processForm()
+        self.help_import_and_preprocess_image_for_AT_and_Dext()
         viewlet = self._get_viewlet(self.portal)
         # Default is only on navroot
         self.assertTrue(viewlet[0].available)
@@ -121,13 +116,7 @@ class TestBannerViewlet(TestCase):
         self.assertFalse(viewlet[0].available)
 
     def test_available_everywhere(self):
-        bannerfolder = self._setup_bannerfolder(self.portal)
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        image = bannerfolder.get(bannerfolder.invokeFactory('Image',
-                                                            'image1',
-                                                            image=file_))
-        image.processForm()
-
+        self.help_import_and_preprocess_image_for_AT_and_Dext()
         registry = getUtility(IRegistry)
         registry.records['ftw.subsite.banner_root_only'] = \
             Record(field.Bool(title=u"dummy", default=True),
@@ -148,13 +137,7 @@ class TestBannerViewlet(TestCase):
 
         viewlet = self._get_viewlet(subsite)
         self.assertTrue(len(viewlet) == 1)
-
-        bannerfolder = self._setup_bannerfolder(subsite)
-        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
-        image = bannerfolder.get(bannerfolder.invokeFactory('Image',
-                                                            'image1',
-                                                            image=file_))
-        image.processForm()
+        image = self.help_import_and_preprocess_image_for_AT_and_Dext(subsite)
 
         self.assertIn("MySubsite", viewlet[0].get_banner_tag())
         self.assertIn("%s/@@images" % image.absolute_url(),
@@ -228,3 +211,21 @@ class TestBannerViewlet(TestCase):
 
         login(self.portal, user.getId())
         self.assertFalse(self._get_viewlet(subfolder)[0].available)
+
+    def help_import_and_preprocess_image_for_AT_and_Dext(self, add_withing=None):
+        if not add_withing:
+            add_withing = self.portal
+        bannerfolder = self._setup_bannerfolder(add_withing)
+        file_ = open("%s/blue.png" % os.path.split(__file__)[0], 'r')
+        if IS_PLONE_5:
+            from plone.namedfile.file import NamedImage
+            file_ = NamedImage(data=file_, filename=u'blue.png')
+            image = bannerfolder.get(
+                bannerfolder.invokeFactory('Image', 'image1', image=file_))
+            image.reindexObject()
+        else:
+            image = bannerfolder.get(
+                bannerfolder.invokeFactory('Image', 'image1', image=file_))
+            image.processForm()
+
+        return image

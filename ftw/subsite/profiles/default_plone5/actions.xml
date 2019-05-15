@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="object" meta_type="CMF Action Category">
+  <object name="manage_portlets" meta_type="CMF Action" i18n:domain="ftw.subsite">
+   <property name="title" i18n:translate="">Manage Subsite Portlets</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:@@manage-subsiteview</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:'subsite_view' in request.steps</property>
+   <property name="permissions">
+    <element value="Review portal content"/>
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+</object>
+ <object name="site_actions" meta_type="CMF Action Category">
+   <object name="contact" meta_type="CMF Action" i18n:domain="plone">
+     <property name="title" i18n:translate="">Contact</property>
+     <property name="description" i18n:translate=""></property>
+     <property
+         name="url_expr">string:${globals_view/navigationRootUrl}/@@contact-info</property>
+     <property name="icon_expr"></property>
+     <property name="available_expr"></property>
+     <property name="permissions">
+       <element value="View"/>
+     </property>
+     <property name="visible">True</property>
+  </object>
+ </object>
+</object>

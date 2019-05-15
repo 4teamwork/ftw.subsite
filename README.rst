@@ -58,7 +58,7 @@ of the integration project.
 
 Note about versions:
 
-This package provides a version.cfg. Please make sure you are using suitable versions of `plone.app.contenttypes` and `plone.app.event`.
+Please make sure you are using suitable versions of `plone.app.contenttypes` and `plone.app.event`.
 
 Currently it's recommend to use:
 
@@ -69,18 +69,9 @@ Currently it's recommend to use:
    :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg
 
 
-
-Plone 4.3
-
-.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.3.x.cfg/badge/icon
-   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.3.x.cfg
-
-Plone 4.2
-
-.. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.2.x.cfg/badge/icon
-   :target: https://jenkins.4teamwork.ch/job/ftw.subsite-1.x-test-plone-4.2.x.cfg
-
 **Important**
+
+Support for Plone 4.2 has been dropped with the release of ``ftw.subsite`` 2.0.0.
 
 Plone 4.1 support has been dropped due to Plonebugs which interfere with our testsetup
 which were fixed in Plone 4.2.
