@@ -3,6 +3,7 @@
 
     <order manager="plone.portalheader" skinname="*">
         <viewlet name="ftw.subsite.languageselector" />
+        <viewlet name="ftw.subsite.banner" insert-after="subsite.logo" />
         <viewlet name="plone.global_sections" insert-after="ftw.subsite.banner" />
     </order>
 
