@@ -5,7 +5,6 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.content import Container
 from plone.directives.form import widget
-from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import directives
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationList
@@ -20,22 +19,9 @@ class ISubsiteSchema(model.Schema):
     directives.fieldset(
         'subsite',
         label=_(u'Subsite'),
-        fields=('logo', 'logo_alt_text', 'additional_css',
+        fields=('additional_css',
                 'language_references', 'link_site_in_languagechooser',
                 'force_language')
-    )
-
-    logo = NamedBlobImage(
-        title=_(u'label_logo', default=u'Logo'),
-        description=_(u'help_logo', default=u''),
-        required=False
-    )
-
-    logo_alt_text = schema.TextLine(
-        title=_(u'label_logo_alt_text',
-                default=u'Alternative text of the logo'),
-        required=False,
-        default=u'',
     )
 
     additional_css = schema.Text(
