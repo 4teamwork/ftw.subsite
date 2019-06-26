@@ -70,6 +70,7 @@ setup(name='ftw.subsite',
           'ftw.theming >= 2.0.0',
           'Plone',
           'ftw.referencewidget',
+          'ftw.logo',
       ],
 
       tests_require=tests_require,

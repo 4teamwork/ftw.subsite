@@ -3,5 +3,6 @@
     <dependencies>
       <dependency>profile-ftw.simplelayout.contenttypes:default</dependency>
       <dependency>profile-ftw.referencewidget:default</dependency>
+      <dependency>profile-ftw.logo:default</dependency>
     </dependencies>
 </metadata>
