@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.5.1 (unreleased)
+2.6.0 (2019-06-26)
 ------------------
 
 - Use ftw.logo for subsite logo and remove previous viewlet [busykoala]
