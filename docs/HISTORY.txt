@@ -4,7 +4,7 @@ Changelog
 2.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add ImageMagic dependency comment to readme. [busykoala]
 
 
 2.6.0 (2019-06-26)

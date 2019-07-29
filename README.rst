@@ -5,6 +5,11 @@ ftw.subsite
 within a Plone site.
 It does this by defining it as navigation root.
 
+Dependencies
+------------
+
+For ``ftw.subsite >= 2.6.0``, ``ImageMagic`` is required.
+
 
 Additional functionality provided by `ftw.subsite`
 --------------------------------------------------
