@@ -1,19 +1,21 @@
-import re
-from ftw.subsite import _
-from email.header import Header
-from email.mime.text import MIMEText
-from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from Products.statusmessages.interfaces import IStatusMessage
+from email.header import Header
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from ftw.subsite import _
+from plone.app.layout.navigation.root import getNavigationRoot
+from plone.z3cform.layout import wrap_form
 from z3c.form import form, field, button
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.validator import WidgetValidatorDiscriminators
-from zope.component import provideAdapter
-from zope.interface import Invalid
 from zope import schema
-from zope.interface import Interface
+from zope.component import provideAdapter
 from zope.i18n import translate
-from plone.app.layout.navigation.root import getNavigationRoot
+from zope.interface import Interface
+from zope.interface import Invalid
+import re
 
 
 class IContactForm(Interface):
@@ -66,7 +68,6 @@ class ContactForm(form.Form):
     def send_feedback(self, recipient, subject, message, sender):
         """Send a feedback email to the email address defined in subsite.
         """
-        mh = getToolByName(self.context, 'MailHost')
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         nav_root = None
         if not '/'.join(portal.getPhysicalPath()) == getNavigationRoot(self.context):
@@ -79,19 +80,15 @@ class ContactForm(form.Form):
             site_title = portal.Title()
             site_url = portal.absolute_url()
 
-        text = translate(
+        message = translate(
             u'feedback_mail_text',
             domain='ftw.subsite',
-            default='${sender} sends you a message from your site ${site_title}(${site_url}):\n${msg}',
+            default='${sender} sends you a message from your site ${site_title} (${site_url}):\n${msg}',
             context=self.request,
             mapping={'sender': "%s (%s)" % (sender, recipient),
                      'msg': message,
                      'site_title': site_title,
                      'site_url': site_url})
-
-        # create the message root with from, to, and subject headers
-        msg = MIMEText(text.encode('windows-1252'), 'plain', 'windows-1252')
-        msg['Subject'] = Header(subject, 'windows-1252')
 
         default_from_name = portal.getProperty('email_from_name', '')
         default_from_email = portal.getProperty('email_from_address', '')
@@ -102,16 +99,26 @@ class ContactForm(form.Form):
         else:
             email_from_name = default_from_name
             email_from_email = default_from_email
-        msg['From'] = "%s <%s>" % (
-            email_from_name,
-            email_from_email
-        )
 
-        msg['reply-to'] = "%s <%s>" % (sender, recipient)
+        # all the strings fed to send_mail have to be utf-8
+        self.send_mail(email_from_name, email_from_email, email_from_email,
+                       subject.encode('utf-8'), message.encode('utf-8'),
+                       recipient, sender.encode('utf-8'))
 
-        # send the message
-        mh.send(msg, mto=email_from_email,
-                mfrom=[email_from_email])
+    def send_mail(self, name_from, mail_from, mail_to, mail_subject,
+                  message_text, reply_mail, reply_name):
+        """Send mail using plone mailhost (all input strings need to be utf-8).
+        """
+        # Put together the mail parts
+        msg = MIMEText(message_text, 'plain', 'utf-8')
+        msg['From'] = '{} <{}>'.format(name_from, mail_from)
+        msg['To'] = mail_to
+        msg['Subject'] = Header(mail_subject, 'utf-8')
+        msg['reply-to'] = '{} <{}>'.format(reply_name, reply_mail)
+
+        # Get mailhost and send to mail_to
+        mailhost = getToolByName(self.context, 'MailHost')
+        mailhost.send(msg)
 
 
 class AddressesValidator(SimpleFieldValidator):
