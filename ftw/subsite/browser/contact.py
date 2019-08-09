@@ -128,12 +128,13 @@ class ContactForm(form.Form):
         if not name_from:
             name_from = ''
         # Put together the mail parts
-        msg = MIMEText(message_text.encode('windows-1252'),
-                       'plain', 'windows-1252')
-        msg['From'] = "%s <%s>" % (name_from, mail_from)
+        msg = MIMEText(safe_utf8(message_text), 'plain', 'utf-8')
+        msg['From'] = '{} <{}>'.format(safe_utf8(name_from),
+                                       safe_utf8(mail_from))
         msg['To'] = safe_utf8(mail_to)
-        msg['Subject'] = Header(mail_subject, 'windows-1252')
-        msg['reply-to'] = '{} <{}>'.format(reply_name, reply_name)
+        msg['Subject'] = Header(safe_utf8(mail_subject), 'utf-8')
+        msg['reply-to'] = '{} <{}>'.format(safe_utf8(reply_name),
+                                           safe_utf8(reply_mail))
 
         # Get mailhost and send to mail_to
         mailhost = getToolByName(self.context, 'MailHost')
