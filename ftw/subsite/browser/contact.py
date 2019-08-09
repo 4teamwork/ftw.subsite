@@ -85,7 +85,7 @@ class ContactForm(form.Form):
         message = translate(
             u'feedback_mail_text',
             domain='ftw.subsite',
-            default='${sender} sends you a message from your site ${site_title}(${site_url}):\n${msg}',
+            default='${sender} sends you a message from your site ${site_title} (${site_url}):\n${msg}',
             context=self.request,
             mapping={'sender': "%s (%s)" % (sender, recipient),
                      'msg': message,

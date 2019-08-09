@@ -39,7 +39,7 @@ class TestContactFrom(TestCase):
         self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
-             'Subsite(http:=\n//nohost/plone/subsite):\n'
+             'Subsite (http=\n://nohost/plone/subsite):\n'
              'Lorem ipsum dolor sit amet'),
             msg.get_payload())
 
@@ -80,7 +80,7 @@ class TestContactFrom(TestCase):
         self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
-             'Test(http://n=\nohost/plone):\n'
+             'Test (http://=\nnohost/plone):\n'
              'Lorem ipsum dolor sit amet'),
             msg.get_payload())
 
