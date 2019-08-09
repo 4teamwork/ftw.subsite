@@ -4,6 +4,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from ftw.subsite import _
 from plone.app.layout.navigation.root import getNavigationRoot
+from plone.dexterity.utils import safe_utf8
 from z3c.form import form, field, button
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.validator import WidgetValidatorDiscriminators
@@ -69,7 +70,6 @@ class ContactForm(form.Form):
     def send_feedback(self, recipient, subject, message, sender):
         """Send a feedback email to the email address defined in subsite.
         """
-        mh = getToolByName(self.context, 'MailHost')
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         nav_root = None
         if not '/'.join(portal.getPhysicalPath()) == getNavigationRoot(self.context):
@@ -82,7 +82,7 @@ class ContactForm(form.Form):
             site_title = portal.Title()
             site_url = portal.absolute_url()
 
-        text = translate(
+        message = translate(
             u'feedback_mail_text',
             domain='ftw.subsite',
             default='${sender} sends you a message from your site ${site_title}(${site_url}):\n${msg}',
@@ -91,10 +91,6 @@ class ContactForm(form.Form):
                      'msg': message,
                      'site_title': site_title,
                      'site_url': site_url})
-
-        # create the message root with from, to, and subject headers
-        msg = MIMEText(text.encode('windows-1252'), 'plain', 'windows-1252')
-        msg['Subject'] = Header(subject, 'windows-1252')
 
         default_from_name = portal.getProperty('email_from_name', '')
         default_from_email = portal.getProperty('email_from_address', '')
@@ -105,12 +101,6 @@ class ContactForm(form.Form):
         else:
             email_from_name = default_from_name
             email_from_email = default_from_email
-        msg['From'] = "%s <%s>" % (
-            email_from_name,
-            email_from_email
-        )
-
-        msg['reply-to'] = "%s <%s>" % (sender, recipient)
 
         if IS_PLONE_5:
             from plone import api
@@ -121,9 +111,28 @@ class ContactForm(form.Form):
                 # if none is registered on the page in plone5
                 from_email_field._set_value('site@nohost.com')
                 email_from_email = from_email_field.value
+
         # send the message
-        mh.send(msg, mto=email_from_email,
-                mfrom=[email_from_email])
+        self.send_mail(email_from_name, email_from_email, email_from_email,
+                       subject, message, recipient, sender)
+
+    def send_mail(self, name_from, mail_from, mail_to, mail_subject,
+                  message_text, reply_mail, reply_name):
+        """Send mail using plone mailhost (all input strings need to be utf-8).
+        """
+        if not name_from:
+            name_from = ''
+        # Put together the mail parts
+        msg = MIMEText(message_text.encode('windows-1252'),
+                       'plain', 'windows-1252')
+        msg['From'] = "%s <%s>" % (name_from, mail_from)
+        msg['To'] = safe_utf8(mail_to)
+        msg['Subject'] = Header(mail_subject, 'windows-1252')
+        msg['reply-to'] = '{} <{}>'.format(reply_name, reply_name)
+
+        # Get mailhost and send to mail_to
+        mailhost = getToolByName(self.context, 'MailHost')
+        mailhost.send(msg)
 
 
 class AddressesValidator(SimpleFieldValidator):
