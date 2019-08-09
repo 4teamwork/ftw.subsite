@@ -2,7 +2,7 @@ from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from ftw.testbrowser.pages import statusmessages
+from ftw.testing import IS_PLONE_5
 from unittest2 import TestCase
 import email
 import transaction
@@ -33,10 +33,10 @@ class TestContactFrom(TestCase):
         self.assertEqual(len(mh.messages), 1)
 
         msg = email.message_from_string(mh.messages[0])
-        self.assertEqual(msg.get('From'), 'blubber@blubb.ch')
+        self.assertEqual(msg.get('From'), 'Subsite <blubber@blubb.ch>')
         self.assertEqual(msg.get('reply-to'), u'hans peter <test@test.com>')
         sub = msg.get('Subject')
-        self.assertEqual(sub.encode('utf8'), 'Testsubject')
+        self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
              'Subsite(http:=\n//nohost/plone/subsite):\n'
@@ -69,11 +69,15 @@ class TestContactFrom(TestCase):
         self.assertEqual(len(mh.messages), 1)
 
         msg = email.message_from_string(mh.messages[0])
-        self.assertEqual(msg.get('From'), 'site@nohost.com')
+        if IS_PLONE_5:
+            self.assertEqual(msg.get('From'), '<site@nohost.com>')
+        else:
+            self.assertEqual(msg.get('From'), 'Ploneroot <site@nohost.com>')
+
         self.assertEqual(msg.get('reply-to'), u'hans peter <test@test.com>')
 
         sub = msg.get('Subject')
-        self.assertEqual(sub.encode('utf8'), 'Testsubject')
+        self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
              'Test(http://n=\nohost/plone):\n'
