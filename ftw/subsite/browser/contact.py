@@ -111,6 +111,11 @@ class ContactForm(form.Form):
                 from_email_field._set_value('site@nohost.com')
                 email_from_email = from_email_field.value
 
+            email_from_email = (email_from_email or
+                                reg._records.get('plone.email_from_address').value)
+            email_from_name = (email_from_name or
+                               reg._records.get('plone.email_from_name').value)
+
         # send the message
         self.send_mail(email_from_name, email_from_email, email_from_email,
                        subject, message, recipient, sender)
