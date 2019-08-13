@@ -1,22 +1,26 @@
-import re
-from ftw.subsite import _
-from email.header import Header
-from email.mime.text import MIMEText
-from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
+from email.header import Header
+from email.mime.text import MIMEText
+from ftw.subsite import _
 from ftw.subsite import _
 from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.layout.navigation.root import getNavigationRoot
 from plone.dexterity.utils import safe_utf8
+from plone.z3cform.layout import wrap_form
 from z3c.form import form, field, button
 from z3c.form.validator import SimpleFieldValidator
 from z3c.form.validator import WidgetValidatorDiscriminators
-from zope.component import provideAdapter
-from zope.interface import Invalid
 from zope import schema
-from zope.interface import Interface
+from zope.component import provideAdapter
 from zope.i18n import translate
-from plone.app.layout.navigation.root import getNavigationRoot
+from zope.interface import Interface
+from zope.interface import Invalid
+import pkg_resources
+import re
+
+
+IS_PLONE_5 = pkg_resources.get_distribution('Products.CMFPlone').version >= '5'
 
 
 class IContactForm(Interface):

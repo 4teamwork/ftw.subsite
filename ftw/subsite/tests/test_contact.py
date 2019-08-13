@@ -2,10 +2,13 @@ from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from ftw.testing import IS_PLONE_5
 from unittest2 import TestCase
 import email
+import pkg_resources
 import transaction
+
+
+IS_PLONE_5 = pkg_resources.get_distribution('Products.CMFPlone').version >= '5'
 
 
 class TestContactFrom(TestCase):
