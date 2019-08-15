@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<registry>
+
+    <!-- remove resources in german folder name -->
+    <records prefix="plone.resources/subsite_css"
+        interface="Products.CMFPlone.interfaces.IResourceRegistry"
+        remove="True" />
+
+        <!-- add resources to english folder name -->
+    <records prefix="plone.resources/subsite_css"
+        interface="Products.CMFPlone.interfaces.IResourceRegistry">
+    <value key="css">
+        <element>++resource++ftw.subsite-resources/subsite.css</element>
+    </value>
+</records>
+
+</registry>
