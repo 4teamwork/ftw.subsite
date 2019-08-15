@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.1.1 (unreleased)
+------------------
+
+- Change mailer encoding from win cp-1252 to utf-8 and refactor mailer. [busykoala]
+
+
 2.1.0 (2016-07-20)
 ------------------
 
