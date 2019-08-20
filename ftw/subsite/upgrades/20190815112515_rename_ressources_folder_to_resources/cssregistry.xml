@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object name="portal_css" meta_type="Stylesheets Registry" autogroup="False">
+
+    <!-- remove resources in german folder name -->
+    <stylesheet id="++resource++ftw.subsite-ressources/subsite.css" remove="True" />
+
+        <!-- add resources to english folder name -->
+    <stylesheet title="" cacheable="True" compression="safe" cookable="True"
+        enabled="True" id="++resource++ftw.subsite-resources/subsite.css" media="all"
+        expression="not:request/HTTP_X_FTW_THEMING|nothing"
+        rel="stylesheet" rendering="link"/>
+
+</object>

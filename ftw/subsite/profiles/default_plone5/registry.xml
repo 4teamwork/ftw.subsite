@@ -24,7 +24,7 @@
 
     <records prefix="plone.resources/subsite_css" interface='Products.CMFPlone.interfaces.IResourceRegistry'>
         <value key="css">
-            <element>++resource++ftw.subsite-ressources/subsite.css</element>
+            <element>++resource++ftw.subsite-resources/subsite.css</element>
         </value>
     </records>
 

@@ -10,8 +10,8 @@
 	<!-- dashboard for the front-pages -->
 
  <browser:resourceDirectory
-      name="ftw.subsite-ressources"
-      directory="ressources"
+      name="ftw.subsite-resources"
+      directory="resources"
       />
 	<adapter
     factory=".manager.ColumnSubsiteManagerRenderer"
