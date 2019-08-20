@@ -6,17 +6,10 @@
 
   <include package="plone.app.contentmenu" />
 
-
-	<!-- dashboard for the front-pages -->
-
- <browser:resourceDirectory
+  <browser:resourceDirectory
       name="ftw.subsite-resources"
       directory="resources"
       />
-	<adapter
-    factory=".manager.ColumnSubsiteManagerRenderer"
-    provides="plone.portlets.interfaces.IPortletManagerRenderer"
-    />
 
   <browser:page
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
