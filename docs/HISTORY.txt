@@ -7,7 +7,7 @@ Changelog
 - Add ImageMagic dependency comment to readme. [busykoala]
 - Change mailer encoding from win cp-1252 to utf-8 and refactor mailer. [busykoala]
 - Rename ressources directory to resources. [busykoala]
-- Remove teaserportlet. [busykoala]
+- Remove teaserportlet and column/-renderer. [busykoala]
 
 
 2.6.0 (2019-06-26)
