@@ -1,14 +1,19 @@
 Changelog
 =========
 
-2.6.1 (unreleased)
+2.6.2 (unreleased)
+------------------
+
+- Unhide logo viewlet. [busykoala]
+
+
+2.6.1 (2019-08-22)
 ------------------
 
 - Add ImageMagic dependency comment to readme. [busykoala]
 - Change mailer encoding from win cp-1252 to utf-8 and refactor mailer. [busykoala]
 - Rename ressources directory to resources. [busykoala]
 - Remove teaserportlet and column/-renderer. [busykoala]
-- Unhide logo viewlet. [busykoala]
 
 
 2.6.0 (2019-06-26)
