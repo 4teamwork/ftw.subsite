@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:profilehook="http://namespaces.zope.org/profilehook"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.subsite">
@@ -9,6 +10,7 @@
   <five:registerPackage package="." initialize=".initialize" />
 
   <include package="z3c.autoinclude" file="meta.zcml" />
+  <include package="ftw.profilehook" />
   <includeDependencies package="." />
 
   <include package="Products.CMFCore" file="permissions.zcml" />
@@ -53,6 +55,11 @@
         for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
         />
 
+   <profilehook:hook
+        zcml:condition="have plone-5"
+        profile="ftw.subsite:uninstall"
+        handler=".profilehooks.uninstall_plone5"
+        />
   <include package=".upgrades" />
 
     <utility
