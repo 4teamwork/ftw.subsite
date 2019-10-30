@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="ftw.subsite.banner_root_only" remove="True" />
+  <record name="ftw.subsite.bannerfoldername" remove="True" />
+</registry>

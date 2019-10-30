@@ -55,6 +55,15 @@
         for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
         />
 
+    <genericsetup:registerProfile
+        zcml:condition="not-have plone-5"
+        name="uninstall"
+        title="Uninstall ftw.subsite"
+        directory="profiles/uninstall"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        />
+
    <profilehook:hook
         zcml:condition="have plone-5"
         profile="ftw.subsite:uninstall"
