@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object>
+
+    <order manager="plone.portalheader" skinname="*">
+        <viewlet remove="True" name="ftw.subsite.languageselector" />
+        <viewlet remove="True" name="ftw.subsite.banner" />
+    </order>
+
+</object>
