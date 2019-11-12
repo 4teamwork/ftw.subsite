@@ -5,7 +5,7 @@ from ftw.subsite.testing import FTW_SUBSITE_SPECIAL_FUNCTIONAL_TESTING
 from ftw.subsite.tests.helpers import LanguageSetter
 from ftw.testbrowser import browsing
 from ftw.testing import IS_PLONE_5
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.i18n.locales import locales
 
 CSS_SELECTOR_SITE_ACTIONS = '.actions-site_actions' if IS_PLONE_5 else '#portal-siteactions'

@@ -3,7 +3,7 @@ from ftw.subsite.utils import find_context
 from ftw.subsite.utils import get_nav_root
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from zope.interface import alsoProvides
-import unittest2 as unittest
+import unittest as unittest
 
 
 class TestUtilsIntegration(unittest.TestCase):

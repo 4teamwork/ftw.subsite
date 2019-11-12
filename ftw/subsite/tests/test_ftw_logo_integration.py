@@ -2,7 +2,7 @@ from ftw.builder import Builder
 from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from unittest2 import TestCase
+from unittest import TestCase
 import os
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))

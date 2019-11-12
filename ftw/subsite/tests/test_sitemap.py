@@ -3,7 +3,7 @@ from ftw.builder import create
 from ftw.subsite.browser.sitemap import SubsiteSitemapQueryBuilder
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 class TestSubsiteSitemap(TestCase):

@@ -4,7 +4,7 @@ from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.subsite.tests.helpers import introduce_language_subsites
 from ftw.testbrowser import browsing
 from plone.app.testing import applyProfile
-from unittest2 import TestCase
+from unittest import TestCase
 import json
 import transaction
 
