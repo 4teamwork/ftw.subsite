@@ -6,7 +6,7 @@ from ftw.testing import IS_PLONE_5
 from plone.app.testing import login
 from plone.registry import Record, field
 from plone.registry.interfaces import IRegistry
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.component import queryMultiAdapter

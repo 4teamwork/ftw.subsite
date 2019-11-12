@@ -4,7 +4,7 @@ from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.subsite.viewlets.cssviewlet import CSSViewlet
 from ftw.testbrowser import browsing
 from plone.app.testing import login
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.publisher.browser import BrowserView
 
 

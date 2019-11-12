@@ -1,6 +1,6 @@
 from ftw.subsite.languages import translate_language
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
-import unittest2 as unittest
+import unittest as unittest
 
 
 class TestGetLanguageNative(unittest.TestCase):

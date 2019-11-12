@@ -1,7 +1,7 @@
 from ftw.subsite.testing import FTW_SUBSITE_INTEGRATION_TESTING
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 class IntegrationTestCase(TestCase):

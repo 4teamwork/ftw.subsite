@@ -3,7 +3,7 @@ from ftw.builder import create
 from ftw.subsite.testing import FTW_SUBSITE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
 from ftw.testing import IS_PLONE_5
-from unittest2 import TestCase
+from unittest import TestCase
 import email
 import transaction
 
