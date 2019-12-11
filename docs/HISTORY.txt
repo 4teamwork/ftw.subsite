@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Fix test failure by using multiple file instances. [busykoala]
+- Change resources setup precompiling them. [busykoala]
 
 
 2.7.0 (2019-08-28)
