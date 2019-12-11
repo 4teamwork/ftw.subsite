@@ -125,6 +125,7 @@ class TestFtwLogoIntegration(TestCase):
         browser.open(subsite, view='logo-and-icon-overrides')
         with open(IMAGE_PATH) as file_:
             expected_logo = file_.read()
+            file_.seek(0)
             browser.fill({'form.widgets.logo_BASE': file_}).submit()
 
         # open actual image to compare with the expected
@@ -148,6 +149,7 @@ class TestFtwLogoIntegration(TestCase):
         browser.open(upload_context, view='logo-and-icon-overrides')
         with open(IMAGE_PATH) as file_:
             expected_logo = file_.read()
+            file_.seek(0)
             browser.fill({'form.widgets.logo_BASE': file_}).submit()
 
         # open actual image to compare with the expected
