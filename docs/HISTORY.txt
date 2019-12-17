@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.7.1 (unreleased)
+2.7.1 (2019-12-17)
 ------------------
 
 - Fix test failure by using multiple file instances. [busykoala]
