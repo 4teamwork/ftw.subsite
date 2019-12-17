@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.7.3 (unreleased)
+2.7.3 (2019-12-17)
 ------------------
 
 - Fix registry.xml of 20191216175123 upgrade step - second try :-( [mathias.leimgruber]
