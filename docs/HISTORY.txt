@@ -4,7 +4,7 @@ Changelog
 2.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix registry.xml of 20191216175123 upgrade step [mathias.leimgruber]
 
 
 2.7.1 (2019-12-17)
