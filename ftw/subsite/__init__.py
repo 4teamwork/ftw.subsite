@@ -1,8 +1,11 @@
-from ftw.subsite import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cutils
+from Products.CMFPlone.utils import getFSVersionTuple
+from ftw.subsite import config
 from zope.i18nmessageid import MessageFactory
 
+
+IS_PLONE_5 = getFSVersionTuple() > (5, )
 
 _ = MessageFactory('ftw.subsite')
 
