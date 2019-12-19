@@ -1,1 +1,1 @@
-require(['dropdown'], function (dropdown) {});
+require(['subsite_dropdown'], function (dropdown) {});
