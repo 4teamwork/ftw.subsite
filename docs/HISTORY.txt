@@ -4,7 +4,7 @@ Changelog
 2.7.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add ftw.subsite portal_type translation to plone domain. [tinagerber]
 
 
 2.7.3 (2019-12-17)
