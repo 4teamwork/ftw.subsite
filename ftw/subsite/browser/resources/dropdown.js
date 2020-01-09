@@ -8,13 +8,11 @@
   }
 }(typeof self !== 'undefined' ? self : this, function ($) {
   function hide() {
-    $('#portal-languageselector').removeClass('activated').addClass('deactivated');
+    $('[id="portal-languageselector"]').removeClass('activated').addClass('deactivated');
   }
 
   function toggle() {
-    $('#portal-languageselector')
-      .toggleClass('deactivated')
-      .toggleClass('activated');
+    $(this).parents('#portal-languageselector').toggleClass('activated').toggleClass('deactivated');
     return false;
   }
 
