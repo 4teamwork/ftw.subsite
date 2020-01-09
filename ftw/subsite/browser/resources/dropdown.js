@@ -33,5 +33,5 @@
     $('#portal-languageselector .actionMenuContent').on('click', hide);
   }
 
-  $(initializeMenus);
+  $(initializeMenu);
 }));
