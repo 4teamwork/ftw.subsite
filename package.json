@@ -11,8 +11,9 @@
     "requirejs": "^2.3.6"
   },
   "scripts": {
-        "build": "r.js -o buildcss.js",
+        "build": "r.js -o build.js && r.js -o buildcss.js",
+        "build-js": "r.js -o build.js",
         "build-css": "r.js -o buildcss.js",
-        "watch": "chokidar \"./ftw/subsite/browser/resources/(*.js|*.css)\" -i \"**/*-compiled.css\" -c \"r.js -o buildcss.js;\""
+        "watch": "chokidar \"./ftw/subsite/browser/resources/(*.js|*.css)\" -i \"**/*-compiled.(js|css)\" -c \"yarn build\""
     }
 }
