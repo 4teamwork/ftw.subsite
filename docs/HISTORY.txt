@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.7.5 (unreleased)
+2.7.5 (2020-01-10)
 ------------------
 
 - Fix plone 4 / 5 language selector [Nachtalb]
