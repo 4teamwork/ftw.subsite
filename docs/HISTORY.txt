@@ -4,7 +4,7 @@ Changelog
 2.7.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- IResourceRegistry does not exist in plone4. Add condition to "Update bundle registration" upgrade step. [2e12]
 
 
 2.7.5 (2020-01-10)
