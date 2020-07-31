@@ -4,7 +4,7 @@ Changelog
 2.7.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove plone.formwidget.contenttree dependency - which has been unnecessary since 2.4.0. [djowett-ftw]
 
 
 2.7.6 (2020-03-18)
@@ -59,7 +59,8 @@ Changelog
 - Remove teaserportlet and column/-renderer. [busykoala]
 
 
-2.6.0 (2019-06-26)
+2.:5
+6.0 (2019-06-26)
 ------------------
 
 - Use ftw.logo for subsite logo and remove previous viewlet [busykoala]

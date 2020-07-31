@@ -54,7 +54,6 @@ setup(name='ftw.subsite',
 
       install_requires=[
           'ftw.upgrade >= 2.0.0',
-          'plone.formwidget.contenttree',
           'plone.formwidget.namedfile',
           'plone.namedfile',
           'setuptools',
