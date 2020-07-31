@@ -8,7 +8,7 @@ It does this by defining it as navigation root.
 Dependencies
 ------------
 
-For ``ftw.subsite >= 2.6.0``, ``ImageMagic`` is required.
+For ``ftw.subsite >= 2.6.0``, ``ImageMagick`` is required.
 
 
 Additional functionality provided by `ftw.subsite`
@@ -46,7 +46,17 @@ Additional functionality provided by `ftw.subsite`
 Compatibility
 -------------
 
-Plone 4.3 + Dexterity + Migration
+ftw.subsite is compatible with Plone 5.1 and 4.3.
+
+Support for Plone 4.2 has been dropped with the release of ``ftw.subsite`` 2.0.0.
+
+Plone 4.1 support has been dropped due to Plonebugs which interfere with our test setup
+which were fixed in Plone 4.2.  The last Version of ftw.subsite to support Plone 4.1 is 1.3.0.
+
+Plone 4.3
+---------
+
+Plone 4.3 Dexterity Migration
 
 With ``ftw.subsite`` 2.x only the AT based Subsite content is replaced with a
 Dexterity based Subsite content + ftw.simplelayout default page. Thus the
@@ -61,7 +71,7 @@ subsite. For projects which add behaviors to the subsite for those old fields, t
 be gotten from the annotations and re-set after applying the behavior. This is the responsibility
 of the integration project.
 
-Note about versions:
+**Note about dependency versions on Plone 4.3:**
 
 Please make sure you are using suitable versions of `plone.app.contenttypes` and `plone.app.event`.
 
@@ -72,16 +82,6 @@ Currently it's recommend to use:
 
 .. image:: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg/badge/icon
    :target: https://jenkins.4teamwork.ch/job/ftw.subsite-master-test-plone-4.3.x.cfg
-
-
-**Important**
-
-Support for Plone 4.2 has been dropped with the release of ``ftw.subsite`` 2.0.0.
-
-Plone 4.1 support has been dropped due to Plonebugs which interfere with our testsetup
-which were fixed in Plone 4.2.
-
-Last Version of ftw.subsite to support Plone 4.1 is 1.3.0.
 
 Usage
 -----
