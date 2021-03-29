@@ -4,7 +4,7 @@ Changelog
 2.7.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix UnicodeDecodeError while sending emails from a subsite/plone containing a non ascii character in the title. [mathias.leimgruber]
 
 
 2.7.8 (2020-10-02)
