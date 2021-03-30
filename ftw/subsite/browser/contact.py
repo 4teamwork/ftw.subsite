@@ -93,8 +93,8 @@ class ContactForm(form.Form):
         default_from_email = portal.getProperty('email_from_address', '')
 
         if nav_root:
-            email_from_name = nav_root.from_name or default_from_name
-            email_from_email = nav_root.from_email or default_from_email
+            email_from_name = getattr(nav_root, 'from_name', default_from_name)
+            email_from_email = getattr(nav_root, 'from_email', default_from_email)
         else:
             email_from_name = default_from_name
             email_from_email = default_from_email
