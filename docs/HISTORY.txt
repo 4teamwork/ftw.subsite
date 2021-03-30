@@ -4,7 +4,7 @@ Changelog
 2.7.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix contact form when not using Plone Site or Subsite as nav root [Nachtalb]
 
 
 2.7.8 (2020-10-02)
