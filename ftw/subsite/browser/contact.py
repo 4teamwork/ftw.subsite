@@ -73,18 +73,18 @@ class ContactForm(form.Form):
             nav_root = self.context.restrictedTraverse(
                 getNavigationRoot(self.context))
         if nav_root:
-            site_title = nav_root.Title()
+            site_title = nav_root.Title().decode('utf-8')
             site_url = nav_root.absolute_url()
         else:
-            site_title = portal.Title()
+            site_title = portal.Title().decode('utf-8')
             site_url = portal.absolute_url()
 
         message = translate(
             u'feedback_mail_text',
             domain='ftw.subsite',
-            default='${sender} sends you a message from your site ${site_title} (${site_url}):\n${msg}',
+            default=u'${sender} sends you a message from your site ${site_title} (${site_url}):\n${msg}',
             context=self.request,
-            mapping={'sender': "%s (%s)" % (sender, recipient),
+            mapping={'sender': u"%s (%s)" % (sender, recipient),
                      'msg': message,
                      'site_title': site_title,
                      'site_url': site_url})

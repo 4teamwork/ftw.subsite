@@ -16,7 +16,7 @@ class TestContactFrom(TestCase):
 
         self.portal = self.layer['portal']
         self.subsite = create(Builder('subsite')
-                              .titled(u'Subsite')
+                              .titled(u'S\xfcbsite')
                               .having(from_email=u'blubber@blubb.ch',
                                       from_name=u'Subsite'))
 
@@ -39,9 +39,9 @@ class TestContactFrom(TestCase):
         self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
-             'Subsite (http=\n://nohost/plone/subsite):\n'
+             'S=C3=BCbsite (http://nohost/plone/subsite):'
              'Lorem ipsum dolor sit amet'),
-            msg.get_payload())
+            msg.get_payload().replace('=\n', '').replace('\n', ''))
 
     @browsing
     def test_contact_cancel(self, browser):
@@ -51,7 +51,7 @@ class TestContactFrom(TestCase):
 
     @browsing
     def test_contact_portal(self, browser):
-        self.portal.setTitle('Test')
+        self.portal.setTitle('Test\xc3\xbc')
         self.portal.manage_changeProperties(
             email_from_address='site@nohost.com')
         self.portal.manage_changeProperties(email_from_name='Ploneroot')
@@ -80,9 +80,9 @@ class TestContactFrom(TestCase):
         self.assertEqual(sub.encode('utf8'), '=?utf-8?q?Testsubject?=')
         self.assertEqual(
             ('hans peter (test@test.com) sends you a message from your site '
-             'Test (http://=\nnohost/plone):\n'
+             'Test=C3=BC (http://nohost/plone):'
              'Lorem ipsum dolor sit amet'),
-            msg.get_payload())
+            msg.get_payload().replace('=\n', '').replace('\n', ''))
 
     @browsing
     def test_contact_invalid_email(self, browser):
