@@ -4,7 +4,7 @@ Changelog
 2.7.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix harmful upgrade step introduced in 2.7.8. The upgrade step removes all behaviours from the Subsite content type. Please do not upgrade to 2.7.8/2.7.9/2.7.10 [mathias.leimgruber]
 
 
 2.7.10 (2021-06-08)
