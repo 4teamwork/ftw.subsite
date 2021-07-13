@@ -3,7 +3,7 @@
         meta_type="Dexterity FTI"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
         i18n:domain="ftw.subsite" >
-    <property name="behaviors">
+    <property name="behaviors" purge="False">
         <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" remove="True" />
     </property>
 </object>
